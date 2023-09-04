@@ -4,18 +4,30 @@ Easily add markdown text to a workflow summary.
 
 Example:
 
+<!--- @@inject: ../../workflows/example-summary.yaml --->
+
 ```yaml
+name: Example Summary
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
 jobs:
-  test:
+  run-example:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         version: [10, 12, 14]
-    runs-on: ubuntu-latest
     steps:
       - name: Summary
-        uses: streetsidesoftware/actions/.github/actions/summary
+        uses: streetsidesoftware/actions/.github/actions/summary@db72c52e539c5e2c1423c949aad1d7d26f35931f
         with:
           text: |
-          # Summary
-          Node: `${{ matrix.version }}``
+            # Summary
+            Finished with Node: `${{ matrix.version }}`
 ```
+
+<!--- @@inject-end: ../../workflows/example-summary.yaml --->

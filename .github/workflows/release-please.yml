@@ -1,0 +1,18 @@
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+name: ' 🚀 release-please'
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          command: manifest
+          release-type: node

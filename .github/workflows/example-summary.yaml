@@ -18,4 +18,4 @@ jobs:
         with:
           text: |
             # Summary
-            Finised with Node: `${{ matrix.version }}`
+            Finished with Node: `${{ matrix.version }}`

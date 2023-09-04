@@ -1,0 +1,14 @@
+{
+  "packages": {
+    ".": {
+      "releaseType": "node",
+      "extra-files": [
+        "README.md"
+      ]
+    },
+    ".github/actions/output": {
+      "releaseType": "simple",
+      "component": "action-output"
+    }
+  }
+}

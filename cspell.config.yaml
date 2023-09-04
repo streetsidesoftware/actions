@@ -1,0 +1,9 @@
+enableGlobDot: true
+ignorePaths:
+  - .git/{index,config}
+  - .git/*/**
+  - .gitignore
+  - .prettierignore
+  - node_modules
+  - pnpm-lock.yaml
+# cspell:ignore EDITMSG
