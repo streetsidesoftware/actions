@@ -2,7 +2,7 @@
 
 Collection of actions for GitHub Workflows
 
-<!--- @@inject: .github/actions/summary/README.md --->
+<!--- @@inject: public/summary/README.md --->
 
 ## `summary` Action
 
@@ -27,16 +27,16 @@ jobs:
         version: [10, 12, 14]
     steps:
       - name: Summary
-        uses: streetsidesoftware/actions/.github/actions/summary@v1
+        uses: streetsidesoftware/actions/public/summary@v1
         with:
           text: |
             # Summary
             Finished with Node: `${{ matrix.version }}`
 ```
 
-<!--- @@inject-end: .github/actions/summary/README.md --->
+<!--- @@inject-end: public/summary/README.md --->
 
-<!--- @@inject: .github/actions/output/README.md --->
+<!--- @@inject: public/output/README.md --->
 
 ## `output` Action
 
@@ -62,7 +62,7 @@ jobs:
     steps:
       - name: Test Step Output
         id: my_step
-        uses: streetsidesoftware/actions/.github/actions/output@v1
+        uses: streetsidesoftware/actions/public/output@v1
         with:
           value: |
             Action: ${{ github.action }}
@@ -71,12 +71,12 @@ jobs:
 
       - name: Detect if Main
         id: is_main
-        uses: streetsidesoftware/actions/.github/actions/output@v1
+        uses: streetsidesoftware/actions/public/output@v1
         with:
           value: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Summary
-        uses: streetsidesoftware/actions/.github/actions/summary@v1
+        uses: streetsidesoftware/actions/public/summary@v1
         with:
           text: |
             # Summary
@@ -88,9 +88,9 @@ jobs:
             Is Main: ${{ steps.is_main.outputs.value }}
 ````
 
-<!--- @@inject-end: .github/actions/output/README.md --->
+<!--- @@inject-end: public/output/README.md --->
 
-<!--- @@inject: .github/actions/dirty/README.md --->
+<!--- @@inject: public/dirty/README.md --->
 
 ## `dirty` Action
 
@@ -116,7 +116,7 @@ jobs:
 
       - name: Dirty 1
         id: dirty_1
-        uses: ./.github/actions/dirty
+        uses: streetsidesoftware/actions/public/dirty@v1
 
       - name: Touch
         run: |
@@ -125,10 +125,10 @@ jobs:
 
       - name: Dirty 2
         id: dirty_2
-        uses: ./.github/actions/dirty
+        uses: streetsidesoftware/actions/public/dirty@v1
 
       - name: Summary
-        uses: streetsidesoftware/actions/.github/actions/summary@v1
+        uses: streetsidesoftware/actions/public/summary@v1
         with:
           text: |
             # Dirty Summary
@@ -150,4 +150,4 @@ jobs:
             ```
 ````
 
-<!--- @@inject-end: .github/actions/dirty/README.md --->
+<!--- @@inject-end: public/dirty/README.md --->

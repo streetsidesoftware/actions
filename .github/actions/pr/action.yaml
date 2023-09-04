@@ -27,7 +27,7 @@ runs:
   steps:
     - name: Has changes
       id: dirty
-      uses: streetsidesoftware/actions/.github/actions/dirty@v1
+      uses: streetsidesoftware/actions/public/dirty@v1
 
     - name: Echo git_status
       shell: bash

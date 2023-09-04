@@ -1,5 +1,9 @@
 {
     "cSpell.enableFiletypes": [
         "github-actions-workflow"
-    ]
+    ],
+    "files.associations": {
+      "**/public/*/*.yaml": "github-actions-workflow",
+      "**/.github/actions/*/*.yaml": "github-actions-workflow"
+    }
 }
