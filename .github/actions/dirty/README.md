@@ -24,7 +24,7 @@ jobs:
 
       - name: Dirty 1
         id: dirty_1
-        uses: ./.github/actions/dirty
+        uses: streetsidesoftware/actions/.github/actions/dirty@v1
 
       - name: Touch
         run: |
@@ -33,7 +33,7 @@ jobs:
 
       - name: Dirty 2
         id: dirty_2
-        uses: ./.github/actions/dirty
+        uses: streetsidesoftware/actions/.github/actions/dirty@v1
 
       - name: Summary
         uses: streetsidesoftware/actions/.github/actions/summary@v1
