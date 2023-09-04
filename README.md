@@ -44,7 +44,7 @@ Set the `output.value` of a step. This is a useful way to keep calculated values
 
 Example:
 
-```yaml
+````yaml
 name: '📗 Example Set Output'
 
 on:
@@ -80,11 +80,74 @@ jobs:
         with:
           text: |
             # Summary
-            Node: `${{ matrix.version }}
-            Output: ${{ steps.my_step.outputs.value }}
+            Node: `${{ matrix.version }}`
+            Output:
+            ```
+            ${{ steps.my_step.outputs.value }}
+            ```
             Is Main: ${{ steps.is_main.outputs.value }}
-```
+````
 
 <!--- @@inject-end: .github/actions/output/README.md --->
 
 <!--- @@inject: .github/actions/dirty/README.md --->
+
+## `dirty` Action
+
+Determine if the git tree has changes.
+
+Example:
+
+````yaml
+name: '📗 Example Dirty'
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-example:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Dirty 1
+        id: dirty_1
+        uses: ./.github/actions/dirty
+
+      - name: Touch
+        run: |
+          touch test.txt
+          echo "\n make dirty \n" >> README.md
+
+      - name: Dirty 2
+        id: dirty_2
+        uses: ./.github/actions/dirty
+
+      - name: Summary
+        uses: streetsidesoftware/actions/.github/actions/summary@v1
+        with:
+          text: |
+            # Dirty Summary
+
+            ## Dirty 1
+
+            isDirty: `${{ steps.dirty_1.outputs.isDirty }}` = ${{ steps.dirty_1.outputs.isDirty && 'Yes' || 'No' }} = ${{ !!steps.dirty_1.outputs.isDirty }}
+            status:
+            ```
+            ${{ steps.dirty_1.outputs.status }}
+            ```
+
+            ## Dirty 2
+
+            isDirty: `${{ steps.dirty_2.outputs.isDirty }}` = ${{ steps.dirty_2.outputs.isDirty && 'Yes' || 'No' }} = ${{ !!steps.dirty_2.outputs.isDirty }}
+            status:
+            ```
+            ${{ steps.dirty_2.outputs.status }}
+            ```
+````
+
+<!--- @@inject-end: .github/actions/dirty/README.md --->
