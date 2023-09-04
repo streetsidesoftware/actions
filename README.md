@@ -86,3 +86,5 @@ jobs:
 ```
 
 <!--- @@inject-end: .github/actions/output/README.md --->
+
+<!--- @@inject: .github/actions/dirty/README.md --->
