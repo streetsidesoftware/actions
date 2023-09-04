@@ -15,7 +15,7 @@ jobs:
 
       - name: Dirty 1
         id: dirty_1
-        uses: streetsidesoftware/actions/.github/actions/dirty@v1
+        uses: ./public/dirty
 
       - name: Touch
         run: |
