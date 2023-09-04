@@ -8,7 +8,7 @@ inputs:
 outputs:
   isDirty:
     description: "`'true'` if dirty, otherwise `''`."
-    value: ${{ !steps.dirty.outputs.git_status || '' }}
+    value: ${{ !!steps.dirty.outputs.git_status || '' }}
   status:
     description: The git status.
     value: ${{ steps.dirty.outputs.git_status }}
