@@ -26,7 +26,7 @@ jobs:
           release-type: node
 
       # The logic below handles the tag logic:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         if: ${{ steps.release.outputs.release_created }}
 
       - name: tag major and minor versions
