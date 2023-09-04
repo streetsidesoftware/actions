@@ -34,7 +34,7 @@ jobs:
 
             ## Dirty 1
 
-            isDirty: ${{ steps.dirty_1.outputs.isDirty }}
+            isDirty: `${{ steps.dirty_1.outputs.isDirty }}` = ${{ steps.dirty_1.outputs.isDirty && 'Yes' || 'No' }} = ${{ !!steps.dirty_1.outputs.isDirty }}
             status:
             ```
             ${{ steps.dirty_1.outputs.status }}
@@ -42,7 +42,7 @@ jobs:
 
             ## Dirty 2
 
-            isDirty: ${{ steps.dirty_2.outputs.isDirty }}
+            isDirty: `${{ steps.dirty_2.outputs.isDirty }}` = ${{ steps.dirty_2.outputs.isDirty && 'Yes' || 'No' }} = ${{ !!steps.dirty_2.outputs.isDirty }}
             status:
             ```
             ${{ steps.dirty_2.outputs.status }}
