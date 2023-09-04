@@ -6,7 +6,7 @@ Example:
 
 <!--- @@inject: ../../workflows/example-output.yaml --->
 
-```yaml
+````yaml
 name: '📗 Example Set Output'
 
 on:
@@ -42,9 +42,12 @@ jobs:
         with:
           text: |
             # Summary
-            Node: `${{ matrix.version }}
-            Output: ${{ steps.my_step.outputs.value }}
+            Node: `${{ matrix.version }}`
+            Output:
+            ```
+            ${{ steps.my_step.outputs.value }}
+            ```
             Is Main: ${{ steps.is_main.outputs.value }}
-```
+````
 
 <!--- @@inject-end: ../../workflows/example-output.yaml --->
