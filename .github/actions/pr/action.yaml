@@ -26,13 +26,13 @@ runs:
   using: 'composite'
   steps:
     - name: Has changes
-      shell: bash
-      run: |
-        git --no-pager diff --compact-summary  --exit-code && echo "git_status=clean" >> $GITHUB_ENV || echo "git_status=dirty" >> $GITHUB_ENV
-        git --no-pager diff --compact-summary
+      id: dirty
+      uses: ./.github/actions/dirty
 
     - name: Echo git_status
       shell: bash
+      env:
+        STATUS: ${{ toJSON(steps.dirty.outputs) }}
       run: echo "${{ env.git_status }}"
 
     - name: Body
@@ -43,14 +43,14 @@ runs:
         echo "$git_body"
 
     - uses: ./.github/actions/github-app-token
-      if: env.git_status == 'dirty'
+      if: steps.dirty.outputs.isDirty
       id: generate-token
       with:
         app_id: ${{ inputs.app_id }}
         app_private_key: ${{ inputs.app_private_key }}
 
     - name: Create Pull Request
-      if: env.git_status == 'dirty'
+      if: steps.dirty.outputs.isDirty
       uses: peter-evans/create-pull-request@2b011faafdcbc9ceb11414d64d0573f37c774b04 # v4
       with:
         commit-message: ${{ inputs.commit-message }}
