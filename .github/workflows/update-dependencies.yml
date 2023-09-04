@@ -1,0 +1,63 @@
+name: ' 🔗 Update Dependencies Main'
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  schedule:
+    - cron: '0 12 * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  update-dependencies:
+    if: github.repository_owner == 'streetsidesoftware'
+    runs-on: ubuntu-latest
+    env:
+      NEW_BRANCH: 'update-dependencies-main'
+      REF_BRANCH: main
+      PR_TYPE: ci
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ env.REF_BRANCH }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.4.0
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          cache: 'pnpm'
+
+      - name: Install
+        run: pnpm install
+
+      - name: Update packages
+        run: |
+          pnpm up
+          pnpm -r up
+
+      - name: Update Readme
+        run: |
+          pnpm build:readme
+
+      - name: Gen Body
+        run: |
+          echo 'git_body<<DIFF' >> $GITHUB_ENV
+          git --no-pager diff --compact-summary >> $GITHUB_ENV
+          echo 'DIFF' >> $GITHUB_ENV
+
+      - name: PR
+        uses: ./.github/actions/pr
+        with:
+          commit-message: '${{ env.PR_TYPE }}: Workflow Bot -- Update ALL Dependencies'
+          branch: ${{ env.NEW_BRANCH }}
+          base: ${{ env.REF_BRANCH }}
+          title: '${{ env.PR_TYPE }}: Workflow Bot -- Update ALL Dependencies (${{ env.REF_BRANCH }})'
+          body: ${{ env.git_body }}
+          app_id: ${{ secrets.AUTOMATION_APP_ID }}
+          app_private_key: ${{ secrets.AUTOMATION_PRIVATE_KEY }}

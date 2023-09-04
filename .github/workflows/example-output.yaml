@@ -1,4 +1,4 @@
-name: Example Set Output
+name: ' 📗 Example Set Output'
 
 on:
   workflow_dispatch:

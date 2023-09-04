@@ -1,4 +1,4 @@
-name: Example Summary
+name: ' 📗 Example Summary'
 
 on:
   workflow_dispatch:
