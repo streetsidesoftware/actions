@@ -1,7 +1,7 @@
 {
   "packages": {
     ".": {
-      "releaseType": "simple",
+      "releaseType": "node",
       "extra-files": [
         "README.md"
       ]
