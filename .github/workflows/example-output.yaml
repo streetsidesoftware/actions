@@ -13,9 +13,18 @@ jobs:
       matrix:
         version: [10, 12, 14]
     steps:
+      - name: Test Step Output
+        id: my_step
+        uses: streetsidesoftware/actions/.github/actions/output@v1
+        with:
+          value: |
+            Action: ${{ github.action }}
+            Actor: ${{ github.actor }}
+
       - name: Summary
         uses: streetsidesoftware/actions/.github/actions/summary@v1
         with:
           text: |
             # Summary
-            Finished with Node: `${{ matrix.version }}`
+            Node: `${{ matrix.version }}
+            Output: ${{ steps.my_step.outputs.value }}
