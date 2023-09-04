@@ -1,4 +1,4 @@
-name: cspell-action
+name: '🔤 cspell'
 on:
   pull_request:
   push:
