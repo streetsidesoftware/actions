@@ -15,4 +15,4 @@ jobs:
         id: release
         with:
           command: manifest
-          release-type: simple
+          release-type: ''
