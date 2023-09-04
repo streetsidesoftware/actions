@@ -73,7 +73,7 @@ jobs:
         id: is_main
         uses: streetsidesoftware/actions/public/output@v1
         with:
-          value: ${{ github.ref == 'refs/heads/main' }}
+          value: ${{ github.ref == 'refs/heads/main' || '' }}
 
       - name: Summary
         uses: streetsidesoftware/actions/public/summary@v1
@@ -85,7 +85,7 @@ jobs:
             ```
             ${{ steps.my_step.outputs.value }}
             ```
-            Is Main: ${{ steps.is_main.outputs.value }}
+            Is Main: ${{ steps.is_main.outputs.value }} as bool ${{ !!steps.is_main.outputs.value }}
 ````
 
 <!--- @@inject-end: public/output/README.md --->
