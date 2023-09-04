@@ -27,7 +27,7 @@ runs:
   steps:
     - name: Has changes
       id: dirty
-      uses: ./.github/actions/dirty
+      uses: streetsidesoftware/actions/.github/actions/dirty@v1
 
     - name: Echo git_status
       shell: bash
@@ -42,7 +42,7 @@ runs:
       run: |
         echo "$git_body"
 
-    - uses: ./.github/actions/github-app-token
+    - uses: streetsidesoftware/actions/.github/actions/github-app-token@v1
       if: steps.dirty.outputs.isDirty
       id: generate-token
       with:

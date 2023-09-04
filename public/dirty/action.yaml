@@ -1,0 +1,37 @@
+name: dirty
+description: Determine if the git tree is dirty.
+
+inputs:
+  show:
+    description: Show the value in the console.
+    required: false
+outputs:
+  isDirty:
+    description: "`'true'` if dirty, otherwise `''`."
+    value: ${{ !!steps.dirty.outputs.git_status || '' }}
+  status:
+    description: The git status.
+    value: ${{ steps.dirty.outputs.git_status }}
+runs:
+  using: composite
+  steps:
+    - name: Check Git
+      id: dirty
+      shell: bash
+      run: |
+        echo 'git_status<<@@GIT_STATUS@@' >> $GITHUB_OUTPUT
+        git status -s >> $GITHUB_OUTPUT
+        echo '@@GIT_STATUS@@' >> $GITHUB_OUTPUT
+
+    - name: Show
+      if: inputs.show
+      shell: bash
+      env:
+        VALUE: |
+          isDirty: `${{ !steps.dirty.outputs.git_status || '' }}`
+          status:
+          ```
+          ${{ steps.dirty.outputs.git_status }}
+          ```
+      run: |
+        echo "$VALUE"
