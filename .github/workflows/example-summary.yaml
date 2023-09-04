@@ -14,8 +14,8 @@ jobs:
         version: [10, 12, 14]
     steps:
       - name: Summary
-        uses: streetsidesoftware/actions/.github/actions/summary
+        uses: streetsidesoftware/actions/.github/actions/summary@db72c52e539c5e2c1423c949aad1d7d26f35931f
         with:
           text: |
             # Summary
-            Finised with Node: `${{ matrix.version }}``
+            Finised with Node: `${{ matrix.version }}`
