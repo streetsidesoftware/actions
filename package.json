@@ -1,0 +1,16 @@
+{
+  "name": "actions",
+  "version": "1.0.0",
+  "description": "Collection of actions for GitHub Workflows",
+  "private": true,
+  "scripts": {
+    "build:readme": "inject-markdown README.md \".github/**/README.md\""
+  },
+  "keywords": [],
+  "author": "Street Side Software",
+  "license": "MIT",
+  "devDependencies": {
+    "inject-markdown": "^2.0.0",
+    "prettier": "^3.0.3"
+  }
+}
