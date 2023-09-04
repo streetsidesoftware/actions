@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/streetsidesoftware/actions/compare/v1.1.1...v1.2.0) (2023-09-04)
+
+
+### Features
+
+* Move all public actions under `public` ([#22](https://github.com/streetsidesoftware/actions/issues/22)) ([23fb45f](https://github.com/streetsidesoftware/actions/commit/23fb45fd317f7549b1621e603101341312e43740))
+
 ## [1.1.1](https://github.com/streetsidesoftware/actions/compare/v1.1.0...v1.1.1) (2023-09-04)
 
 
