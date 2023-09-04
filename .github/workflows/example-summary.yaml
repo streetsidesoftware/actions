@@ -1,0 +1,21 @@
+name: Example Summary
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-example:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [10, 12, 14]
+    steps:
+      - name: Summary
+        uses: streetsidesoftware/actions/.github/actions/summary
+        with:
+          text: |
+            # Summary
+            Finised with Node: `${{ matrix.version }}``
