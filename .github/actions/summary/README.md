@@ -7,7 +7,7 @@ Example:
 <!--- @@inject: ../../workflows/example-summary.yaml --->
 
 ```yaml
-name: Example Summary
+name: '📗 Example Summary'
 
 on:
   workflow_dispatch:
@@ -23,7 +23,7 @@ jobs:
         version: [10, 12, 14]
     steps:
       - name: Summary
-        uses: streetsidesoftware/actions/.github/actions/summary@db72c52e539c5e2c1423c949aad1d7d26f35931f
+        uses: streetsidesoftware/actions/.github/actions/summary@v1
         with:
           text: |
             # Summary
