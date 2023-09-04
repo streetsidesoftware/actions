@@ -33,6 +33,9 @@ jobs:
         with:
           text: |
             # Summary
-            Node: `${{ matrix.version }}
-            Output: ${{ steps.my_step.outputs.value }}
+            Node: `${{ matrix.version }}`
+            Output:
+            ```
+            ${{ steps.my_step.outputs.value }}
+            ```
             Is Main: ${{ steps.is_main.outputs.value }}
