@@ -1,10 +1,10 @@
-# `summary` Action
+# `output` Action
 
-Easily add markdown text to a workflow summary.
+Set the `output.value` of a step. This is a useful way to keep calculated values.
 
 Example:
 
-<!--- @@inject: ../../workflows/example-summary.yaml --->
+<!--- @@inject: ../../workflows/example-output.yaml --->
 
 ```yaml
 name: Example Summary

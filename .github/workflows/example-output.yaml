@@ -1,4 +1,4 @@
-name: Example Summary
+name: Example Set Output
 
 on:
   workflow_dispatch:
@@ -20,6 +20,13 @@ jobs:
           value: |
             Action: ${{ github.action }}
             Actor: ${{ github.actor }}
+            Ref: ${{ github.ref }}
+
+      - name: Detect if Main
+        id: is_main
+        uses: streetsidesoftware/actions/.github/actions/output@v1
+        with:
+          value: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Summary
         uses: streetsidesoftware/actions/.github/actions/summary@v1
@@ -28,3 +35,4 @@ jobs:
             # Summary
             Node: `${{ matrix.version }}
             Output: ${{ steps.my_step.outputs.value }}
+            Is Main: ${{ steps.is_main.outputs.value }}
