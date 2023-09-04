@@ -4,7 +4,7 @@ Set the `output.value` of a step. This is a useful way to keep calculated values
 
 Example:
 
-<!--- @@inject: ../../workflows/example-output.yaml --->
+<!--- @@inject: ../../.github/workflows/example-output.yaml --->
 
 ````yaml
 name: '📗 Example Set Output'
@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: Test Step Output
         id: my_step
-        uses: streetsidesoftware/actions/.github/actions/output@v1
+        uses: streetsidesoftware/actions/public/output@v1
         with:
           value: |
             Action: ${{ github.action }}
@@ -33,12 +33,12 @@ jobs:
 
       - name: Detect if Main
         id: is_main
-        uses: streetsidesoftware/actions/.github/actions/output@v1
+        uses: streetsidesoftware/actions/public/output@v1
         with:
           value: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Summary
-        uses: streetsidesoftware/actions/.github/actions/summary@v1
+        uses: streetsidesoftware/actions/public/summary@v1
         with:
           text: |
             # Summary
@@ -50,4 +50,4 @@ jobs:
             Is Main: ${{ steps.is_main.outputs.value }}
 ````
 
-<!--- @@inject-end: ../../workflows/example-output.yaml --->
+<!--- @@inject-end: ../../.github/workflows/example-output.yaml --->

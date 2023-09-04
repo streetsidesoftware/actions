@@ -14,7 +14,7 @@ jobs:
         version: [10, 12, 14]
     steps:
       - name: Summary
-        uses: streetsidesoftware/actions/.github/actions/summary@v1
+        uses: streetsidesoftware/actions/public/summary@v1
         with:
           text: |
             # Summary
