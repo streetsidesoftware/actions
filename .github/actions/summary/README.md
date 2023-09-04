@@ -1,4 +1,4 @@
-# `summary` Action
+## `summary` Action
 
 Easily add markdown text to a workflow summary.
 
