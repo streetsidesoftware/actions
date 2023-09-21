@@ -6,4 +6,6 @@ ignorePaths:
   - .prettierignore
   - node_modules
   - pnpm-lock.yaml
-# cspell:ignore EDITMSG
+  - '**/out/**'
+words:
+  - outfile
