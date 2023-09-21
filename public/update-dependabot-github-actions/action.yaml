@@ -1,0 +1,45 @@
+name: 'Update dependabot Github Actions'
+description: 'Update .github/dependabot.yml file to include a list of actions.'
+
+inputs:
+  directory:
+    description: |
+      A glob pattern to search for directories containing `action.yaml` or `action.yml` files.
+      Example:
+        .github/actions/*
+      or
+        {.github/actions,private/actions}
+    required: false
+    default: '.github/actions/*'
+  dependabot:
+    description: |
+      Path to the dependabot yaml file.
+    default: '.github/dependabot.yml'
+    required: false
+  interval:
+    description: |
+      Scan frequency. See dependabot schedule.interval
+    default: 'daily'
+    required: false
+  dry-run:
+    description: |
+      Only report on what would happen.
+    required: false
+  summary:
+    description: Show a summary
+    default: true
+    required: false
+
+outputs:
+  updated:
+    description: |
+      - "true" - the dependabot file was changed.
+      - "" - the dependabot file was not changed.
+  changes:
+    description: Number of changes
+
+  results:
+    description: Detailed results in JSON format.
+runs:
+  using: 'node20'
+  main: 'action-build/index.cjs'

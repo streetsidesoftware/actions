@@ -1,0 +1,58 @@
+name: ' 🔗 Update Dependabot'
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      base:
+        description: The Base Ref to apply the diff
+        required: false
+        default: 'main'
+
+  schedule:
+    - cron: '0 12 * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  update-dependabot:
+    if: github.repository_owner == 'streetsidesoftware'
+    runs-on: ubuntu-latest
+    env:
+      NEW_BRANCH: update-dependabot-${{ inputs.base || 'main' }}
+      REF_BRANCH: ${{ inputs.base || 'main' }}
+      PR_TYPE: ci
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.REF_BRANCH }}
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+          cache: 'pnpm'
+
+      - name: Run Action
+        uses: ./public/update-dependabot-github-actions
+
+      - name: Gen Body
+        run: |
+          echo 'git_body<<DIFF' >> $GITHUB_ENV
+          git --no-pager diff --compact-summary >> $GITHUB_ENV
+          echo 'DIFF' >> $GITHUB_ENV
+
+      - name: PR
+        uses: ./.github/actions/pr
+        with:
+          commit-message: '${{ env.PR_TYPE }}: Workflow Bot -- Update dependabot.yml'
+          branch: ${{ env.NEW_BRANCH }}
+          base: ${{ env.REF_BRANCH }}
+          title: '${{ env.PR_TYPE }}: Workflow Bot -- Update dependabot.yml (${{ env.REF_BRANCH }})'
+          body: ${{ env.git_body }}
+          app_id: ${{ secrets.AUTOMATION_APP_ID }}
+          app_private_key: ${{ secrets.AUTOMATION_PRIVATE_KEY }}

@@ -1,0 +1,9 @@
+{
+  "INPUT_GITHUB_TOKEN": "$GITHUB_TOKEN",
+  "INPUT_DRY_RUN": "true",
+  "INPUT_DIRECTORY": "{.github/actions,public}",
+  "GITHUB_ENV": "${cwd}/temp/GITHUB_ENV.txt",
+  "GITHUB_OUTPUT": "${cwd}/temp/GITHUB_OUTPUT.txt",
+  "GITHUB_STATE": "${cwd}/temp/GITHUB_STATE.txt",
+  "GITHUB_STEP_SUMMARY": "${cwd}/temp/GITHUB_STEP_SUMMARY.txt"
+}
