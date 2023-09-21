@@ -17,7 +17,7 @@ outputs:
 runs:
   using: composite
   steps:
-    - uses: tibdex/github-app-token@v1.8.2 # cspell:ignore tibdex
+    - uses: tibdex/github-app-token@v2.1.0 # cspell:ignore tibdex
       id: generate-token
       with:
         app_id: ${{ inputs.app_id }}
