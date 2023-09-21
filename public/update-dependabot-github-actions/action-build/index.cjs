@@ -16589,7 +16589,9 @@ async function run(args) {
       console.log("Result: %o", detailedResults);
       (0, import_core.setOutput)("results", JSON.stringify(detailedResults));
     }
-    import_core.summary.addRaw(generateSummary(result));
+    const summaryText = generateSummary(result);
+    (0, import_core.setOutput)("summary", summaryText);
+    import_core.summary.addRaw(summaryText);
     await import_core.summary.write();
     (0, import_core.setOutput)("updated", result.changes && true || "");
     (0, import_core.setOutput)("changes", result.changes);

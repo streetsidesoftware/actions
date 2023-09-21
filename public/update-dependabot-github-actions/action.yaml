@@ -40,6 +40,9 @@ outputs:
 
   results:
     description: Detailed results in JSON format.
+
+  summary:
+    description: Markdown summary of changes, can be used in a PR.
 runs:
   using: 'node20'
   main: 'action-build/index.cjs'

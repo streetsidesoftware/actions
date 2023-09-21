@@ -35,7 +35,9 @@ async function run(args) {
             console.log('Result: %o', detailedResults);
             setOutput('results', JSON.stringify(detailedResults));
         }
-        summary.addRaw(generateSummary(result));
+        const summaryText = generateSummary(result);
+        setOutput('summary', summaryText);
+        summary.addRaw(summaryText);
         await summary.write();
         setOutput('updated', (result.changes && true) || '');
         setOutput('changes', result.changes);
