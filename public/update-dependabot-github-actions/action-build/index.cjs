@@ -16584,7 +16584,9 @@ async function run(args) {
     const result = await updateDependabot(directory, dependabot, cwd, opts);
     {
       const { changes, actionFolders, actionsGlob, options: options2, actionsTaken, dependabotFile } = result;
-      console.log("Result: %o", { changes, actionFolders, actionsGlob, options: options2, actionsTaken, dependabotFile });
+      const detailedResults = { changes, actionFolders, actionsGlob, options: options2, actionsTaken, dependabotFile };
+      console.log("Result: %o", detailedResults);
+      (0, import_core.setOutput)("results", JSON.stringify(detailedResults));
     }
     import_core.summary.addRaw(generateSummary(result));
     await import_core.summary.write();
