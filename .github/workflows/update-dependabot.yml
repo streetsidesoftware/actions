@@ -43,7 +43,7 @@ jobs:
       - name: Run Action
         uses: ./public/update-dependabot-github-actions
         with:
-          directory: '/{.github/actions,public}'
+          directory: '{.github/actions,public}'
 
       - name: Gen Body
         run: |
