@@ -1,7 +1,7 @@
 import { promises as fs } from 'node:fs';
 import * as path from 'node:path';
 
-const createFilesFor = ['GITHUB_ENV', 'GITHUB_OUTPUT', 'GITHUB_STATE'];
+const createFilesFor = ['GITHUB_ENV', 'GITHUB_OUTPUT', 'GITHUB_STATE', 'GITHUB_STEP_SUMMARY'];
 
 export async function prepDebug() {
     const env = process.env;

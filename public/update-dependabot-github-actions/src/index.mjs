@@ -29,8 +29,14 @@ async function run(args) {
 
         console.log('Start: %o', { inputs });
         const result = await updateDependabot(directory, dependabot, cwd, opts);
-        console.log('Result: %o', { result });
+        {
+            const { changes, actionFolders, actionsGlob, options, actionsTaken, dependabotFile } = result;
+            const detailedResults = { changes, actionFolders, actionsGlob, options, actionsTaken, dependabotFile };
+            console.log('Result: %o', detailedResults);
+            setOutput('results', JSON.stringify(detailedResults));
+        }
         summary.addRaw(generateSummary(result));
+        await summary.write();
         setOutput('updated', (result.changes && true) || '');
         setOutput('changes', result.changes);
     } catch (error) {
@@ -62,7 +68,6 @@ function processArgs() {
     };
     const shortHands = {};
     const parsed = nopt(knownOpts, shortHands);
-    console.log(parsed);
     return parsed;
 }
 

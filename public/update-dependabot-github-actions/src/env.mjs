@@ -8,11 +8,6 @@ const replaceDirective = /\$\{([^}]+)\}/g;
  * @param {{ [string]: string }} keyValues
  */
 export function adjustEnvValues(env, keyValues) {
-    console.log(
-        'adjustEnvValues %o, %o',
-        Object.fromEntries(Object.entries(env).filter(([name]) => envPrefix.test(name))),
-        keyValues,
-    );
     for (const [key, value] of Object.entries(env)) {
         if (!envPrefix.test(key)) continue;
         const newValue = value.replace(replaceDirective, (match, p1) => {
@@ -20,9 +15,4 @@ export function adjustEnvValues(env, keyValues) {
         });
         env[key] = newValue;
     }
-    console.log(
-        'adjustEnvValues after %o, %o',
-        Object.fromEntries(Object.entries(env).filter(([name]) => envPrefix.test(name))),
-        Object.fromEntries(Object.entries(process.env).filter(([name]) => envPrefix.test(name))),
-    );
 }

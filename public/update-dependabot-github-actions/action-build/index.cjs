@@ -518,7 +518,7 @@ var require_file_command = __commonJS({
     };
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.prepareKeyValueMessage = exports.issueFileCommand = void 0;
-    var fs = __importStar(require("fs"));
+    var fs3 = __importStar(require("fs"));
     var os = __importStar(require("os"));
     var uuid_1 = (init_esm_node(), __toCommonJS(esm_node_exports));
     var utils_1 = require_utils();
@@ -527,10 +527,10 @@ var require_file_command = __commonJS({
       if (!filePath) {
         throw new Error(`Unable to find environment variable for file command ${command}`);
       }
-      if (!fs.existsSync(filePath)) {
+      if (!fs3.existsSync(filePath)) {
         throw new Error(`Missing file at path: ${filePath}`);
       }
-      fs.appendFileSync(filePath, `${utils_1.toCommandValue(message)}${os.EOL}`, {
+      fs3.appendFileSync(filePath, `${utils_1.toCommandValue(message)}${os.EOL}`, {
         encoding: "utf8"
       });
     }
@@ -890,11 +890,11 @@ var require_lib = __commonJS({
     };
     var __awaiter = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
       function adopt(value) {
-        return value instanceof P ? value : new P(function(resolve) {
-          resolve(value);
+        return value instanceof P ? value : new P(function(resolve3) {
+          resolve3(value);
         });
       }
-      return new (P || (P = Promise))(function(resolve, reject) {
+      return new (P || (P = Promise))(function(resolve3, reject) {
         function fulfilled(value) {
           try {
             step(generator.next(value));
@@ -910,7 +910,7 @@ var require_lib = __commonJS({
           }
         }
         function step(result) {
-          result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+          result.done ? resolve3(result.value) : adopt(result.value).then(fulfilled, rejected);
         }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
       });
@@ -995,26 +995,26 @@ var require_lib = __commonJS({
       }
       readBody() {
         return __awaiter(this, void 0, void 0, function* () {
-          return new Promise((resolve) => __awaiter(this, void 0, void 0, function* () {
+          return new Promise((resolve3) => __awaiter(this, void 0, void 0, function* () {
             let output = Buffer.alloc(0);
             this.message.on("data", (chunk) => {
               output = Buffer.concat([output, chunk]);
             });
             this.message.on("end", () => {
-              resolve(output.toString());
+              resolve3(output.toString());
             });
           }));
         });
       }
       readBodyBuffer() {
         return __awaiter(this, void 0, void 0, function* () {
-          return new Promise((resolve) => __awaiter(this, void 0, void 0, function* () {
+          return new Promise((resolve3) => __awaiter(this, void 0, void 0, function* () {
             const chunks = [];
             this.message.on("data", (chunk) => {
               chunks.push(chunk);
             });
             this.message.on("end", () => {
-              resolve(Buffer.concat(chunks));
+              resolve3(Buffer.concat(chunks));
             });
           }));
         });
@@ -1223,14 +1223,14 @@ var require_lib = __commonJS({
        */
       requestRaw(info, data) {
         return __awaiter(this, void 0, void 0, function* () {
-          return new Promise((resolve, reject) => {
+          return new Promise((resolve3, reject) => {
             function callbackForResult(err, res) {
               if (err) {
                 reject(err);
               } else if (!res) {
                 reject(new Error("Unknown error"));
               } else {
-                resolve(res);
+                resolve3(res);
               }
             }
             this.requestRawWithCallback(info, data, callbackForResult);
@@ -1386,12 +1386,12 @@ var require_lib = __commonJS({
         return __awaiter(this, void 0, void 0, function* () {
           retryNumber = Math.min(ExponentialBackoffCeiling, retryNumber);
           const ms = ExponentialBackoffTimeSlice * Math.pow(2, retryNumber);
-          return new Promise((resolve) => setTimeout(() => resolve(), ms));
+          return new Promise((resolve3) => setTimeout(() => resolve3(), ms));
         });
       }
       _processResponse(res, options2) {
         return __awaiter(this, void 0, void 0, function* () {
-          return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+          return new Promise((resolve3, reject) => __awaiter(this, void 0, void 0, function* () {
             const statusCode = res.message.statusCode || 0;
             const response = {
               statusCode,
@@ -1399,7 +1399,7 @@ var require_lib = __commonJS({
               headers: {}
             };
             if (statusCode === HttpCodes.NotFound) {
-              resolve(response);
+              resolve3(response);
             }
             function dateTimeDeserializer(key, value) {
               if (typeof value === "string") {
@@ -1438,7 +1438,7 @@ var require_lib = __commonJS({
               err.result = response.result;
               reject(err);
             } else {
-              resolve(response);
+              resolve3(response);
             }
           }));
         });
@@ -1455,11 +1455,11 @@ var require_auth = __commonJS({
     "use strict";
     var __awaiter = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
       function adopt(value) {
-        return value instanceof P ? value : new P(function(resolve) {
-          resolve(value);
+        return value instanceof P ? value : new P(function(resolve3) {
+          resolve3(value);
         });
       }
-      return new (P || (P = Promise))(function(resolve, reject) {
+      return new (P || (P = Promise))(function(resolve3, reject) {
         function fulfilled(value) {
           try {
             step(generator.next(value));
@@ -1475,7 +1475,7 @@ var require_auth = __commonJS({
           }
         }
         function step(result) {
-          result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+          result.done ? resolve3(result.value) : adopt(result.value).then(fulfilled, rejected);
         }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
       });
@@ -1559,11 +1559,11 @@ var require_oidc_utils = __commonJS({
     "use strict";
     var __awaiter = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
       function adopt(value) {
-        return value instanceof P ? value : new P(function(resolve) {
-          resolve(value);
+        return value instanceof P ? value : new P(function(resolve3) {
+          resolve3(value);
         });
       }
-      return new (P || (P = Promise))(function(resolve, reject) {
+      return new (P || (P = Promise))(function(resolve3, reject) {
         function fulfilled(value) {
           try {
             step(generator.next(value));
@@ -1579,7 +1579,7 @@ var require_oidc_utils = __commonJS({
           }
         }
         function step(result) {
-          result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+          result.done ? resolve3(result.value) : adopt(result.value).then(fulfilled, rejected);
         }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
       });
@@ -1657,11 +1657,11 @@ var require_summary = __commonJS({
     "use strict";
     var __awaiter = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
       function adopt(value) {
-        return value instanceof P ? value : new P(function(resolve) {
-          resolve(value);
+        return value instanceof P ? value : new P(function(resolve3) {
+          resolve3(value);
         });
       }
-      return new (P || (P = Promise))(function(resolve, reject) {
+      return new (P || (P = Promise))(function(resolve3, reject) {
         function fulfilled(value) {
           try {
             step(generator.next(value));
@@ -1677,7 +1677,7 @@ var require_summary = __commonJS({
           }
         }
         function step(result) {
-          result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+          result.done ? resolve3(result.value) : adopt(result.value).then(fulfilled, rejected);
         }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
       });
@@ -1979,7 +1979,7 @@ var require_path_utils = __commonJS({
     };
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.toPlatformPath = exports.toWin32Path = exports.toPosixPath = void 0;
-    var path3 = __importStar(require("path"));
+    var path5 = __importStar(require("path"));
     function toPosixPath(pth) {
       return pth.replace(/[\\]/g, "/");
     }
@@ -1989,7 +1989,7 @@ var require_path_utils = __commonJS({
     }
     exports.toWin32Path = toWin32Path;
     function toPlatformPath(pth) {
-      return pth.replace(/[/\\]/g, path3.sep);
+      return pth.replace(/[/\\]/g, path5.sep);
     }
     exports.toPlatformPath = toPlatformPath;
   }
@@ -2029,11 +2029,11 @@ var require_core = __commonJS({
     };
     var __awaiter = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
       function adopt(value) {
-        return value instanceof P ? value : new P(function(resolve) {
-          resolve(value);
+        return value instanceof P ? value : new P(function(resolve3) {
+          resolve3(value);
         });
       }
-      return new (P || (P = Promise))(function(resolve, reject) {
+      return new (P || (P = Promise))(function(resolve3, reject) {
         function fulfilled(value) {
           try {
             step(generator.next(value));
@@ -2049,7 +2049,7 @@ var require_core = __commonJS({
           }
         }
         function step(result) {
-          result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+          result.done ? resolve3(result.value) : adopt(result.value).then(fulfilled, rejected);
         }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
       });
@@ -2060,7 +2060,7 @@ var require_core = __commonJS({
     var file_command_1 = require_file_command();
     var utils_1 = require_utils();
     var os = __importStar(require("os"));
-    var path3 = __importStar(require("path"));
+    var path5 = __importStar(require("path"));
     var oidc_utils_1 = require_oidc_utils();
     var ExitCode;
     (function(ExitCode2) {
@@ -2088,7 +2088,7 @@ var require_core = __commonJS({
       } else {
         command_1.issueCommand("add-path", {}, inputPath);
       }
-      process.env["PATH"] = `${inputPath}${path3.delimiter}${process.env["PATH"]}`;
+      process.env["PATH"] = `${inputPath}${path5.delimiter}${process.env["PATH"]}`;
     }
     exports.addPath = addPath;
     function getInput2(name, options2) {
@@ -2221,6 +2221,541 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
     Object.defineProperty(exports, "toPlatformPath", { enumerable: true, get: function() {
       return path_utils_1.toPlatformPath;
     } });
+  }
+});
+
+// ../../node_modules/.pnpm/abbrev@2.0.0/node_modules/abbrev/lib/index.js
+var require_lib2 = __commonJS({
+  "../../node_modules/.pnpm/abbrev@2.0.0/node_modules/abbrev/lib/index.js"(exports, module2) {
+    module2.exports = abbrev;
+    function abbrev(...args) {
+      let list = args.length === 1 || Array.isArray(args[0]) ? args[0] : args;
+      for (let i = 0, l = list.length; i < l; i++) {
+        list[i] = typeof list[i] === "string" ? list[i] : String(list[i]);
+      }
+      list = list.sort(lexSort);
+      const abbrevs = {};
+      let prev = "";
+      for (let ii = 0, ll = list.length; ii < ll; ii++) {
+        const current = list[ii];
+        const next = list[ii + 1] || "";
+        let nextMatches = true;
+        let prevMatches = true;
+        if (current === next) {
+          continue;
+        }
+        let j = 0;
+        const cl = current.length;
+        for (; j < cl; j++) {
+          const curChar = current.charAt(j);
+          nextMatches = nextMatches && curChar === next.charAt(j);
+          prevMatches = prevMatches && curChar === prev.charAt(j);
+          if (!nextMatches && !prevMatches) {
+            j++;
+            break;
+          }
+        }
+        prev = current;
+        if (j === cl) {
+          abbrevs[current] = current;
+          continue;
+        }
+        for (let a = current.slice(0, j); j <= cl; j++) {
+          abbrevs[a] = current;
+          a += current.charAt(j);
+        }
+      }
+      return abbrevs;
+    }
+    function lexSort(a, b) {
+      return a === b ? 0 : a > b ? 1 : -1;
+    }
+  }
+});
+
+// ../../node_modules/.pnpm/nopt@7.2.0/node_modules/nopt/lib/debug.js
+var require_debug = __commonJS({
+  "../../node_modules/.pnpm/nopt@7.2.0/node_modules/nopt/lib/debug.js"(exports, module2) {
+    module2.exports = process.env.DEBUG_NOPT || process.env.NOPT_DEBUG ? (...a) => console.error(...a) : () => {
+    };
+  }
+});
+
+// ../../node_modules/.pnpm/nopt@7.2.0/node_modules/nopt/lib/type-defs.js
+var require_type_defs = __commonJS({
+  "../../node_modules/.pnpm/nopt@7.2.0/node_modules/nopt/lib/type-defs.js"(exports, module2) {
+    var url = require("url");
+    var path5 = require("path");
+    var Stream2 = require("stream").Stream;
+    var os = require("os");
+    var debug = require_debug();
+    function validateString(data, k, val) {
+      data[k] = String(val);
+    }
+    function validatePath(data, k, val) {
+      if (val === true) {
+        return false;
+      }
+      if (val === null) {
+        return true;
+      }
+      val = String(val);
+      const isWin = process.platform === "win32";
+      const homePattern = isWin ? /^~(\/|\\)/ : /^~\//;
+      const home = os.homedir();
+      if (home && val.match(homePattern)) {
+        data[k] = path5.resolve(home, val.slice(2));
+      } else {
+        data[k] = path5.resolve(val);
+      }
+      return true;
+    }
+    function validateNumber(data, k, val) {
+      debug("validate Number %j %j %j", k, val, isNaN(val));
+      if (isNaN(val)) {
+        return false;
+      }
+      data[k] = +val;
+    }
+    function validateDate(data, k, val) {
+      const s = Date.parse(val);
+      debug("validate Date %j %j %j", k, val, s);
+      if (isNaN(s)) {
+        return false;
+      }
+      data[k] = new Date(val);
+    }
+    function validateBoolean(data, k, val) {
+      if (typeof val === "string") {
+        if (!isNaN(val)) {
+          val = !!+val;
+        } else if (val === "null" || val === "false") {
+          val = false;
+        } else {
+          val = true;
+        }
+      } else {
+        val = !!val;
+      }
+      data[k] = val;
+    }
+    function validateUrl(data, k, val) {
+      val = url.parse(String(val));
+      if (!val.host) {
+        return false;
+      }
+      data[k] = val.href;
+    }
+    function validateStream(data, k, val) {
+      if (!(val instanceof Stream2)) {
+        return false;
+      }
+      data[k] = val;
+    }
+    module2.exports = {
+      String: { type: String, validate: validateString },
+      Boolean: { type: Boolean, validate: validateBoolean },
+      url: { type: url, validate: validateUrl },
+      Number: { type: Number, validate: validateNumber },
+      path: { type: path5, validate: validatePath },
+      Stream: { type: Stream2, validate: validateStream },
+      Date: { type: Date, validate: validateDate },
+      Array: { type: Array }
+    };
+  }
+});
+
+// ../../node_modules/.pnpm/nopt@7.2.0/node_modules/nopt/lib/nopt-lib.js
+var require_nopt_lib = __commonJS({
+  "../../node_modules/.pnpm/nopt@7.2.0/node_modules/nopt/lib/nopt-lib.js"(exports, module2) {
+    var abbrev = require_lib2();
+    var debug = require_debug();
+    var defaultTypeDefs = require_type_defs();
+    var hasOwn = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
+    var getType = (k, { types: types2, dynamicTypes }) => {
+      let hasType = hasOwn(types2, k);
+      let type = types2[k];
+      if (!hasType && typeof dynamicTypes === "function") {
+        const matchedType = dynamicTypes(k);
+        if (matchedType !== void 0) {
+          type = matchedType;
+          hasType = true;
+        }
+      }
+      return [hasType, type];
+    };
+    var isTypeDef = (type, def) => def && type === def;
+    var hasTypeDef = (type, def) => def && type.indexOf(def) !== -1;
+    var doesNotHaveTypeDef = (type, def) => def && !hasTypeDef(type, def);
+    function nopt2(args, {
+      types: types2,
+      shorthands,
+      typeDefs,
+      invalidHandler,
+      typeDefault,
+      dynamicTypes
+    } = {}) {
+      debug(types2, shorthands, args, typeDefs);
+      const data = {};
+      const argv = {
+        remain: [],
+        cooked: args,
+        original: args.slice(0)
+      };
+      parse2(args, data, argv.remain, { typeDefs, types: types2, dynamicTypes, shorthands });
+      clean(data, { types: types2, dynamicTypes, typeDefs, invalidHandler, typeDefault });
+      data.argv = argv;
+      Object.defineProperty(data.argv, "toString", {
+        value: function() {
+          return this.original.map(JSON.stringify).join(" ");
+        },
+        enumerable: false
+      });
+      return data;
+    }
+    function clean(data, {
+      types: types2 = {},
+      typeDefs = {},
+      dynamicTypes,
+      invalidHandler,
+      typeDefault
+    } = {}) {
+      const StringType = typeDefs.String?.type;
+      const NumberType = typeDefs.Number?.type;
+      const ArrayType = typeDefs.Array?.type;
+      const BooleanType = typeDefs.Boolean?.type;
+      const DateType = typeDefs.Date?.type;
+      const hasTypeDefault = typeof typeDefault !== "undefined";
+      if (!hasTypeDefault) {
+        typeDefault = [false, true, null];
+        if (StringType) {
+          typeDefault.push(StringType);
+        }
+        if (ArrayType) {
+          typeDefault.push(ArrayType);
+        }
+      }
+      const remove = {};
+      Object.keys(data).forEach((k) => {
+        if (k === "argv") {
+          return;
+        }
+        let val = data[k];
+        debug("val=%j", val);
+        const isArray = Array.isArray(val);
+        let [hasType, rawType] = getType(k, { types: types2, dynamicTypes });
+        let type = rawType;
+        if (!isArray) {
+          val = [val];
+        }
+        if (!type) {
+          type = typeDefault;
+        }
+        if (isTypeDef(type, ArrayType)) {
+          type = typeDefault.concat(ArrayType);
+        }
+        if (!Array.isArray(type)) {
+          type = [type];
+        }
+        debug("val=%j", val);
+        debug("types=", type);
+        val = val.map((v) => {
+          if (typeof v === "string") {
+            debug("string %j", v);
+            v = v.trim();
+            if (v === "null" && ~type.indexOf(null) || v === "true" && (~type.indexOf(true) || hasTypeDef(type, BooleanType)) || v === "false" && (~type.indexOf(false) || hasTypeDef(type, BooleanType))) {
+              v = JSON.parse(v);
+              debug("jsonable %j", v);
+            } else if (hasTypeDef(type, NumberType) && !isNaN(v)) {
+              debug("convert to number", v);
+              v = +v;
+            } else if (hasTypeDef(type, DateType) && !isNaN(Date.parse(v))) {
+              debug("convert to date", v);
+              v = new Date(v);
+            }
+          }
+          if (!hasType) {
+            if (!hasTypeDefault) {
+              return v;
+            }
+            rawType = typeDefault;
+          }
+          if (v === false && ~type.indexOf(null) && !(~type.indexOf(false) || hasTypeDef(type, BooleanType))) {
+            v = null;
+          }
+          const d = {};
+          d[k] = v;
+          debug("prevalidated val", d, v, rawType);
+          if (!validate2(d, k, v, rawType, { typeDefs })) {
+            if (invalidHandler) {
+              invalidHandler(k, v, rawType, data);
+            } else if (invalidHandler !== false) {
+              debug("invalid: " + k + "=" + v, rawType);
+            }
+            return remove;
+          }
+          debug("validated v", d, v, rawType);
+          return d[k];
+        }).filter((v) => v !== remove);
+        if (!val.length && doesNotHaveTypeDef(type, ArrayType)) {
+          debug("VAL HAS NO LENGTH, DELETE IT", val, k, type.indexOf(ArrayType));
+          delete data[k];
+        } else if (isArray) {
+          debug(isArray, data[k], val);
+          data[k] = val;
+        } else {
+          data[k] = val[0];
+        }
+        debug("k=%s val=%j", k, val, data[k]);
+      });
+    }
+    function validate2(data, k, val, type, { typeDefs } = {}) {
+      const ArrayType = typeDefs?.Array?.type;
+      if (Array.isArray(type)) {
+        for (let i = 0, l = type.length; i < l; i++) {
+          if (isTypeDef(type[i], ArrayType)) {
+            continue;
+          }
+          if (validate2(data, k, val, type[i], { typeDefs })) {
+            return true;
+          }
+        }
+        delete data[k];
+        return false;
+      }
+      if (isTypeDef(type, ArrayType)) {
+        return true;
+      }
+      if (type !== type) {
+        debug("Poison NaN", k, val, type);
+        delete data[k];
+        return false;
+      }
+      if (val === type) {
+        debug("Explicitly allowed %j", val);
+        data[k] = val;
+        return true;
+      }
+      let ok = false;
+      const types2 = Object.keys(typeDefs);
+      for (let i = 0, l = types2.length; i < l; i++) {
+        debug("test type %j %j %j", k, val, types2[i]);
+        const t = typeDefs[types2[i]];
+        if (t && (type && type.name && t.type && t.type.name ? type.name === t.type.name : type === t.type)) {
+          const d = {};
+          ok = t.validate(d, k, val) !== false;
+          val = d[k];
+          if (ok) {
+            data[k] = val;
+            break;
+          }
+        }
+      }
+      debug("OK? %j (%j %j %j)", ok, k, val, types2[types2.length - 1]);
+      if (!ok) {
+        delete data[k];
+      }
+      return ok;
+    }
+    function parse2(args, data, remain, {
+      types: types2 = {},
+      typeDefs = {},
+      shorthands = {},
+      dynamicTypes
+    } = {}) {
+      const StringType = typeDefs.String?.type;
+      const NumberType = typeDefs.Number?.type;
+      const ArrayType = typeDefs.Array?.type;
+      const BooleanType = typeDefs.Boolean?.type;
+      debug("parse", args, data, remain);
+      const abbrevs = abbrev(Object.keys(types2));
+      debug("abbrevs=%j", abbrevs);
+      const shortAbbr = abbrev(Object.keys(shorthands));
+      for (let i = 0; i < args.length; i++) {
+        let arg = args[i];
+        debug("arg", arg);
+        if (arg.match(/^-{2,}$/)) {
+          remain.push.apply(remain, args.slice(i + 1));
+          args[i] = "--";
+          break;
+        }
+        let hadEq = false;
+        if (arg.charAt(0) === "-" && arg.length > 1) {
+          const at = arg.indexOf("=");
+          if (at > -1) {
+            hadEq = true;
+            const v = arg.slice(at + 1);
+            arg = arg.slice(0, at);
+            args.splice(i, 1, arg, v);
+          }
+          const shRes = resolveShort(arg, shortAbbr, abbrevs, { shorthands });
+          debug("arg=%j shRes=%j", arg, shRes);
+          if (shRes) {
+            args.splice.apply(args, [i, 1].concat(shRes));
+            if (arg !== shRes[0]) {
+              i--;
+              continue;
+            }
+          }
+          arg = arg.replace(/^-+/, "");
+          let no = null;
+          while (arg.toLowerCase().indexOf("no-") === 0) {
+            no = !no;
+            arg = arg.slice(3);
+          }
+          if (abbrevs[arg]) {
+            arg = abbrevs[arg];
+          }
+          let [hasType, argType] = getType(arg, { types: types2, dynamicTypes });
+          let isTypeArray = Array.isArray(argType);
+          if (isTypeArray && argType.length === 1) {
+            isTypeArray = false;
+            argType = argType[0];
+          }
+          let isArray = isTypeDef(argType, ArrayType) || isTypeArray && hasTypeDef(argType, ArrayType);
+          if (!hasType && hasOwn(data, arg)) {
+            if (!Array.isArray(data[arg])) {
+              data[arg] = [data[arg]];
+            }
+            isArray = true;
+          }
+          let val;
+          let la = args[i + 1];
+          const isBool = typeof no === "boolean" || isTypeDef(argType, BooleanType) || isTypeArray && hasTypeDef(argType, BooleanType) || typeof argType === "undefined" && !hadEq || la === "false" && (argType === null || isTypeArray && ~argType.indexOf(null));
+          if (isBool) {
+            val = !no;
+            if (la === "true" || la === "false") {
+              val = JSON.parse(la);
+              la = null;
+              if (no) {
+                val = !val;
+              }
+              i++;
+            }
+            if (isTypeArray && la) {
+              if (~argType.indexOf(la)) {
+                val = la;
+                i++;
+              } else if (la === "null" && ~argType.indexOf(null)) {
+                val = null;
+                i++;
+              } else if (!la.match(/^-{2,}[^-]/) && !isNaN(la) && hasTypeDef(argType, NumberType)) {
+                val = +la;
+                i++;
+              } else if (!la.match(/^-[^-]/) && hasTypeDef(argType, StringType)) {
+                val = la;
+                i++;
+              }
+            }
+            if (isArray) {
+              (data[arg] = data[arg] || []).push(val);
+            } else {
+              data[arg] = val;
+            }
+            continue;
+          }
+          if (isTypeDef(argType, StringType)) {
+            if (la === void 0) {
+              la = "";
+            } else if (la.match(/^-{1,2}[^-]+/)) {
+              la = "";
+              i--;
+            }
+          }
+          if (la && la.match(/^-{2,}$/)) {
+            la = void 0;
+            i--;
+          }
+          val = la === void 0 ? true : la;
+          if (isArray) {
+            (data[arg] = data[arg] || []).push(val);
+          } else {
+            data[arg] = val;
+          }
+          i++;
+          continue;
+        }
+        remain.push(arg);
+      }
+    }
+    var SINGLES = Symbol("singles");
+    var singleCharacters = (arg, shorthands) => {
+      let singles = shorthands[SINGLES];
+      if (!singles) {
+        singles = Object.keys(shorthands).filter((s) => s.length === 1).reduce((l, r) => {
+          l[r] = true;
+          return l;
+        }, {});
+        shorthands[SINGLES] = singles;
+        debug("shorthand singles", singles);
+      }
+      const chrs = arg.split("").filter((c) => singles[c]);
+      return chrs.join("") === arg ? chrs : null;
+    };
+    function resolveShort(arg, ...rest) {
+      const { types: types2 = {}, shorthands = {} } = rest.length ? rest.pop() : {};
+      const shortAbbr = rest[0] ?? abbrev(Object.keys(shorthands));
+      const abbrevs = rest[1] ?? abbrev(Object.keys(types2));
+      arg = arg.replace(/^-+/, "");
+      if (abbrevs[arg] === arg) {
+        return null;
+      }
+      if (shorthands[arg]) {
+        if (shorthands[arg] && !Array.isArray(shorthands[arg])) {
+          shorthands[arg] = shorthands[arg].split(/\s+/);
+        }
+        return shorthands[arg];
+      }
+      const chrs = singleCharacters(arg, shorthands);
+      if (chrs) {
+        return chrs.map((c) => shorthands[c]).reduce((l, r) => l.concat(r), []);
+      }
+      if (abbrevs[arg] && !shorthands[arg]) {
+        return null;
+      }
+      if (shortAbbr[arg]) {
+        arg = shortAbbr[arg];
+      }
+      if (shorthands[arg] && !Array.isArray(shorthands[arg])) {
+        shorthands[arg] = shorthands[arg].split(/\s+/);
+      }
+      return shorthands[arg];
+    }
+    module2.exports = {
+      nopt: nopt2,
+      clean,
+      parse: parse2,
+      validate: validate2,
+      resolveShort,
+      typeDefs: defaultTypeDefs
+    };
+  }
+});
+
+// ../../node_modules/.pnpm/nopt@7.2.0/node_modules/nopt/lib/nopt.js
+var require_nopt = __commonJS({
+  "../../node_modules/.pnpm/nopt@7.2.0/node_modules/nopt/lib/nopt.js"(exports, module2) {
+    var lib = require_nopt_lib();
+    var defaultTypeDefs = require_type_defs();
+    module2.exports = exports = nopt2;
+    exports.clean = clean;
+    exports.typeDefs = defaultTypeDefs;
+    exports.lib = lib;
+    function nopt2(types2, shorthands, args = process.argv, slice = 2) {
+      return lib.nopt(args.slice(slice), {
+        types: types2 || {},
+        shorthands: shorthands || {},
+        typeDefs: exports.typeDefs,
+        invalidHandler: exports.invalidHandler
+      });
+    }
+    function clean(data, types2, typeDefs = exports.typeDefs) {
+      return lib.clean(data, {
+        types: types2 || {},
+        typeDefs,
+        invalidHandler: exports.invalidHandler
+      });
+    }
   }
 });
 
@@ -2512,17 +3047,17 @@ var require_visit = __commonJS({
     visit.BREAK = BREAK;
     visit.SKIP = SKIP;
     visit.REMOVE = REMOVE;
-    function visit_(key, node, visitor, path3) {
-      const ctrl = callVisitor(key, node, visitor, path3);
+    function visit_(key, node, visitor, path5) {
+      const ctrl = callVisitor(key, node, visitor, path5);
       if (identity.isNode(ctrl) || identity.isPair(ctrl)) {
-        replaceNode(key, path3, ctrl);
-        return visit_(key, ctrl, visitor, path3);
+        replaceNode(key, path5, ctrl);
+        return visit_(key, ctrl, visitor, path5);
       }
       if (typeof ctrl !== "symbol") {
         if (identity.isCollection(node)) {
-          path3 = Object.freeze(path3.concat(node));
+          path5 = Object.freeze(path5.concat(node));
           for (let i = 0; i < node.items.length; ++i) {
-            const ci = visit_(i, node.items[i], visitor, path3);
+            const ci = visit_(i, node.items[i], visitor, path5);
             if (typeof ci === "number")
               i = ci - 1;
             else if (ci === BREAK)
@@ -2533,13 +3068,13 @@ var require_visit = __commonJS({
             }
           }
         } else if (identity.isPair(node)) {
-          path3 = Object.freeze(path3.concat(node));
-          const ck = visit_("key", node.key, visitor, path3);
+          path5 = Object.freeze(path5.concat(node));
+          const ck = visit_("key", node.key, visitor, path5);
           if (ck === BREAK)
             return BREAK;
           else if (ck === REMOVE)
             node.key = null;
-          const cv = visit_("value", node.value, visitor, path3);
+          const cv = visit_("value", node.value, visitor, path5);
           if (cv === BREAK)
             return BREAK;
           else if (cv === REMOVE)
@@ -2560,17 +3095,17 @@ var require_visit = __commonJS({
     visitAsync2.BREAK = BREAK;
     visitAsync2.SKIP = SKIP;
     visitAsync2.REMOVE = REMOVE;
-    async function visitAsync_(key, node, visitor, path3) {
-      const ctrl = await callVisitor(key, node, visitor, path3);
+    async function visitAsync_(key, node, visitor, path5) {
+      const ctrl = await callVisitor(key, node, visitor, path5);
       if (identity.isNode(ctrl) || identity.isPair(ctrl)) {
-        replaceNode(key, path3, ctrl);
-        return visitAsync_(key, ctrl, visitor, path3);
+        replaceNode(key, path5, ctrl);
+        return visitAsync_(key, ctrl, visitor, path5);
       }
       if (typeof ctrl !== "symbol") {
         if (identity.isCollection(node)) {
-          path3 = Object.freeze(path3.concat(node));
+          path5 = Object.freeze(path5.concat(node));
           for (let i = 0; i < node.items.length; ++i) {
-            const ci = await visitAsync_(i, node.items[i], visitor, path3);
+            const ci = await visitAsync_(i, node.items[i], visitor, path5);
             if (typeof ci === "number")
               i = ci - 1;
             else if (ci === BREAK)
@@ -2581,13 +3116,13 @@ var require_visit = __commonJS({
             }
           }
         } else if (identity.isPair(node)) {
-          path3 = Object.freeze(path3.concat(node));
-          const ck = await visitAsync_("key", node.key, visitor, path3);
+          path5 = Object.freeze(path5.concat(node));
+          const ck = await visitAsync_("key", node.key, visitor, path5);
           if (ck === BREAK)
             return BREAK;
           else if (ck === REMOVE)
             node.key = null;
-          const cv = await visitAsync_("value", node.value, visitor, path3);
+          const cv = await visitAsync_("value", node.value, visitor, path5);
           if (cv === BREAK)
             return BREAK;
           else if (cv === REMOVE)
@@ -2614,23 +3149,23 @@ var require_visit = __commonJS({
       }
       return visitor;
     }
-    function callVisitor(key, node, visitor, path3) {
+    function callVisitor(key, node, visitor, path5) {
       if (typeof visitor === "function")
-        return visitor(key, node, path3);
+        return visitor(key, node, path5);
       if (identity.isMap(node))
-        return visitor.Map?.(key, node, path3);
+        return visitor.Map?.(key, node, path5);
       if (identity.isSeq(node))
-        return visitor.Seq?.(key, node, path3);
+        return visitor.Seq?.(key, node, path5);
       if (identity.isPair(node))
-        return visitor.Pair?.(key, node, path3);
+        return visitor.Pair?.(key, node, path5);
       if (identity.isScalar(node))
-        return visitor.Scalar?.(key, node, path3);
+        return visitor.Scalar?.(key, node, path5);
       if (identity.isAlias(node))
-        return visitor.Alias?.(key, node, path3);
+        return visitor.Alias?.(key, node, path5);
       return void 0;
     }
-    function replaceNode(key, path3, node) {
-      const parent = path3[path3.length - 1];
+    function replaceNode(key, path5, node) {
+      const parent = path5[path5.length - 1];
       if (identity.isCollection(parent)) {
         parent.items[key] = node;
       } else if (identity.isPair(parent)) {
@@ -3222,10 +3757,10 @@ var require_Collection = __commonJS({
     var createNode = require_createNode();
     var identity = require_identity();
     var Node = require_Node();
-    function collectionFromPath(schema, path3, value) {
+    function collectionFromPath(schema, path5, value) {
       let v = value;
-      for (let i = path3.length - 1; i >= 0; --i) {
-        const k = path3[i];
+      for (let i = path5.length - 1; i >= 0; --i) {
+        const k = path5[i];
         if (typeof k === "number" && Number.isInteger(k) && k >= 0) {
           const a = [];
           a[k] = v;
@@ -3244,7 +3779,7 @@ var require_Collection = __commonJS({
         sourceObjects: /* @__PURE__ */ new Map()
       });
     }
-    var isEmptyPath = (path3) => path3 == null || typeof path3 === "object" && !!path3[Symbol.iterator]().next().done;
+    var isEmptyPath = (path5) => path5 == null || typeof path5 === "object" && !!path5[Symbol.iterator]().next().done;
     var Collection = class extends Node.NodeBase {
       constructor(type, schema) {
         super(type);
@@ -3274,11 +3809,11 @@ var require_Collection = __commonJS({
        * be a Pair instance or a `{ key, value }` object, which may not have a key
        * that already exists in the map.
        */
-      addIn(path3, value) {
-        if (isEmptyPath(path3))
+      addIn(path5, value) {
+        if (isEmptyPath(path5))
           this.add(value);
         else {
-          const [key, ...rest] = path3;
+          const [key, ...rest] = path5;
           const node = this.get(key, true);
           if (identity.isCollection(node))
             node.addIn(rest, value);
@@ -3292,8 +3827,8 @@ var require_Collection = __commonJS({
        * Removes a value from the collection.
        * @returns `true` if the item was found and removed.
        */
-      deleteIn(path3) {
-        const [key, ...rest] = path3;
+      deleteIn(path5) {
+        const [key, ...rest] = path5;
         if (rest.length === 0)
           return this.delete(key);
         const node = this.get(key, true);
@@ -3307,8 +3842,8 @@ var require_Collection = __commonJS({
        * scalar values from their surrounding node; to disable set `keepScalar` to
        * `true` (collections are always returned intact).
        */
-      getIn(path3, keepScalar) {
-        const [key, ...rest] = path3;
+      getIn(path5, keepScalar) {
+        const [key, ...rest] = path5;
         const node = this.get(key, true);
         if (rest.length === 0)
           return !keepScalar && identity.isScalar(node) ? node.value : node;
@@ -3326,8 +3861,8 @@ var require_Collection = __commonJS({
       /**
        * Checks if the collection includes a value with the key `key`.
        */
-      hasIn(path3) {
-        const [key, ...rest] = path3;
+      hasIn(path5) {
+        const [key, ...rest] = path5;
         if (rest.length === 0)
           return this.has(key);
         const node = this.get(key, true);
@@ -3337,8 +3872,8 @@ var require_Collection = __commonJS({
        * Sets a value in this collection. For `!!set`, `value` needs to be a
        * boolean to add/remove the item from the set.
        */
-      setIn(path3, value) {
-        const [key, ...rest] = path3;
+      setIn(path5, value) {
+        const [key, ...rest] = path5;
         if (rest.length === 0) {
           this.set(key, value);
         } else {
@@ -5785,9 +6320,9 @@ var require_Document = __commonJS({
           this.contents.add(value);
       }
       /** Adds a value to the document. */
-      addIn(path3, value) {
+      addIn(path5, value) {
         if (assertCollection(this.contents))
-          this.contents.addIn(path3, value);
+          this.contents.addIn(path5, value);
       }
       /**
        * Create a new `Alias` node, ensuring that the target `node` has the required anchor.
@@ -5862,14 +6397,14 @@ var require_Document = __commonJS({
        * Removes a value from the document.
        * @returns `true` if the item was found and removed.
        */
-      deleteIn(path3) {
-        if (Collection.isEmptyPath(path3)) {
+      deleteIn(path5) {
+        if (Collection.isEmptyPath(path5)) {
           if (this.contents == null)
             return false;
           this.contents = null;
           return true;
         }
-        return assertCollection(this.contents) ? this.contents.deleteIn(path3) : false;
+        return assertCollection(this.contents) ? this.contents.deleteIn(path5) : false;
       }
       /**
        * Returns item at `key`, or `undefined` if not found. By default unwraps
@@ -5884,10 +6419,10 @@ var require_Document = __commonJS({
        * scalar values from their surrounding node; to disable set `keepScalar` to
        * `true` (collections are always returned intact).
        */
-      getIn(path3, keepScalar) {
-        if (Collection.isEmptyPath(path3))
+      getIn(path5, keepScalar) {
+        if (Collection.isEmptyPath(path5))
           return !keepScalar && identity.isScalar(this.contents) ? this.contents.value : this.contents;
-        return identity.isCollection(this.contents) ? this.contents.getIn(path3, keepScalar) : void 0;
+        return identity.isCollection(this.contents) ? this.contents.getIn(path5, keepScalar) : void 0;
       }
       /**
        * Checks if the document includes a value with the key `key`.
@@ -5898,10 +6433,10 @@ var require_Document = __commonJS({
       /**
        * Checks if the document includes a value at `path`.
        */
-      hasIn(path3) {
-        if (Collection.isEmptyPath(path3))
+      hasIn(path5) {
+        if (Collection.isEmptyPath(path5))
           return this.contents !== void 0;
-        return identity.isCollection(this.contents) ? this.contents.hasIn(path3) : false;
+        return identity.isCollection(this.contents) ? this.contents.hasIn(path5) : false;
       }
       /**
        * Sets a value in this document. For `!!set`, `value` needs to be a
@@ -5918,13 +6453,13 @@ var require_Document = __commonJS({
        * Sets a value in this document. For `!!set`, `value` needs to be a
        * boolean to add/remove the item from the set.
        */
-      setIn(path3, value) {
-        if (Collection.isEmptyPath(path3)) {
+      setIn(path5, value) {
+        if (Collection.isEmptyPath(path5)) {
           this.contents = value;
         } else if (this.contents == null) {
-          this.contents = Collection.collectionFromPath(this.schema, Array.from(path3), value);
+          this.contents = Collection.collectionFromPath(this.schema, Array.from(path5), value);
         } else if (assertCollection(this.contents)) {
-          this.contents.setIn(path3, value);
+          this.contents.setIn(path5, value);
         }
       }
       /**
@@ -7806,9 +8341,9 @@ var require_cst_visit = __commonJS({
     visit.BREAK = BREAK;
     visit.SKIP = SKIP;
     visit.REMOVE = REMOVE;
-    visit.itemAtPath = (cst, path3) => {
+    visit.itemAtPath = (cst, path5) => {
       let item = cst;
-      for (const [field, index] of path3) {
+      for (const [field, index] of path5) {
         const tok = item?.[field];
         if (tok && "items" in tok) {
           item = tok.items[index];
@@ -7817,23 +8352,23 @@ var require_cst_visit = __commonJS({
       }
       return item;
     };
-    visit.parentCollection = (cst, path3) => {
-      const parent = visit.itemAtPath(cst, path3.slice(0, -1));
-      const field = path3[path3.length - 1][0];
+    visit.parentCollection = (cst, path5) => {
+      const parent = visit.itemAtPath(cst, path5.slice(0, -1));
+      const field = path5[path5.length - 1][0];
       const coll = parent?.[field];
       if (coll && "items" in coll)
         return coll;
       throw new Error("Parent collection not found");
     };
-    function _visit(path3, item, visitor) {
-      let ctrl = visitor(item, path3);
+    function _visit(path5, item, visitor) {
+      let ctrl = visitor(item, path5);
       if (typeof ctrl === "symbol")
         return ctrl;
       for (const field of ["key", "value"]) {
         const token = item[field];
         if (token && "items" in token) {
           for (let i = 0; i < token.items.length; ++i) {
-            const ci = _visit(Object.freeze(path3.concat([[field, i]])), token.items[i], visitor);
+            const ci = _visit(Object.freeze(path5.concat([[field, i]])), token.items[i], visitor);
             if (typeof ci === "number")
               i = ci - 1;
             else if (ci === BREAK)
@@ -7844,10 +8379,10 @@ var require_cst_visit = __commonJS({
             }
           }
           if (typeof ctrl === "function" && field === "key")
-            ctrl = ctrl(item, path3);
+            ctrl = ctrl(item, path5);
         }
       }
-      return typeof ctrl === "function" ? ctrl(item, path3) : ctrl;
+      return typeof ctrl === "function" ? ctrl(item, path5) : ctrl;
     }
     exports.visit = visit;
   }
@@ -9110,14 +9645,14 @@ var require_parser = __commonJS({
             case "scalar":
             case "single-quoted-scalar":
             case "double-quoted-scalar": {
-              const fs = this.flowScalar(this.type);
+              const fs3 = this.flowScalar(this.type);
               if (atNextItem || it.value) {
-                map.items.push({ start, key: fs, sep: [] });
+                map.items.push({ start, key: fs3, sep: [] });
                 this.onKeyLine = true;
               } else if (it.sep) {
-                this.stack.push(fs);
+                this.stack.push(fs3);
               } else {
-                Object.assign(it, { key: fs, sep: [] });
+                Object.assign(it, { key: fs3, sep: [] });
                 this.onKeyLine = true;
               }
               return;
@@ -9235,13 +9770,13 @@ var require_parser = __commonJS({
             case "scalar":
             case "single-quoted-scalar":
             case "double-quoted-scalar": {
-              const fs = this.flowScalar(this.type);
+              const fs3 = this.flowScalar(this.type);
               if (!it || it.value)
-                fc.items.push({ start: [], key: fs, sep: [] });
+                fc.items.push({ start: [], key: fs3, sep: [] });
               else if (it.sep)
-                this.stack.push(fs);
+                this.stack.push(fs3);
               else
-                Object.assign(it, { key: fs, sep: [] });
+                Object.assign(it, { key: fs3, sep: [] });
               return;
             }
             case "flow-map-end":
@@ -9545,543 +10080,42 @@ var require_dist = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/abbrev@2.0.0/node_modules/abbrev/lib/index.js
-var require_lib2 = __commonJS({
-  "../../node_modules/.pnpm/abbrev@2.0.0/node_modules/abbrev/lib/index.js"(exports, module2) {
-    module2.exports = abbrev;
-    function abbrev(...args) {
-      let list = args.length === 1 || Array.isArray(args[0]) ? args[0] : args;
-      for (let i = 0, l = list.length; i < l; i++) {
-        list[i] = typeof list[i] === "string" ? list[i] : String(list[i]);
-      }
-      list = list.sort(lexSort);
-      const abbrevs = {};
-      let prev = "";
-      for (let ii = 0, ll = list.length; ii < ll; ii++) {
-        const current = list[ii];
-        const next = list[ii + 1] || "";
-        let nextMatches = true;
-        let prevMatches = true;
-        if (current === next) {
-          continue;
-        }
-        let j = 0;
-        const cl = current.length;
-        for (; j < cl; j++) {
-          const curChar = current.charAt(j);
-          nextMatches = nextMatches && curChar === next.charAt(j);
-          prevMatches = prevMatches && curChar === prev.charAt(j);
-          if (!nextMatches && !prevMatches) {
-            j++;
-            break;
-          }
-        }
-        prev = current;
-        if (j === cl) {
-          abbrevs[current] = current;
-          continue;
-        }
-        for (let a = current.slice(0, j); j <= cl; j++) {
-          abbrevs[a] = current;
-          a += current.charAt(j);
-        }
-      }
-      return abbrevs;
-    }
-    function lexSort(a, b) {
-      return a === b ? 0 : a > b ? 1 : -1;
-    }
-  }
-});
-
-// ../../node_modules/.pnpm/nopt@7.2.0/node_modules/nopt/lib/debug.js
-var require_debug = __commonJS({
-  "../../node_modules/.pnpm/nopt@7.2.0/node_modules/nopt/lib/debug.js"(exports, module2) {
-    module2.exports = process.env.DEBUG_NOPT || process.env.NOPT_DEBUG ? (...a) => console.error(...a) : () => {
-    };
-  }
-});
-
-// ../../node_modules/.pnpm/nopt@7.2.0/node_modules/nopt/lib/type-defs.js
-var require_type_defs = __commonJS({
-  "../../node_modules/.pnpm/nopt@7.2.0/node_modules/nopt/lib/type-defs.js"(exports, module2) {
-    var url = require("url");
-    var path3 = require("path");
-    var Stream2 = require("stream").Stream;
-    var os = require("os");
-    var debug = require_debug();
-    function validateString(data, k, val) {
-      data[k] = String(val);
-    }
-    function validatePath(data, k, val) {
-      if (val === true) {
-        return false;
-      }
-      if (val === null) {
-        return true;
-      }
-      val = String(val);
-      const isWin = process.platform === "win32";
-      const homePattern = isWin ? /^~(\/|\\)/ : /^~\//;
-      const home = os.homedir();
-      if (home && val.match(homePattern)) {
-        data[k] = path3.resolve(home, val.slice(2));
-      } else {
-        data[k] = path3.resolve(val);
-      }
-      return true;
-    }
-    function validateNumber(data, k, val) {
-      debug("validate Number %j %j %j", k, val, isNaN(val));
-      if (isNaN(val)) {
-        return false;
-      }
-      data[k] = +val;
-    }
-    function validateDate(data, k, val) {
-      const s = Date.parse(val);
-      debug("validate Date %j %j %j", k, val, s);
-      if (isNaN(s)) {
-        return false;
-      }
-      data[k] = new Date(val);
-    }
-    function validateBoolean(data, k, val) {
-      if (typeof val === "string") {
-        if (!isNaN(val)) {
-          val = !!+val;
-        } else if (val === "null" || val === "false") {
-          val = false;
-        } else {
-          val = true;
-        }
-      } else {
-        val = !!val;
-      }
-      data[k] = val;
-    }
-    function validateUrl(data, k, val) {
-      val = url.parse(String(val));
-      if (!val.host) {
-        return false;
-      }
-      data[k] = val.href;
-    }
-    function validateStream(data, k, val) {
-      if (!(val instanceof Stream2)) {
-        return false;
-      }
-      data[k] = val;
-    }
-    module2.exports = {
-      String: { type: String, validate: validateString },
-      Boolean: { type: Boolean, validate: validateBoolean },
-      url: { type: url, validate: validateUrl },
-      Number: { type: Number, validate: validateNumber },
-      path: { type: path3, validate: validatePath },
-      Stream: { type: Stream2, validate: validateStream },
-      Date: { type: Date, validate: validateDate },
-      Array: { type: Array }
-    };
-  }
-});
-
-// ../../node_modules/.pnpm/nopt@7.2.0/node_modules/nopt/lib/nopt-lib.js
-var require_nopt_lib = __commonJS({
-  "../../node_modules/.pnpm/nopt@7.2.0/node_modules/nopt/lib/nopt-lib.js"(exports, module2) {
-    var abbrev = require_lib2();
-    var debug = require_debug();
-    var defaultTypeDefs = require_type_defs();
-    var hasOwn = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
-    var getType = (k, { types: types2, dynamicTypes }) => {
-      let hasType = hasOwn(types2, k);
-      let type = types2[k];
-      if (!hasType && typeof dynamicTypes === "function") {
-        const matchedType = dynamicTypes(k);
-        if (matchedType !== void 0) {
-          type = matchedType;
-          hasType = true;
-        }
-      }
-      return [hasType, type];
-    };
-    var isTypeDef = (type, def) => def && type === def;
-    var hasTypeDef = (type, def) => def && type.indexOf(def) !== -1;
-    var doesNotHaveTypeDef = (type, def) => def && !hasTypeDef(type, def);
-    function nopt2(args, {
-      types: types2,
-      shorthands,
-      typeDefs,
-      invalidHandler,
-      typeDefault,
-      dynamicTypes
-    } = {}) {
-      debug(types2, shorthands, args, typeDefs);
-      const data = {};
-      const argv = {
-        remain: [],
-        cooked: args,
-        original: args.slice(0)
-      };
-      parse2(args, data, argv.remain, { typeDefs, types: types2, dynamicTypes, shorthands });
-      clean(data, { types: types2, dynamicTypes, typeDefs, invalidHandler, typeDefault });
-      data.argv = argv;
-      Object.defineProperty(data.argv, "toString", {
-        value: function() {
-          return this.original.map(JSON.stringify).join(" ");
-        },
-        enumerable: false
-      });
-      return data;
-    }
-    function clean(data, {
-      types: types2 = {},
-      typeDefs = {},
-      dynamicTypes,
-      invalidHandler,
-      typeDefault
-    } = {}) {
-      const StringType = typeDefs.String?.type;
-      const NumberType = typeDefs.Number?.type;
-      const ArrayType = typeDefs.Array?.type;
-      const BooleanType = typeDefs.Boolean?.type;
-      const DateType = typeDefs.Date?.type;
-      const hasTypeDefault = typeof typeDefault !== "undefined";
-      if (!hasTypeDefault) {
-        typeDefault = [false, true, null];
-        if (StringType) {
-          typeDefault.push(StringType);
-        }
-        if (ArrayType) {
-          typeDefault.push(ArrayType);
-        }
-      }
-      const remove = {};
-      Object.keys(data).forEach((k) => {
-        if (k === "argv") {
-          return;
-        }
-        let val = data[k];
-        debug("val=%j", val);
-        const isArray = Array.isArray(val);
-        let [hasType, rawType] = getType(k, { types: types2, dynamicTypes });
-        let type = rawType;
-        if (!isArray) {
-          val = [val];
-        }
-        if (!type) {
-          type = typeDefault;
-        }
-        if (isTypeDef(type, ArrayType)) {
-          type = typeDefault.concat(ArrayType);
-        }
-        if (!Array.isArray(type)) {
-          type = [type];
-        }
-        debug("val=%j", val);
-        debug("types=", type);
-        val = val.map((v) => {
-          if (typeof v === "string") {
-            debug("string %j", v);
-            v = v.trim();
-            if (v === "null" && ~type.indexOf(null) || v === "true" && (~type.indexOf(true) || hasTypeDef(type, BooleanType)) || v === "false" && (~type.indexOf(false) || hasTypeDef(type, BooleanType))) {
-              v = JSON.parse(v);
-              debug("jsonable %j", v);
-            } else if (hasTypeDef(type, NumberType) && !isNaN(v)) {
-              debug("convert to number", v);
-              v = +v;
-            } else if (hasTypeDef(type, DateType) && !isNaN(Date.parse(v))) {
-              debug("convert to date", v);
-              v = new Date(v);
-            }
-          }
-          if (!hasType) {
-            if (!hasTypeDefault) {
-              return v;
-            }
-            rawType = typeDefault;
-          }
-          if (v === false && ~type.indexOf(null) && !(~type.indexOf(false) || hasTypeDef(type, BooleanType))) {
-            v = null;
-          }
-          const d = {};
-          d[k] = v;
-          debug("prevalidated val", d, v, rawType);
-          if (!validate2(d, k, v, rawType, { typeDefs })) {
-            if (invalidHandler) {
-              invalidHandler(k, v, rawType, data);
-            } else if (invalidHandler !== false) {
-              debug("invalid: " + k + "=" + v, rawType);
-            }
-            return remove;
-          }
-          debug("validated v", d, v, rawType);
-          return d[k];
-        }).filter((v) => v !== remove);
-        if (!val.length && doesNotHaveTypeDef(type, ArrayType)) {
-          debug("VAL HAS NO LENGTH, DELETE IT", val, k, type.indexOf(ArrayType));
-          delete data[k];
-        } else if (isArray) {
-          debug(isArray, data[k], val);
-          data[k] = val;
-        } else {
-          data[k] = val[0];
-        }
-        debug("k=%s val=%j", k, val, data[k]);
-      });
-    }
-    function validate2(data, k, val, type, { typeDefs } = {}) {
-      const ArrayType = typeDefs?.Array?.type;
-      if (Array.isArray(type)) {
-        for (let i = 0, l = type.length; i < l; i++) {
-          if (isTypeDef(type[i], ArrayType)) {
-            continue;
-          }
-          if (validate2(data, k, val, type[i], { typeDefs })) {
-            return true;
-          }
-        }
-        delete data[k];
-        return false;
-      }
-      if (isTypeDef(type, ArrayType)) {
-        return true;
-      }
-      if (type !== type) {
-        debug("Poison NaN", k, val, type);
-        delete data[k];
-        return false;
-      }
-      if (val === type) {
-        debug("Explicitly allowed %j", val);
-        data[k] = val;
-        return true;
-      }
-      let ok = false;
-      const types2 = Object.keys(typeDefs);
-      for (let i = 0, l = types2.length; i < l; i++) {
-        debug("test type %j %j %j", k, val, types2[i]);
-        const t = typeDefs[types2[i]];
-        if (t && (type && type.name && t.type && t.type.name ? type.name === t.type.name : type === t.type)) {
-          const d = {};
-          ok = t.validate(d, k, val) !== false;
-          val = d[k];
-          if (ok) {
-            data[k] = val;
-            break;
-          }
-        }
-      }
-      debug("OK? %j (%j %j %j)", ok, k, val, types2[types2.length - 1]);
-      if (!ok) {
-        delete data[k];
-      }
-      return ok;
-    }
-    function parse2(args, data, remain, {
-      types: types2 = {},
-      typeDefs = {},
-      shorthands = {},
-      dynamicTypes
-    } = {}) {
-      const StringType = typeDefs.String?.type;
-      const NumberType = typeDefs.Number?.type;
-      const ArrayType = typeDefs.Array?.type;
-      const BooleanType = typeDefs.Boolean?.type;
-      debug("parse", args, data, remain);
-      const abbrevs = abbrev(Object.keys(types2));
-      debug("abbrevs=%j", abbrevs);
-      const shortAbbr = abbrev(Object.keys(shorthands));
-      for (let i = 0; i < args.length; i++) {
-        let arg = args[i];
-        debug("arg", arg);
-        if (arg.match(/^-{2,}$/)) {
-          remain.push.apply(remain, args.slice(i + 1));
-          args[i] = "--";
-          break;
-        }
-        let hadEq = false;
-        if (arg.charAt(0) === "-" && arg.length > 1) {
-          const at = arg.indexOf("=");
-          if (at > -1) {
-            hadEq = true;
-            const v = arg.slice(at + 1);
-            arg = arg.slice(0, at);
-            args.splice(i, 1, arg, v);
-          }
-          const shRes = resolveShort(arg, shortAbbr, abbrevs, { shorthands });
-          debug("arg=%j shRes=%j", arg, shRes);
-          if (shRes) {
-            args.splice.apply(args, [i, 1].concat(shRes));
-            if (arg !== shRes[0]) {
-              i--;
-              continue;
-            }
-          }
-          arg = arg.replace(/^-+/, "");
-          let no = null;
-          while (arg.toLowerCase().indexOf("no-") === 0) {
-            no = !no;
-            arg = arg.slice(3);
-          }
-          if (abbrevs[arg]) {
-            arg = abbrevs[arg];
-          }
-          let [hasType, argType] = getType(arg, { types: types2, dynamicTypes });
-          let isTypeArray = Array.isArray(argType);
-          if (isTypeArray && argType.length === 1) {
-            isTypeArray = false;
-            argType = argType[0];
-          }
-          let isArray = isTypeDef(argType, ArrayType) || isTypeArray && hasTypeDef(argType, ArrayType);
-          if (!hasType && hasOwn(data, arg)) {
-            if (!Array.isArray(data[arg])) {
-              data[arg] = [data[arg]];
-            }
-            isArray = true;
-          }
-          let val;
-          let la = args[i + 1];
-          const isBool = typeof no === "boolean" || isTypeDef(argType, BooleanType) || isTypeArray && hasTypeDef(argType, BooleanType) || typeof argType === "undefined" && !hadEq || la === "false" && (argType === null || isTypeArray && ~argType.indexOf(null));
-          if (isBool) {
-            val = !no;
-            if (la === "true" || la === "false") {
-              val = JSON.parse(la);
-              la = null;
-              if (no) {
-                val = !val;
-              }
-              i++;
-            }
-            if (isTypeArray && la) {
-              if (~argType.indexOf(la)) {
-                val = la;
-                i++;
-              } else if (la === "null" && ~argType.indexOf(null)) {
-                val = null;
-                i++;
-              } else if (!la.match(/^-{2,}[^-]/) && !isNaN(la) && hasTypeDef(argType, NumberType)) {
-                val = +la;
-                i++;
-              } else if (!la.match(/^-[^-]/) && hasTypeDef(argType, StringType)) {
-                val = la;
-                i++;
-              }
-            }
-            if (isArray) {
-              (data[arg] = data[arg] || []).push(val);
-            } else {
-              data[arg] = val;
-            }
-            continue;
-          }
-          if (isTypeDef(argType, StringType)) {
-            if (la === void 0) {
-              la = "";
-            } else if (la.match(/^-{1,2}[^-]+/)) {
-              la = "";
-              i--;
-            }
-          }
-          if (la && la.match(/^-{2,}$/)) {
-            la = void 0;
-            i--;
-          }
-          val = la === void 0 ? true : la;
-          if (isArray) {
-            (data[arg] = data[arg] || []).push(val);
-          } else {
-            data[arg] = val;
-          }
-          i++;
-          continue;
-        }
-        remain.push(arg);
-      }
-    }
-    var SINGLES = Symbol("singles");
-    var singleCharacters = (arg, shorthands) => {
-      let singles = shorthands[SINGLES];
-      if (!singles) {
-        singles = Object.keys(shorthands).filter((s) => s.length === 1).reduce((l, r) => {
-          l[r] = true;
-          return l;
-        }, {});
-        shorthands[SINGLES] = singles;
-        debug("shorthand singles", singles);
-      }
-      const chrs = arg.split("").filter((c) => singles[c]);
-      return chrs.join("") === arg ? chrs : null;
-    };
-    function resolveShort(arg, ...rest) {
-      const { types: types2 = {}, shorthands = {} } = rest.length ? rest.pop() : {};
-      const shortAbbr = rest[0] ?? abbrev(Object.keys(shorthands));
-      const abbrevs = rest[1] ?? abbrev(Object.keys(types2));
-      arg = arg.replace(/^-+/, "");
-      if (abbrevs[arg] === arg) {
-        return null;
-      }
-      if (shorthands[arg]) {
-        if (shorthands[arg] && !Array.isArray(shorthands[arg])) {
-          shorthands[arg] = shorthands[arg].split(/\s+/);
-        }
-        return shorthands[arg];
-      }
-      const chrs = singleCharacters(arg, shorthands);
-      if (chrs) {
-        return chrs.map((c) => shorthands[c]).reduce((l, r) => l.concat(r), []);
-      }
-      if (abbrevs[arg] && !shorthands[arg]) {
-        return null;
-      }
-      if (shortAbbr[arg]) {
-        arg = shortAbbr[arg];
-      }
-      if (shorthands[arg] && !Array.isArray(shorthands[arg])) {
-        shorthands[arg] = shorthands[arg].split(/\s+/);
-      }
-      return shorthands[arg];
-    }
-    module2.exports = {
-      nopt: nopt2,
-      clean,
-      parse: parse2,
-      validate: validate2,
-      resolveShort,
-      typeDefs: defaultTypeDefs
-    };
-  }
-});
-
-// ../../node_modules/.pnpm/nopt@7.2.0/node_modules/nopt/lib/nopt.js
-var require_nopt = __commonJS({
-  "../../node_modules/.pnpm/nopt@7.2.0/node_modules/nopt/lib/nopt.js"(exports, module2) {
-    var lib = require_nopt_lib();
-    var defaultTypeDefs = require_type_defs();
-    module2.exports = exports = nopt2;
-    exports.clean = clean;
-    exports.typeDefs = defaultTypeDefs;
-    exports.lib = lib;
-    function nopt2(types2, shorthands, args = process.argv, slice = 2) {
-      return lib.nopt(args.slice(slice), {
-        types: types2 || {},
-        shorthands: shorthands || {},
-        typeDefs: exports.typeDefs,
-        invalidHandler: exports.invalidHandler
-      });
-    }
-    function clean(data, types2, typeDefs = exports.typeDefs) {
-      return lib.clean(data, {
-        types: types2 || {},
-        typeDefs,
-        invalidHandler: exports.invalidHandler
-      });
-    }
-  }
-});
-
 // src/index.mjs
 var import_core = __toESM(require_core(), 1);
+var path4 = __toESM(require("node:path"), 1);
+var import_nopt = __toESM(require_nopt(), 1);
+
+// src/debugPrep.mjs
+var import_node_fs = require("node:fs");
+var path = __toESM(require("node:path"), 1);
+var createFilesFor = ["GITHUB_ENV", "GITHUB_OUTPUT", "GITHUB_STATE", "GITHUB_STEP_SUMMARY"];
+async function prepDebug() {
+  const env = process.env;
+  for (const fileEnvKey of createFilesFor) {
+    const file = env[fileEnvKey];
+    if (!file)
+      continue;
+    await import_node_fs.promises.mkdir(path.dirname(file), { recursive: true });
+    const s = await import_node_fs.promises.stat(file).catch((e) => void 0);
+    if (s)
+      continue;
+    await import_node_fs.promises.writeFile(file, "");
+  }
+}
+
+// src/env.mjs
+var envPrefix = /^GITHUB_|^INPUt_/;
+var replaceDirective = /\$\{([^}]+)\}/g;
+function adjustEnvValues(env, keyValues) {
+  for (const [key, value] of Object.entries(env)) {
+    if (!envPrefix.test(key))
+      continue;
+    const newValue = value.replace(replaceDirective, (match2, p1) => {
+      return p1 in keyValues ? keyValues[p1] : match2;
+    });
+    env[key] = newValue;
+  }
+}
 
 // src/options.mjs
 var defaultOptions = {
@@ -10096,10 +10130,10 @@ var defaultOptions = {
   directory: ".github/action",
   /**
    * Path to the dependabot yaml file.
-   * @default "./github/dependabot.yml"
+   * @default ".github/dependabot.yml"
    * @required false
    */
-  dependabot: "./github/dependabot.yml",
+  dependabot: "",
   /**
    * Scan frequency. See dependabot schedule.interval
    * @default "daily"
@@ -10111,7 +10145,7 @@ var defaultOptions = {
    * @default false
    * @required false
    */
-  dryRun: false,
+  dry_run: false,
   /**
    * Show a summary
    * @default true
@@ -13415,10 +13449,10 @@ var Minipass = class extends import_events.EventEmitter {
    * Return a void Promise that resolves once the stream ends.
    */
   async promise() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve3, reject) => {
       this.on(DESTROYED, () => reject(new Error("stream destroyed")));
       this.on("error", (er) => reject(er));
-      this.on("end", () => resolve());
+      this.on("end", () => resolve3());
     });
   }
   /**
@@ -13442,7 +13476,7 @@ var Minipass = class extends import_events.EventEmitter {
         return Promise.resolve({ done: false, value: res });
       if (this[EOF])
         return stop();
-      let resolve;
+      let resolve3;
       let reject;
       const onerr = (er) => {
         this.off("data", ondata);
@@ -13456,19 +13490,19 @@ var Minipass = class extends import_events.EventEmitter {
         this.off("end", onend);
         this.off(DESTROYED, ondestroy);
         this.pause();
-        resolve({ value, done: !!this[EOF] });
+        resolve3({ value, done: !!this[EOF] });
       };
       const onend = () => {
         this.off("error", onerr);
         this.off("data", ondata);
         this.off(DESTROYED, ondestroy);
         stop();
-        resolve({ done: true, value: void 0 });
+        resolve3({ done: true, value: void 0 });
       };
       const ondestroy = () => onerr(new Error("stream destroyed"));
       return new Promise((res2, rej) => {
         reject = rej;
-        resolve = res2;
+        resolve3 = res2;
         this.once(DESTROYED, ondestroy);
         this.once("error", onerr);
         this.once("end", onend);
@@ -13816,12 +13850,12 @@ var PathBase = class {
   /**
    * Get the Path object referenced by the string path, resolved from this Path
    */
-  resolve(path3) {
-    if (!path3) {
+  resolve(path5) {
+    if (!path5) {
       return this;
     }
-    const rootPath = this.getRootString(path3);
-    const dir = path3.substring(rootPath.length);
+    const rootPath = this.getRootString(path5);
+    const dir = path5.substring(rootPath.length);
     const dirParts = dir.split(this.splitSep);
     const result = rootPath ? this.getRoot(rootPath).#resolveParts(dirParts) : this.#resolveParts(dirParts);
     return result;
@@ -14419,9 +14453,9 @@ var PathBase = class {
     if (this.#asyncReaddirInFlight) {
       await this.#asyncReaddirInFlight;
     } else {
-      let resolve = () => {
+      let resolve3 = () => {
       };
-      this.#asyncReaddirInFlight = new Promise((res) => resolve = res);
+      this.#asyncReaddirInFlight = new Promise((res) => resolve3 = res);
       try {
         for (const e of await this.#fs.promises.readdir(fullpath, {
           withFileTypes: true
@@ -14434,7 +14468,7 @@ var PathBase = class {
         children.provisional = 0;
       }
       this.#asyncReaddirInFlight = void 0;
-      resolve();
+      resolve3();
     }
     return children.slice(0, children.provisional);
   }
@@ -14565,8 +14599,8 @@ var PathWin32 = class _PathWin32 extends PathBase {
   /**
    * @internal
    */
-  getRootString(path3) {
-    return import_path.win32.parse(path3).root;
+  getRootString(path5) {
+    return import_path.win32.parse(path5).root;
   }
   /**
    * @internal
@@ -14612,8 +14646,8 @@ var PathPosix = class _PathPosix extends PathBase {
   /**
    * @internal
    */
-  getRootString(path3) {
-    return path3.startsWith("/") ? "/" : "";
+  getRootString(path5) {
+    return path5.startsWith("/") ? "/" : "";
   }
   /**
    * @internal
@@ -14662,8 +14696,8 @@ var PathScurryBase = class {
    *
    * @internal
    */
-  constructor(cwd = process.cwd(), pathImpl, sep2, { nocase, childrenCacheSize = 16 * 1024, fs = defaultFS } = {}) {
-    this.#fs = fsFromOption(fs);
+  constructor(cwd = process.cwd(), pathImpl, sep2, { nocase, childrenCacheSize = 16 * 1024, fs: fs3 = defaultFS } = {}) {
+    this.#fs = fsFromOption(fs3);
     if (cwd instanceof URL || cwd.startsWith("file://")) {
       cwd = (0, import_url.fileURLToPath)(cwd);
     }
@@ -14702,11 +14736,11 @@ var PathScurryBase = class {
   /**
    * Get the depth of a provided path, string, or the cwd
    */
-  depth(path3 = this.cwd) {
-    if (typeof path3 === "string") {
-      path3 = this.cwd.resolve(path3);
+  depth(path5 = this.cwd) {
+    if (typeof path5 === "string") {
+      path5 = this.cwd.resolve(path5);
     }
-    return path3.depth();
+    return path5.depth();
   }
   /**
    * Return the cache of child entries.  Exposed so subclasses can create
@@ -15193,9 +15227,9 @@ var PathScurryBase = class {
     process2();
     return results;
   }
-  chdir(path3 = this.cwd) {
+  chdir(path5 = this.cwd) {
     const oldCwd = this.cwd;
-    this.cwd = typeof path3 === "string" ? this.cwd.resolve(path3) : path3;
+    this.cwd = typeof path5 === "string" ? this.cwd.resolve(path5) : path5;
     this.cwd[setAsCwd](oldCwd);
   }
 };
@@ -15221,8 +15255,8 @@ var PathScurryWin32 = class extends PathScurryBase {
   /**
    * @internal
    */
-  newRoot(fs) {
-    return new PathWin32(this.rootPath, IFDIR, void 0, this.roots, this.nocase, this.childrenCache(), { fs });
+  newRoot(fs3) {
+    return new PathWin32(this.rootPath, IFDIR, void 0, this.roots, this.nocase, this.childrenCache(), { fs: fs3 });
   }
   /**
    * Return true if the provided path string is an absolute path
@@ -15250,8 +15284,8 @@ var PathScurryPosix = class extends PathScurryBase {
   /**
    * @internal
    */
-  newRoot(fs) {
-    return new PathPosix(this.rootPath, IFDIR, void 0, this.roots, this.nocase, this.childrenCache(), { fs });
+  newRoot(fs3) {
+    return new PathPosix(this.rootPath, IFDIR, void 0, this.roots, this.nocase, this.childrenCache(), { fs: fs3 });
   }
   /**
    * Return true if the provided path string is an absolute path
@@ -15485,10 +15519,10 @@ var Ignore = class {
   ignored(p) {
     const fullpath = p.fullpath();
     const fullpaths = `${fullpath}/`;
-    const relative = p.relative() || ".";
-    const relatives = `${relative}/`;
+    const relative2 = p.relative() || ".";
+    const relatives = `${relative2}/`;
     for (const m of this.relative) {
-      if (m.match(relative) || m.match(relatives))
+      if (m.match(relative2) || m.match(relatives))
         return true;
     }
     for (const m of this.absolute) {
@@ -15499,9 +15533,9 @@ var Ignore = class {
   }
   childrenIgnored(p) {
     const fullpath = p.fullpath() + "/";
-    const relative = (p.relative() || ".") + "/";
+    const relative2 = (p.relative() || ".") + "/";
     for (const m of this.relativeChildren) {
-      if (m.match(relative))
+      if (m.match(relative2))
         return true;
     }
     for (const m of this.absoluteChildren) {
@@ -15542,8 +15576,8 @@ var MatchRecord = class {
   }
   // match, absolute, ifdir
   entries() {
-    return [...this.store.entries()].map(([path3, n]) => [
-      path3,
+    return [...this.store.entries()].map(([path5, n]) => [
+      path5,
       !!(n & 2),
       !!(n & 1)
     ]);
@@ -15747,9 +15781,9 @@ var GlobUtil = class {
   #sep;
   signal;
   maxDepth;
-  constructor(patterns, path3, opts) {
+  constructor(patterns, path5, opts) {
     this.patterns = patterns;
-    this.path = path3;
+    this.path = path5;
     this.opts = opts;
     this.#sep = !opts.posix && opts.platform === "win32" ? "\\" : "/";
     if (opts.ignore) {
@@ -15763,11 +15797,11 @@ var GlobUtil = class {
       });
     }
   }
-  #ignored(path3) {
-    return this.seen.has(path3) || !!this.#ignore?.ignored?.(path3);
+  #ignored(path5) {
+    return this.seen.has(path5) || !!this.#ignore?.ignored?.(path5);
   }
-  #childrenIgnored(path3) {
-    return !!this.#ignore?.childrenIgnored?.(path3);
+  #childrenIgnored(path5) {
+    return !!this.#ignore?.childrenIgnored?.(path5);
   }
   // backpressure mechanism
   pause() {
@@ -15964,8 +15998,8 @@ var GlobUtil = class {
 };
 var GlobWalker = class extends GlobUtil {
   matches;
-  constructor(patterns, path3, opts) {
-    super(patterns, path3, opts);
+  constructor(patterns, path5, opts) {
+    super(patterns, path5, opts);
     this.matches = /* @__PURE__ */ new Set();
   }
   matchEmit(e) {
@@ -16003,8 +16037,8 @@ var GlobWalker = class extends GlobUtil {
 };
 var GlobStream = class extends GlobUtil {
   results;
-  constructor(patterns, path3, opts) {
-    super(patterns, path3, opts);
+  constructor(patterns, path5, opts) {
+    super(patterns, path5, opts);
     this.results = new Minipass({
       signal: this.signal,
       objectMode: true
@@ -16289,18 +16323,298 @@ var glob = Object.assign(glob_, {
 glob.glob = glob;
 
 // src/updateDependabot.mjs
+var import_node_fs2 = require("node:fs");
+var path3 = __toESM(require("node:path"), 1);
+var import_node_url = require("node:url");
 var import_yaml = __toESM(require_dist(), 1);
 
+// src/findActions.mjs
+async function findActions(pattern, cwd) {
+  cwd = cwd || process.cwd();
+  const foundDirs = await glob(pattern, { dot: true, cwd, absolute: true });
+  const found = (await Promise.all(foundDirs.map(findActionsInFolder))).flatMap((a) => a);
+  return found;
+}
+var isActionFile = /\baction\.ya?ml$/i;
+async function findActionsInFolder(folder) {
+  if (isActionFile.test(folder))
+    return [folder];
+  const foundInFolder = await glob("{action.yaml,action.yml}", { cwd: folder, nodir: true, absolute: true });
+  if (foundInFolder.length)
+    return foundInFolder;
+  const found = await glob("*/{action.yaml,action.yml}", { cwd: folder, nodir: true, absolute: true });
+  return found;
+}
+
+// src/updateDependabot.mjs
+var nodeComment = " Automatically added by streetsidesoftware/public/update-dependabot-github-actions";
+async function updateDependabot(actionsGlob, dependabotFile, cwd, options2) {
+  cwd = cwd || process.cwd();
+  cwd = asPath(cwd);
+  cwd = path3.resolve(cwd);
+  options2 = normalizeOptions(options2);
+  actionsGlob = actionsGlob || ".github/actions";
+  const depFile = await findDependabotFile(dependabotFile, cwd);
+  if (!await isFile(depFile)) {
+    throw new Error('Unable to find "dependabot.yml" file.');
+  }
+  const yamlDoc = await readDepFile(depFile);
+  const actionsAbs = await findActions(actionsGlob, cwd);
+  const actionFolders = normalizeActionsToFolders(actionsAbs, cwd);
+  const result = await updateDoc(yamlDoc, actionFolders, actionsGlob, cwd, options2);
+  if (!options2.dryRun) {
+  }
+  result.dependabotFile = path3.relative(cwd, depFile);
+  return result;
+}
+async function updateDoc(doc, actionFolders, actionsGlob, cwd, options2) {
+  const foldersToProcess = new Set(actionFolders);
+  const actionsTaken = [];
+  const changes = [];
+  const additions = [];
+  const removals = [];
+  const pathToInterval = ["schedule", "interval"];
+  const pattern = "{,/}" + actionsGlob + "{,/*}";
+  const doesMatchGlobs = minimatch.filter(pattern, { dot: true });
+  const result = {
+    changes: 0,
+    actionFolders,
+    actionsGlob,
+    options: options2,
+    actionsTaken
+  };
+  const secUpdate = doc.get("updates");
+  await (0, import_yaml.visitAsync)(secUpdate, {
+    async Map(key, node, _parent) {
+      return await processExistingNode(node, key) || import_yaml.visitAsync.SKIP;
+    }
+  });
+  calcAdditions();
+  processChanges();
+  result.actionsTaken = [...new Map(actionsTaken)].sort((a, b) => a[0] < b[0] ? -1 : 1);
+  result.changedActions = result.actionsTaken.filter(([_, action]) => action === "changed").map(([dir]) => dir);
+  result.addedActions = result.actionsTaken.filter(([_, action]) => action === "added").map(([dir]) => dir);
+  result.removedActions = result.actionsTaken.filter(([_, action]) => action === "removed").map(([dir]) => dir);
+  result.changes = result.actionsTaken.filter(([_, changed]) => !!changed).length;
+  return result;
+  async function processExistingNode(node, index) {
+    const ecoSystem = node.get("package-ecosystem");
+    if (ecoSystem !== "github-actions")
+      return;
+    const directory = node.get("directory");
+    if (!directory)
+      return;
+    const dir = normalizeDirectoryEntry(directory);
+    if (foldersToProcess.has(dir)) {
+      const interval = node.getIn(pathToInterval);
+      if (interval !== options2.interval) {
+        changes.push({ path: ["updates", index, ...pathToInterval], value: options2.interval });
+        actionsTaken.push([directory, "changed"]);
+      } else {
+        actionsTaken.push([directory, ""]);
+      }
+      foldersToProcess.delete(dir);
+      return;
+    }
+    const matches = doesMatchGlobs(dir);
+    if (!matches)
+      return;
+    const exists = await isDir(path3.join(cwd, dir));
+    if (!exists) {
+      removals.push({ path: ["updates", index] });
+      actionsTaken.push([directory, "removed"]);
+    }
+    return void 0;
+  }
+  function calcAdditions() {
+    for (const directory of foldersToProcess) {
+      actionsTaken.push([directory, "added"]);
+      additions.push({
+        path: ["updates"],
+        value: {
+          "package-ecosystem": "github-actions",
+          directory,
+          schedule: { interval: options2.interval }
+        }
+      });
+    }
+  }
+  function processChanges() {
+    const changedNodes = /* @__PURE__ */ new Set();
+    const removedNodes = /* @__PURE__ */ new Set();
+    const addedNodes = /* @__PURE__ */ new Set();
+    for (const change of changes) {
+      doc.setIn(change.path, change.value);
+      const node = doc.getIn(change.path.slice(0, 2));
+      const comment = node.commentBefore || "";
+      if (!comment.includes(nodeComment)) {
+        node.commentBefore = comment + "\n" + nodeComment;
+      }
+      changedNodes.add(node);
+    }
+    for (const remove of removals) {
+      removedNodes.add(doc.getIn(remove.path)?.clone());
+      doc.deleteIn(remove.path);
+    }
+    for (const add of additions) {
+      const node = doc.createNode(add.value);
+      node.spaceBefore = true;
+      node.commentBefore = nodeComment;
+      doc.addIn(add.path, node);
+      addedNodes.add(node);
+    }
+    const reportDoc = new import_yaml.Document({});
+    addSection("changes", " Changes Made");
+    addSection("additions", "Added Actions");
+    addSection("removals", "Removed Actions");
+    for (const n of changedNodes) {
+      reportDoc.addIn(["changes"], n);
+    }
+    for (const n of addedNodes) {
+      reportDoc.addIn(["additions"], n);
+    }
+    for (const n of removedNodes) {
+      reportDoc.addIn(["removals"], n);
+    }
+    result.summary = reportDoc.toString();
+    function addSection(key, comment) {
+      const pair = reportDoc.createPair(key, []);
+      pair.key.commentBefore = " " + comment.trim();
+      pair.key.spaceBefore = true;
+      reportDoc.add(pair);
+    }
+  }
+}
+async function findDependabotFile(dependabotFile, cwd) {
+  if (dependabotFile)
+    return path3.resolve(cwd, dependabotFile);
+  const found = await glob(".github/dependabot.{yml,yaml}", { cwd, nodir: true, absolute: true });
+  return found[0];
+}
+async function isFile(path5) {
+  try {
+    const s = await import_node_fs2.promises.stat(path5);
+    return s.isFile;
+  } catch (e) {
+    return false;
+  }
+}
+async function isDir(path5) {
+  try {
+    const s = await import_node_fs2.promises.stat(path5);
+    return s.isDirectory();
+  } catch (e) {
+    return false;
+  }
+}
+async function readDepFile(path5) {
+  const content = await import_node_fs2.promises.readFile(path5, "utf8");
+  return (0, import_yaml.parseDocument)(content);
+}
+function asPath(pathOrUrl) {
+  return pathOrUrl instanceof URL ? (0, import_node_url.fileURLToPath)(pathOrUrl) : pathOrUrl;
+}
+function normalizeActionsToFolders(actions, cwd) {
+  const rel = actions.map((p) => path3.relative(cwd, p)).map((p) => path3.dirname(p)).map((p) => normalizeDirectoryEntry(p));
+  return rel;
+}
+function normalizeDirectoryEntry(dir) {
+  return "/" + dir.split("/").filter((a) => !!a).join("/");
+}
+function normalizeOptions(options2) {
+  options2 = { ...options2 || {} };
+  options2.interval ??= "daily";
+  options2.dryRun ??= options2.dry_run;
+  return options2;
+}
+function generateSummary(result) {
+  const yamlStart = "```yaml";
+  const yamlEnd = "```";
+  return `## Update Dependabot File
+
+File: \`${result.dependabotFile}\`
+
+- Changed: ${result.changedActions.length}
+- Added: ${result.addedActions.length}
+- Removed: ${result.removedActions.length}
+
+### Actions Directories Processed
+
+${yamlStart}
+${(0, import_yaml.stringify)(result.actionsTaken.map(([dir, action]) => dir + (action ? ` (${action})` : "")))}
+${yamlEnd}
+
+### Action Search Glob
+- glob: \`${result.actionsGlob}\`
+
+### Options
+
+${yamlStart}
+${(0, import_yaml.stringify)(result.options)}
+${yamlEnd}
+
+
+### Details
+
+${yamlStart}
+${result.summary}
+${yamlEnd}
+`;
+}
+
 // src/index.mjs
-var import_nopt = __toESM(require_nopt(), 1);
 var options = { ...defaultOptions };
+async function run(args) {
+  try {
+    const inputs = {
+      ...defaultOptions,
+      ...getOption("directory"),
+      ...getOption("dependabot"),
+      ...getOption("interval"),
+      ...getOption("dry_run"),
+      ...getOption("summary")
+    };
+    const { directory, dependabot, ...opts } = inputs;
+    const cwd = path4.resolve(args.cwd || process.cwd());
+    adjustEnvValues(process.env, { cwd });
+    if (args.debug) {
+      await prepDebug();
+    }
+    console.log("Start: %o", { inputs });
+    const result = await updateDependabot(directory, dependabot, cwd, opts);
+    {
+      const { changes, actionFolders, actionsGlob, options: options2, actionsTaken, dependabotFile } = result;
+      console.log("Result: %o", { changes, actionFolders, actionsGlob, options: options2, actionsTaken, dependabotFile });
+    }
+    import_core.summary.addRaw(generateSummary(result));
+    await import_core.summary.write();
+    (0, import_core.setOutput)("updated", result.changes && true || "");
+    (0, import_core.setOutput)("changes", result.changes);
+  } catch (error) {
+    (0, import_core.setFailed)(error.message);
+  }
+}
+function getOption(name) {
+  const value = toBoolean((0, import_core.getInput)(name));
+  if (value === "")
+    return void 0;
+  return { [name]: value };
+}
+function toBoolean(value) {
+  if (typeof value !== "string")
+    return value;
+  if (value === "true")
+    return true;
+  if (value === "false")
+    return false;
+  return value;
+}
 function processArgs() {
   const knownOpts = {
     cwd: String
   };
   const shortHands = {};
   const parsed = (0, import_nopt.default)(knownOpts, shortHands);
-  console.log(parsed);
   return parsed;
 }
-processArgs();
+run(processArgs());

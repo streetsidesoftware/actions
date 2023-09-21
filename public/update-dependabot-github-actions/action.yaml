@@ -38,6 +38,8 @@ outputs:
   changes:
     description: Number of changes
 
+  results:
+    description: Detailed results in JSON format.
 runs:
   using: 'node20'
   main: 'action-build/index.cjs'

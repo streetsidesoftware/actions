@@ -18,7 +18,6 @@ export async function updateDependabot(actionsGlob, dependabotFile, cwd, options
     cwd = cwd || process.cwd();
     cwd = asPath(cwd);
     cwd = path.resolve(cwd);
-    console.error('%o', { actionsGlob, dependabotFile, cwd, options });
     options = normalizeOptions(options);
     actionsGlob = actionsGlob || '.github/actions';
     const depFile = await findDependabotFile(dependabotFile, cwd);
