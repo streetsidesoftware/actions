@@ -30,3 +30,27 @@ updates:
     directory: '/.github/actions/pr'
     schedule:
       interval: 'daily'
+
+  # Automatically added by streetsidesoftware/public/update-dependabot-github-actions
+  - package-ecosystem: github-actions
+    directory: /public/update-dependabot-github-actions
+    schedule:
+      interval: daily
+
+  # Automatically added by streetsidesoftware/public/update-dependabot-github-actions
+  - package-ecosystem: github-actions
+    directory: /public/summary
+    schedule:
+      interval: daily
+
+  # Automatically added by streetsidesoftware/public/update-dependabot-github-actions
+  - package-ecosystem: github-actions
+    directory: /public/output
+    schedule:
+      interval: daily
+
+  # Automatically added by streetsidesoftware/public/update-dependabot-github-actions
+  - package-ecosystem: github-actions
+    directory: /public/dirty
+    schedule:
+      interval: daily
