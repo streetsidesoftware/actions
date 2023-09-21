@@ -34,7 +34,7 @@ export async function updateDependabot(actionsGlob, dependabotFile, cwd, options
     const result = await updateDoc(yamlDoc, actionFolders, actionsGlob, cwd, options);
 
     if (!options.dryRun) {
-        // write file.
+        await fs.writeFile(depFile, yamlDoc.toString());
     }
 
     result.dependabotFile = path.relative(cwd, depFile);
