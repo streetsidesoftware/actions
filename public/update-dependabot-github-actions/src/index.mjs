@@ -34,9 +34,10 @@ async function run(args) {
             const detailedResults = { changes, actionFolders, actionsGlob, options, actionsTaken, dependabotFile };
             console.log('Result: %o', detailedResults);
             setOutput('results', JSON.stringify(detailedResults));
-            setOutput('summary', result.summary);
         }
-        summary.addRaw(generateSummary(result));
+        const summary = generateSummary(result);
+        setOutput('summary', summary);
+        summary.addRaw(summary);
         await summary.write();
         setOutput('updated', (result.changes && true) || '');
         setOutput('changes', result.changes);
