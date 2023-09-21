@@ -16588,6 +16588,7 @@ async function run(args) {
       const detailedResults = { changes, actionFolders, actionsGlob, options: options2, actionsTaken, dependabotFile };
       console.log("Result: %o", detailedResults);
       (0, import_core.setOutput)("results", JSON.stringify(detailedResults));
+      (0, import_core.setOutput)("summary", result.summary);
     }
     import_core.summary.addRaw(generateSummary(result));
     await import_core.summary.write();
