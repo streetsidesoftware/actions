@@ -11,3 +11,4 @@ coverage
 cspell.json
 cspell.schema.json
 tsconfig*.json
+**/action-build/**
