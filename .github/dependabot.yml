@@ -54,3 +54,9 @@ updates:
     directory: /public/dirty
     schedule:
       interval: daily
+
+  # Automatically added by streetsidesoftware/public/update-dependabot-github-actions
+  - package-ecosystem: github-actions
+    directory: /public/setup-node-pnpm
+    schedule:
+      interval: daily
