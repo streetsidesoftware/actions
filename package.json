@@ -5,7 +5,10 @@
   "private": true,
   "packageManager": "pnpm@8.7.1",
   "scripts": {
-    "build:readme": "inject-markdown README.md \".github/**/README.md\" \"public/**/README.md\""
+    "build": "pnpm -r run build && pnpm build:readme",
+    "build:readme": "inject-markdown README.md \".github/**/README.md\" \"public/**/README.md\"",
+    "lint": "prettier . -w",
+    "test": "echo OK"
   },
   "keywords": [],
   "author": "Street Side Software",
