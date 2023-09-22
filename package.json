@@ -8,6 +8,7 @@
     "build": "pnpm -r run build && pnpm build:readme",
     "build:readme": "inject-markdown README.md \".github/**/README.md\" \"public/**/README.md\"",
     "lint": "prettier . -w",
+    "reset-tags": "git fetch --prune origin \"+refs/tags/*:refs/tags/*\" ",
     "test": "echo OK"
   },
   "keywords": [],
