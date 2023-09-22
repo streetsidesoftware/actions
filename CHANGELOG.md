@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.3.0](https://github.com/streetsidesoftware/actions/compare/v1.2.0...v1.3.0) (2023-09-22)
+
+
+### Features
+
+* Release Update Dependabot GitHub Actions ([#37](https://github.com/streetsidesoftware/actions/issues/37)) ([7ef784b](https://github.com/streetsidesoftware/actions/commit/7ef784b49332a4b876c011e0110ef6fd6f887c38))
+
+
+### Bug Fixes
+
+* Add action to update dependabot.yml ([#30](https://github.com/streetsidesoftware/actions/issues/30)) ([b236bbb](https://github.com/streetsidesoftware/actions/commit/b236bbb508b685ff2d24e8df1abb1294a28bf521))
+* Use the summary in pull requests. ([#35](https://github.com/streetsidesoftware/actions/issues/35)) ([f372a38](https://github.com/streetsidesoftware/actions/commit/f372a384ebf405c8c58237e67e9b41550a03a24e))
+* write to dependabot.yml file. ([7aae0e6](https://github.com/streetsidesoftware/actions/commit/7aae0e637afbd9c789aee59982849d6e5c81ae6e))
+
 ## [1.2.0](https://github.com/streetsidesoftware/actions/compare/v1.1.1...v1.2.0) (2023-09-04)
 
 
