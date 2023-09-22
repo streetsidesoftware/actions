@@ -42,10 +42,10 @@ jobs:
           pnpm up
           pnpm -r up
 
-      - name: Update Readme
+      - name: Build
         run: |
-          pnpm build:readme
-          pnpm prettier . -w
+          pnpm build
+          pnpm lint
 
       - name: Gen Body
         run: |

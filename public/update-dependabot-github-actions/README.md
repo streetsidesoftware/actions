@@ -46,7 +46,7 @@ inputs:
   dependabot:
     description: |
       Path to the dependabot yaml file.
-    default: '.github/dependabot.yml'
+      Defaults to searching for `.github/dependabot.yml` and `.github/dependabot.yaml`
     required: false
   interval:
     description: |
