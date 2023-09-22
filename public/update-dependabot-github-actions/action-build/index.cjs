@@ -10147,6 +10147,11 @@ var defaultOptions = {
    */
   dry_run: false,
   /**
+   * Set the commit title prefix.
+   * See: [dependabot commit message](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#commit-message)
+   */
+  prefix: "",
+  /**
    * Show a summary
    * @default true
    * @required false
@@ -16375,6 +16380,7 @@ async function updateDoc(doc, actionFolders, actionsGlob, cwd, options2) {
   const additions = [];
   const removals = [];
   const pathToInterval = ["schedule", "interval"];
+  const pathToPrefix = ["commit-message", "prefix"];
   const pattern = "{,/}" + actionsGlob + "{,/*}";
   const doesMatchGlobs = minimatch.filter(pattern, { dot: true });
   const result = {
@@ -16407,13 +16413,7 @@ async function updateDoc(doc, actionFolders, actionsGlob, cwd, options2) {
       return;
     const dir = normalizeDirectoryEntry(directory);
     if (foldersToProcess.has(dir)) {
-      const interval = node.getIn(pathToInterval);
-      if (interval !== options2.interval) {
-        changes.push({ path: ["updates", index, ...pathToInterval], value: options2.interval });
-        actionsTaken.push([directory, "changed"]);
-      } else {
-        actionsTaken.push([directory, ""]);
-      }
+      updateEntry(node, directory, index);
       foldersToProcess.delete(dir);
       return;
     }
@@ -16427,16 +16427,37 @@ async function updateDoc(doc, actionFolders, actionsGlob, cwd, options2) {
     }
     return void 0;
   }
+  function updateEntry(node, directory, index) {
+    const interval = node.getIn(pathToInterval);
+    actionsTaken.push([directory, ""]);
+    if (interval !== options2.interval) {
+      changes.push({ path: ["updates", index, ...pathToInterval], value: options2.interval });
+      actionsTaken.push([directory, "changed"]);
+    }
+    const prefix = node.getIn(pathToPrefix);
+    if (prefix !== options2.prefix && (prefix || options2.prefix)) {
+      if (!options2.prefix) {
+        removals.push({ path: ["updates", index, ...pathToPrefix] });
+      } else {
+        changes.push({ path: ["updates", index, ...pathToPrefix], value: options2.prefix });
+      }
+      actionsTaken.push([directory, "changed"]);
+    }
+  }
   function calcAdditions() {
     for (const directory of foldersToProcess) {
       actionsTaken.push([directory, "added"]);
+      const value = {
+        "package-ecosystem": "github-actions",
+        directory,
+        schedule: { interval: options2.interval }
+      };
+      if (options2.prefix) {
+        setValue(value, pathToPrefix, options2.prefix);
+      }
       additions.push({
         path: ["updates"],
-        value: {
-          "package-ecosystem": "github-actions",
-          directory,
-          schedule: { interval: options2.interval }
-        }
+        value
       });
     }
   }
@@ -16508,6 +16529,14 @@ async function isDir(path5) {
     return false;
   }
 }
+function setValue(node, path5, value) {
+  if (!path5.length)
+    return value;
+  const head = path5[0];
+  const tail = path5.slice(1);
+  node[head] = setValue(node[head] || {}, tail, value);
+  return node;
+}
 async function readDepFile(path5) {
   const content = await import_node_fs2.promises.readFile(path5, "utf8");
   return (0, import_yaml.parseDocument)(content);
@@ -16573,7 +16602,8 @@ async function run(args) {
       ...getOption("dependabot"),
       ...getOption("interval"),
       ...getOption("dry_run"),
-      ...getOption("summary")
+      ...getOption("summary"),
+      ...getOption("prefix")
     };
     const { directory, dependabot, ...opts } = inputs;
     const cwd = path4.resolve(args.cwd || process.cwd());

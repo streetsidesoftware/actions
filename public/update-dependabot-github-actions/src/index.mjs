@@ -17,6 +17,7 @@ async function run(args) {
             ...getOption('interval'),
             ...getOption('dry_run'),
             ...getOption('summary'),
+            ...getOption('prefix'),
         };
 
         const { directory, dependabot, ...opts } = inputs;
