@@ -65,6 +65,7 @@ async function updateDoc(doc, actionFolders, actionsGlob, cwd, options) {
     const removals = [];
 
     const pathToInterval = ['schedule', 'interval'];
+    const pathToPrefix = ['commit-message', 'prefix'];
 
     const pattern = '{,/}' + actionsGlob + '{,/*}';
     const doesMatchGlobs = minimatch.filter(pattern, { dot: true });
@@ -112,13 +113,7 @@ async function updateDoc(doc, actionFolders, actionsGlob, cwd, options) {
         const dir = normalizeDirectoryEntry(directory);
 
         if (foldersToProcess.has(dir)) {
-            const interval = node.getIn(pathToInterval);
-            if (interval !== options.interval) {
-                changes.push({ path: ['updates', index, ...pathToInterval], value: options.interval });
-                actionsTaken.push([directory, 'changed']);
-            } else {
-                actionsTaken.push([directory, '']);
-            }
+            updateEntry(node, directory, index);
             foldersToProcess.delete(dir);
             return;
         }
@@ -134,16 +129,38 @@ async function updateDoc(doc, actionFolders, actionsGlob, cwd, options) {
         return undefined;
     }
 
+    function updateEntry(node, directory, index) {
+        const interval = node.getIn(pathToInterval);
+        actionsTaken.push([directory, '']);
+        if (interval !== options.interval) {
+            changes.push({ path: ['updates', index, ...pathToInterval], value: options.interval });
+            actionsTaken.push([directory, 'changed']);
+        }
+        const prefix = node.getIn(pathToPrefix);
+        if (prefix !== options.prefix && (prefix || options.prefix)) {
+            if (!options.prefix) {
+                removals.push({ path: ['updates', index, ...pathToPrefix] });
+            } else {
+                changes.push({ path: ['updates', index, ...pathToPrefix], value: options.prefix });
+            }
+            actionsTaken.push([directory, 'changed']);
+        }
+    }
+
     function calcAdditions() {
         for (const directory of foldersToProcess) {
             actionsTaken.push([directory, 'added']);
+            const value = {
+                'package-ecosystem': 'github-actions',
+                directory,
+                schedule: { interval: options.interval },
+            };
+            if (options.prefix) {
+                setValue(value, pathToPrefix, options.prefix);
+            }
             additions.push({
                 path: ['updates'],
-                value: {
-                    'package-ecosystem': 'github-actions',
-                    directory,
-                    schedule: { interval: options.interval },
-                },
+                value,
             });
         }
     }
@@ -251,6 +268,19 @@ async function isDir(path) {
     } catch (e) {
         return false;
     }
+}
+
+/**
+ * @param {object} node
+ * @param {string[]} path
+ * @param {any} value
+ */
+function setValue(node, path, value) {
+    if (!path.length) return value;
+    const head = path[0];
+    const tail = path.slice(1);
+    node[head] = setValue(node[head] || {}, tail, value);
+    return node;
 }
 
 /**

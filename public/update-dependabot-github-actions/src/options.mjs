@@ -27,6 +27,11 @@ export const defaultOptions = {
      */
     dry_run: false,
     /**
+     * Set the commit title prefix.
+     * See: [dependabot commit message](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#commit-message)
+     */
+    prefix: '',
+    /**
      * Show a summary
      * @default true
      * @required false

@@ -11,6 +11,7 @@ async function run() {
         path.join(__dirname, '../fixtures/dependabot.yml'),
         rootUrl,
         {
+            prefix: 'ci',
             dryRun: true,
         },
     );
