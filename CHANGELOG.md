@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.4.0](https://github.com/streetsidesoftware/actions/compare/v1.3.0...v1.4.0) (2023-09-22)
+
+
+### Features
+
+* Add action setup-node-pnpm ([#39](https://github.com/streetsidesoftware/actions/issues/39)) ([5a29ebe](https://github.com/streetsidesoftware/actions/commit/5a29ebefff78d1bd12ffc7d3111776faf6d13196))
+
+
+### Updates and Bug Fixes
+
+* Make sure the defaults do not block searching. ([#42](https://github.com/streetsidesoftware/actions/issues/42)) ([b2f3252](https://github.com/streetsidesoftware/actions/commit/b2f3252e02e3853dd470e1ea8110e4768b761719))
+* support adding a prefix ([#45](https://github.com/streetsidesoftware/actions/issues/45)) ([81f0d27](https://github.com/streetsidesoftware/actions/commit/81f0d2758a709b466cf119a85d4aa9f1af0a49f9))
+
 ## [1.3.0](https://github.com/streetsidesoftware/actions/compare/v1.2.0...v1.3.0) (2023-09-22)
 
 
