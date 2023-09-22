@@ -31,13 +31,8 @@ jobs:
         with:
           ref: ${{ env.REF_BRANCH }}
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2.4.0
-
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          cache: 'pnpm'
+      - name: Setup
+        uses: ./public/setup-node-pnpm
 
       - name: Install
         run: pnpm install
