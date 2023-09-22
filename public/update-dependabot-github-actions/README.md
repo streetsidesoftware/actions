@@ -48,6 +48,12 @@ inputs:
       Path to the dependabot yaml file.
       Defaults to searching for `.github/dependabot.yml` and `.github/dependabot.yaml`
     required: false
+  prefix:
+    description: |
+      Set the commit title prefix.
+      See: [dependabot commit message](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#commit-message)
+    default: ci
+    required: false
   interval:
     description: |
       Scan frequency. See dependabot schedule.interval
