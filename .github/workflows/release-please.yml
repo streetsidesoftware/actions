@@ -24,6 +24,7 @@ jobs:
         id: release
         with:
           release-type: node
+          command: manifest
 
       # The logic below handles the tag logic:
       - uses: actions/checkout@v4
