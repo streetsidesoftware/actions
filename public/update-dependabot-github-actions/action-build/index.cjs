@@ -12725,7 +12725,7 @@ var actualFS = __toESM(require("fs"), 1);
 var import_fs = require("fs");
 var import_promises = require("fs/promises");
 
-// ../../node_modules/.pnpm/minipass@7.0.3/node_modules/minipass/dist/mjs/index.js
+// ../../node_modules/.pnpm/minipass@7.0.4/node_modules/minipass/dist/esm/index.js
 var import_events = require("events");
 var import_stream = __toESM(require("stream"), 1);
 var import_string_decoder = require("string_decoder");
@@ -15308,10 +15308,10 @@ var PathScurryDarwin = class extends PathScurryPosix {
 var Path = process.platform === "win32" ? PathWin32 : PathPosix;
 var PathScurry = process.platform === "win32" ? PathScurryWin32 : process.platform === "darwin" ? PathScurryDarwin : PathScurryPosix;
 
-// ../../node_modules/.pnpm/glob@10.3.5/node_modules/glob/dist/mjs/glob.js
+// ../../node_modules/.pnpm/glob@10.3.10/node_modules/glob/dist/esm/glob.js
 var import_url2 = require("url");
 
-// ../../node_modules/.pnpm/glob@10.3.5/node_modules/glob/dist/mjs/pattern.js
+// ../../node_modules/.pnpm/glob@10.3.10/node_modules/glob/dist/esm/pattern.js
 var isPatternList = (pl) => pl.length >= 1;
 var isGlobList = (gl) => gl.length >= 1;
 var Pattern = class _Pattern {
@@ -15476,7 +15476,7 @@ var Pattern = class _Pattern {
   }
 };
 
-// ../../node_modules/.pnpm/glob@10.3.5/node_modules/glob/dist/mjs/ignore.js
+// ../../node_modules/.pnpm/glob@10.3.10/node_modules/glob/dist/esm/ignore.js
 var defaultPlatform2 = typeof process === "object" && process && typeof process.platform === "string" ? process.platform : "linux";
 var Ignore = class {
   relative;
@@ -15504,6 +15504,9 @@ var Ignore = class {
       for (let i = 0; i < mm.set.length; i++) {
         const parsed = mm.set[i];
         const globParts = mm.globParts[i];
+        if (!parsed || !globParts) {
+          throw new Error("invalid pattern object");
+        }
         const p = new Pattern(parsed, globParts, 0, platform);
         const m = new Minimatch(p.globString(), mmopts);
         const children = globParts[globParts.length - 1] === "**";
@@ -15551,7 +15554,7 @@ var Ignore = class {
   }
 };
 
-// ../../node_modules/.pnpm/glob@10.3.5/node_modules/glob/dist/mjs/processor.js
+// ../../node_modules/.pnpm/glob@10.3.10/node_modules/glob/dist/esm/processor.js
 var HasWalkedCache = class _HasWalkedCache {
   store;
   constructor(store = /* @__PURE__ */ new Map()) {
@@ -15772,7 +15775,7 @@ var Processor = class _Processor {
   }
 };
 
-// ../../node_modules/.pnpm/glob@10.3.5/node_modules/glob/dist/mjs/walker.js
+// ../../node_modules/.pnpm/glob@10.3.10/node_modules/glob/dist/esm/walker.js
 var makeIgnore = (ignore, opts) => typeof ignore === "string" ? new Ignore([ignore], opts) : Array.isArray(ignore) ? new Ignore(ignore, opts) : ignore;
 var GlobUtil = class {
   path;
@@ -16076,7 +16079,7 @@ var GlobStream = class extends GlobUtil {
   }
 };
 
-// ../../node_modules/.pnpm/glob@10.3.5/node_modules/glob/dist/mjs/glob.js
+// ../../node_modules/.pnpm/glob@10.3.10/node_modules/glob/dist/esm/glob.js
 var defaultPlatform3 = typeof process === "object" && process && typeof process.platform === "string" ? process.platform : "linux";
 var Glob = class {
   absolute;
@@ -16206,7 +16209,10 @@ var Glob = class {
       return set;
     }, [[], []]);
     this.patterns = matchSet.map((set, i) => {
-      return new Pattern(set, globParts[i], 0, this.platform);
+      const g = globParts[i];
+      if (!g)
+        throw new Error("invalid pattern object");
+      return new Pattern(set, g, 0, this.platform);
     });
   }
   async walk() {
@@ -16267,7 +16273,7 @@ var Glob = class {
   }
 };
 
-// ../../node_modules/.pnpm/glob@10.3.5/node_modules/glob/dist/mjs/has-magic.js
+// ../../node_modules/.pnpm/glob@10.3.10/node_modules/glob/dist/esm/has-magic.js
 var hasMagic = (pattern, options2 = {}) => {
   if (!Array.isArray(pattern)) {
     pattern = [pattern];
@@ -16279,7 +16285,7 @@ var hasMagic = (pattern, options2 = {}) => {
   return false;
 };
 
-// ../../node_modules/.pnpm/glob@10.3.5/node_modules/glob/dist/mjs/index.js
+// ../../node_modules/.pnpm/glob@10.3.10/node_modules/glob/dist/esm/index.js
 function globStreamSync(pattern, options2 = {}) {
   return new Glob(pattern, options2).streamSync();
 }
