@@ -24,7 +24,7 @@ jobs:
 
       - name: Diff
         id: diff
-        uses: ./actions/public/diff
+        uses: streetsidesoftware/actions/public/diff@v1
         with:
           path: >-
             package.json
