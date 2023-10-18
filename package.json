@@ -15,7 +15,7 @@
   "author": "Street Side Software",
   "license": "MIT",
   "devDependencies": {
-    "inject-markdown": "^2.0.0",
+    "inject-markdown": "^2.1.0",
     "prettier": "^3.0.3"
   }
 }
