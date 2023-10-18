@@ -343,8 +343,8 @@ packages:
     resolution: {integrity: sha512-AuHIyzR5Hea7ij0P9q7vx7xu4z0C28ucwjAZC0ja7JhINyCnOw8/DnvAPQQ9TfOlCtZAmCERKQX9+o1mgQhuOQ==}
     dev: true
 
-  /@types/supports-color@8.1.1:
-    resolution: {integrity: sha512-dPWnWsf+kzIG140B8z2w3fr5D03TLWbOAFQl45xUpI3vcizeXriNR5VYkWZ+WTMsUHqZ9Xlt3hrxGNANFyNQfw==}
+  /@types/supports-color@8.1.2:
+    resolution: {integrity: sha512-nhs1D8NjNueBqRBhBTsc81g90g7VBD4wnMTMy9oP+QIldHuJkE655QTL2D1jkj3LyCd+Q5Y69oOpfxN1l0eCMA==}
     dev: true
 
   /@types/unist@2.0.8:
@@ -1890,7 +1890,7 @@ packages:
   /vfile-reporter@8.1.0:
     resolution: {integrity: sha512-NfHyHdkCcy0BsXiLA3nId29TY7W7hgpc8nd8Soe3imATx5N4/+mkLYdMR+Y6Zvu6BXMMi0FZsD4FLCm1dN85Pg==}
     dependencies:
-      '@types/supports-color': 8.1.1
+      '@types/supports-color': 8.1.2
       string-width: 6.1.0
       supports-color: 9.4.0
       unist-util-stringify-position: 4.0.0
