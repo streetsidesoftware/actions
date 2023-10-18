@@ -22,7 +22,7 @@ jobs:
 
       - name: PR Body
         id: body
-        uses: ./actions/public/pr-body
+        uses: streetsidesoftware/actions/public/pr-body@v1
         with:
           title: Example PR Body based upon a diff.
           message: |
