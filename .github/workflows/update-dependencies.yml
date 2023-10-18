@@ -48,10 +48,11 @@ jobs:
           pnpm lint
 
       - name: Gen Body
-        run: |
-          echo 'git_body<<DIFF' >> $GITHUB_ENV
-          git --no-pager diff --compact-summary >> $GITHUB_ENV
-          echo 'DIFF' >> $GITHUB_ENV
+        id: git-body
+        uses: ./public/pr-body
+        with:
+          title: Update ALL Dependencies ${{ env.REF_BRANCH }}
+          path: package.json
 
       - name: PR
         uses: ./.github/actions/pr
@@ -60,6 +61,11 @@ jobs:
           branch: ${{ env.NEW_BRANCH }}
           base: ${{ env.REF_BRANCH }}
           title: '${{ env.PR_TYPE }}: Workflow Bot -- Update ALL Dependencies (${{ env.REF_BRANCH }})'
-          body: ${{ env.git_body }}
+          body: ${{ steps.git-body.outputs.body }}
           app_id: ${{ secrets.AUTOMATION_APP_ID }}
           app_private_key: ${{ secrets.AUTOMATION_PRIVATE_KEY }}
+
+      - name: Summary
+        uses: streetsidesoftware/actions/public/summary@v1
+        with:
+          text: ${{ steps.git-body.outputs.body }}

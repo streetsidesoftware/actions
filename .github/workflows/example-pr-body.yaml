@@ -13,10 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Diff
-        id: diff
-        uses: streetsidesoftware/actions/public/diff@v1
+      - name: PR Body
+        id: body
+        uses: ./actions/public/pr-body
         with:
+          title: Example PR Body based upon a diff.
+          message: |
+            This is the message body.
           path: >-
             package.json
             README.md
@@ -24,9 +27,4 @@ jobs:
       - name: Summary
         uses: streetsidesoftware/actions/public/summary@v1
         with:
-          text: |
-            # Diff
-
-            ```diff
-            ${{ steps.diff.outputs.diff }}
-            ```
+          text: ${{ steps.body.outputs.body }}
