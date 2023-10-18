@@ -64,3 +64,8 @@ jobs:
           body: ${{ steps.git-body.outputs.body }}
           app_id: ${{ secrets.AUTOMATION_APP_ID }}
           app_private_key: ${{ secrets.AUTOMATION_PRIVATE_KEY }}
+
+      - name: Summary
+        uses: streetsidesoftware/actions/public/summary@v1
+        with:
+          text: ${{ steps.git-body.outputs.body }}
