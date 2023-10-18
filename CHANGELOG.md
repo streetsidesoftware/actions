@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/streetsidesoftware/actions/compare/v1.5.0...v1.6.0) (2023-10-18)
+
+
+### Features
+
+* Add an action to create a PR Body ([#64](https://github.com/streetsidesoftware/actions/issues/64)) ([bd2837f](https://github.com/streetsidesoftware/actions/commit/bd2837f4966a884328a75bb1ac9c1890ef5559ae))
+
 ## [1.5.0](https://github.com/streetsidesoftware/actions/compare/v1.4.0...v1.5.0) (2023-10-18)
 
 
