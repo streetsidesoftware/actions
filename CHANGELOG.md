@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/streetsidesoftware/actions/compare/v1.4.0...v1.5.0) (2023-10-18)
+
+
+### Features
+
+* Add diff action ([#58](https://github.com/streetsidesoftware/actions/issues/58)) ([438e14e](https://github.com/streetsidesoftware/actions/commit/438e14e0924267db8108659c50188e85d9456bb4))
+
 ## [1.4.0](https://github.com/streetsidesoftware/actions/compare/v1.3.0...v1.4.0) (2023-09-22)
 
 
