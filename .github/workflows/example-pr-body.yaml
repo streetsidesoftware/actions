@@ -1,4 +1,4 @@
-name: '📗 Example Dirty'
+name: '📗 Example PR Body'
 
 on:
   workflow_dispatch:
