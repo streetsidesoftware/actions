@@ -5,7 +5,7 @@ Generate a PR Body based upon the file diffs. Useful for dependency updates.
 <!--- @@inject: ../../.github/workflows/example-pr-body.yaml --->
 
 ```yaml
-name: '📗 Example Dirty'
+name: '📗 Example PR Body'
 
 on:
   workflow_dispatch:
