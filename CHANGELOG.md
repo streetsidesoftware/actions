@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/streetsidesoftware/actions/compare/v1.6.0...v1.6.1) (2023-12-11)
+
+
+### Updates and Bug Fixes
+
+* bump actions/setup-node from 3.8.1 to 4.0.0 in /public/setup-node-pnpm ([#72](https://github.com/streetsidesoftware/actions/issues/72)) ([90c16d8](https://github.com/streetsidesoftware/actions/commit/90c16d88fc8bfb09c4986691f57270a76dc135d0))
+
 ## [1.6.0](https://github.com/streetsidesoftware/actions/compare/v1.5.0...v1.6.0) (2023-10-18)
 
 
