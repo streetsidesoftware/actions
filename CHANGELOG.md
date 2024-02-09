@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.6.2](https://github.com/streetsidesoftware/actions/compare/v1.6.1...v1.6.2) (2024-02-09)
+
+
+### Updates and Bug Fixes
+
+* bump actions/setup-node from 4.0.0 to 4.0.2 in /public/setup-node-pnpm ([#93](https://github.com/streetsidesoftware/actions/issues/93)) ([ac3a4c4](https://github.com/streetsidesoftware/actions/commit/ac3a4c4f1dff43a5b95e0a865810f3ea900c03ed))
+* bump peter-evans/create-pull-request from 5.0.2 to 6.0.0 in /.github/actions/pr ([#91](https://github.com/streetsidesoftware/actions/issues/91)) ([51e1575](https://github.com/streetsidesoftware/actions/commit/51e1575852def9c75b6e38653b56bbee652ab084))
+* bump pnpm/action-setup from 2.4.0 to 3.0.0 in /public/setup-node-pnpm ([#94](https://github.com/streetsidesoftware/actions/issues/94)) ([df91e0f](https://github.com/streetsidesoftware/actions/commit/df91e0f1d064bd9ea145508fab917479f2235e9b))
+
 ## [1.6.1](https://github.com/streetsidesoftware/actions/compare/v1.6.0...v1.6.1) (2023-12-11)
 
 
