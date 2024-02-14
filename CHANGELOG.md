@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.3](https://github.com/streetsidesoftware/actions/compare/v1.6.2...v1.6.3) (2024-02-14)
+
+
+### Updates and Bug Fixes
+
+* Export PR title ([#97](https://github.com/streetsidesoftware/actions/issues/97)) ([e5d9f41](https://github.com/streetsidesoftware/actions/commit/e5d9f4129a35484b0a431f83d657228c92f2e639))
+
 ## [1.6.2](https://github.com/streetsidesoftware/actions/compare/v1.6.1...v1.6.2) (2024-02-09)
 
 
