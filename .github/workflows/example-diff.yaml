@@ -1,4 +1,4 @@
-name: '📗 Example Dirty'
+name: '📗 Example Diff'
 
 on:
   workflow_dispatch:
