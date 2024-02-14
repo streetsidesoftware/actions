@@ -34,7 +34,15 @@ jobs:
       - name: Summary
         uses: streetsidesoftware/actions/public/summary@v1
         with:
-          text: ${{ steps.body.outputs.body }}
+          text: |
+            ---
+            Title:
+            ---
+            ${{ steps.body.outputs.title }}
+            ---
+            Body:
+            ---
+            ${{ steps.body.outputs.body }}
 ```
 
 <!--- @@inject-end: ../../.github/workflows/example-pr-body.yaml --->
