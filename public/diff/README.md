@@ -7,7 +7,7 @@ Example:
 <!--- @@inject: ../../.github/workflows/example-diff.yaml --->
 
 ````yaml
-name: '📗 Example Dirty'
+name: '📗 Example Diff'
 
 on:
   workflow_dispatch:
