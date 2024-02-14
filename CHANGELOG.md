@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.4](https://github.com/streetsidesoftware/actions/compare/v1.6.3...v1.6.4) (2024-02-14)
+
+
+### Updates and Bug Fixes
+
+* Nest the diff deeper. ([#100](https://github.com/streetsidesoftware/actions/issues/100)) ([036b69e](https://github.com/streetsidesoftware/actions/commit/036b69e8bf0c7a1c251644151dab93752da3f466))
+
 ## [1.6.3](https://github.com/streetsidesoftware/actions/compare/v1.6.2...v1.6.3) (2024-02-14)
 
 
