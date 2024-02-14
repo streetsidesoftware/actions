@@ -40,9 +40,9 @@ runs:
         value: |
           ## Selected Diffs
 
-          ```diff
+          ```````diff
           ${{ steps.diff.outputs.diff }}
-          ```
+          ```````
 
     - name: Gen Summary
       shell: bash
