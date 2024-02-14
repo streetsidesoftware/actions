@@ -18,6 +18,9 @@ outputs:
   body:
     description: The resulting PR Body text
     value: ${{ steps.body.outputs.value }}
+  title:
+    description: The resulting PR Title
+    value: ${{ inputs.title || 'Changes' }}
 
 runs:
   using: composite
