@@ -1,0 +1,24 @@
+name: read-file
+description: Read a file and return the contents.
+
+inputs:
+  path:
+    description: The path to the file to read.
+    required: true
+outputs:
+  result:
+    description: The contents of the file.
+    value: ${{ steps.read-file.outputs.result }}
+runs:
+  using: composite
+  steps:
+    - name: Read File
+      id: read-file
+      uses: actions/github-script@v3
+      env:
+        INPUT_PATH: ${{ inputs.path }}
+      with:
+        result-encoding: string
+        script: |
+          const fs = require('fs');
+          return fs.readFileSync(process.env.GITHUB_WORKSPACE + '/' + process.env.INPUT_PATH, 'utf8') };
