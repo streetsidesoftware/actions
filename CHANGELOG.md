@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.5](https://github.com/streetsidesoftware/actions/compare/v1.6.4...v1.6.5) (2024-02-27)
+
+
+### Updates and Bug Fixes
+
+* Add read-file action ([#107](https://github.com/streetsidesoftware/actions/issues/107)) ([80c1a32](https://github.com/streetsidesoftware/actions/commit/80c1a325954ac7ee1fe76c5c8f26f0231abf13a4))
+* bump actions/github-script from 3 to 7 in /public/read-file ([#112](https://github.com/streetsidesoftware/actions/issues/112)) ([cd4a487](https://github.com/streetsidesoftware/actions/commit/cd4a4877f3255ea09743725185b64ef6aa28e09e))
+
 ## [1.6.4](https://github.com/streetsidesoftware/actions/compare/v1.6.3...v1.6.4) (2024-02-14)
 
 
