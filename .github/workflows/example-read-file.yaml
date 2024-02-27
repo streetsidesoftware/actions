@@ -1,4 +1,4 @@
-name: '📗 Example Set Output'
+name: '📗 Example Read File'
 
 on:
   workflow_dispatch:
