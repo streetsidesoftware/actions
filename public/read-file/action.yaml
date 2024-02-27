@@ -3,7 +3,7 @@ description: Read a file and return the contents.
 
 inputs:
   path:
-    description: The path to the file to read.
+    description: The path to the file to read. The path is relative to the root of the repository.
     required: true
 outputs:
   result:
@@ -21,4 +21,5 @@ runs:
         result-encoding: string
         script: |
           const fs = require('fs');
-          return fs.readFileSync(process.env.GITHUB_WORKSPACE + '/' + process.env.INPUT_PATH, 'utf8') };
+          const path = require('path');
+          return fs.readFileSync(path.resolve(process.env.GITHUB_WORKSPACE, process.env.INPUT_PATH), 'utf8');
