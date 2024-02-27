@@ -7,7 +7,7 @@ Example:
 <!--- @@inject: ../../.github/workflows/example-read-file.yaml --->
 
 ````````````yaml
-name: '📗 Example Set Output'
+name: '📗 Example Read File'
 
 on:
   workflow_dispatch:
@@ -19,10 +19,14 @@ jobs:
   run-example:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Read a File
         id: read-file
-        uses: ./public/read-file
+        uses: streetsidesoftware/actions/public/read-file@v1
         with:
+          # Relative to the root of the repository
           path: 'README.md'
 
       - name: Summary
