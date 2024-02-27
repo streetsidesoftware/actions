@@ -16,7 +16,7 @@ jobs:
       - name: Read a File
         id: read-file
         # uses: streetsidesoftware/actions/public/read-file@v1
-        uses: ./actions/public/read-file
+        uses: ./public/read-file
         with:
           # Relative to the root of the repository
           path: 'README.md'
