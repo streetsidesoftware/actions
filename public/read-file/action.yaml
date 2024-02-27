@@ -21,4 +21,4 @@ runs:
         result-encoding: string
         script: |
           const fs = require('fs');
-          return fs.readFileSync(process.env.GITHUB_WORKSPACE + '/' + process.env.INPUT_PATH, 'utf8') };
+          return fs.readFileSync(process.env.GITHUB_WORKSPACE + '/' + process.env.INPUT_PATH, 'utf8');
