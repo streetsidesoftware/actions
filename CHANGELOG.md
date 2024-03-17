@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.7](https://github.com/streetsidesoftware/actions/compare/v1.6.6...v1.6.7) (2024-03-16)
+
+
+### Updates and Bug Fixes
+
+* bump peter-evans/create-pull-request from 6.0.1 to 6.0.2 in /.github/actions/pr ([#121](https://github.com/streetsidesoftware/actions/issues/121)) ([52975e8](https://github.com/streetsidesoftware/actions/commit/52975e8b6e3592a2b707c528845b2b34053d7e23))
+
 ## [1.6.6](https://github.com/streetsidesoftware/actions/compare/v1.6.5...v1.6.6) (2024-02-29)
 
 
