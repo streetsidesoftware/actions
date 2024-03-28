@@ -29406,7 +29406,7 @@ var LRUCache = class _LRUCache {
   }
 };
 
-// ../../node_modules/.pnpm/path-scurry@1.10.1/node_modules/path-scurry/dist/mjs/index.js
+// ../../node_modules/.pnpm/path-scurry@1.10.2/node_modules/path-scurry/dist/esm/index.js
 var import_path = require("path");
 var import_url = require("url");
 var actualFS = __toESM(require("fs"), 1);
@@ -30291,7 +30291,7 @@ var Minipass = class extends import_events.EventEmitter {
   }
 };
 
-// ../../node_modules/.pnpm/path-scurry@1.10.1/node_modules/path-scurry/dist/mjs/index.js
+// ../../node_modules/.pnpm/path-scurry@1.10.2/node_modules/path-scurry/dist/esm/index.js
 var realpathSync = import_fs.realpathSync.native;
 var defaultFS = {
   lstatSync: import_fs.lstatSync,
@@ -30863,7 +30863,7 @@ var PathBase = class {
     }
     try {
       const read = await this.#fs.promises.readlink(this.fullpath());
-      const linkTarget = this.parent.resolve(read);
+      const linkTarget = (await this.parent.realpath())?.resolve(read);
       if (linkTarget) {
         return this.#linkTarget = linkTarget;
       }
@@ -30888,7 +30888,7 @@ var PathBase = class {
     }
     try {
       const read = this.#fs.readlinkSync(this.fullpath());
-      const linkTarget = this.parent.resolve(read);
+      const linkTarget = this.parent.realpathSync()?.resolve(read);
       if (linkTarget) {
         return this.#linkTarget = linkTarget;
       }
@@ -30900,7 +30900,9 @@ var PathBase = class {
   #readdirSuccess(children) {
     this.#type |= READDIR_CALLED;
     for (let p = children.provisional; p < children.length; p++) {
-      children[p].#markENOENT();
+      const c = children[p];
+      if (c)
+        c.#markENOENT();
     }
   }
   #markENOENT() {
