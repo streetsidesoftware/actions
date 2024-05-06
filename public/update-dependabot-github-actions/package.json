@@ -22,7 +22,7 @@
     "@actions/core": "^1.10.1",
     "glob": "^10.3.12",
     "minimatch": "^9.0.4",
-    "nopt": "^7.2.0",
+    "nopt": "^7.2.1",
     "yaml": "^2.4.1"
   },
   "engines": {
