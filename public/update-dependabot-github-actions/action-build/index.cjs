@@ -29583,25 +29583,25 @@ var LRUCache = class _LRUCache {
   }
 };
 
-// ../../node_modules/.pnpm/path-scurry@1.10.2/node_modules/path-scurry/dist/esm/index.js
-var import_path = require("path");
-var import_url = require("url");
-var actualFS = __toESM(require("fs"), 1);
+// ../../node_modules/.pnpm/path-scurry@1.11.0/node_modules/path-scurry/dist/esm/index.js
+var import_node_path = require("node:path");
+var import_node_url = require("node:url");
 var import_fs = require("fs");
-var import_promises = require("fs/promises");
+var actualFS = __toESM(require("node:fs"), 1);
+var import_promises = require("node:fs/promises");
 
-// ../../node_modules/.pnpm/minipass@7.1.0/node_modules/minipass/dist/esm/index.js
-var import_events = require("events");
-var import_stream = __toESM(require("stream"), 1);
-var import_string_decoder = require("string_decoder");
+// ../../node_modules/.pnpm/minipass@7.1.1/node_modules/minipass/dist/esm/index.js
+var import_node_events = require("node:events");
+var import_node_stream = __toESM(require("node:stream"), 1);
+var import_node_string_decoder = require("node:string_decoder");
 var proc = typeof process === "object" && process ? process : {
   stdout: null,
   stderr: null
 };
-var isStream = (s) => !!s && typeof s === "object" && (s instanceof Minipass || s instanceof import_stream.default || isReadable(s) || isWritable(s));
-var isReadable = (s) => !!s && typeof s === "object" && s instanceof import_events.EventEmitter && typeof s.pipe === "function" && // node core Writable streams have a pipe() method, but it throws
-s.pipe !== import_stream.default.Writable.prototype.pipe;
-var isWritable = (s) => !!s && typeof s === "object" && s instanceof import_events.EventEmitter && typeof s.write === "function" && typeof s.end === "function";
+var isStream = (s) => !!s && typeof s === "object" && (s instanceof Minipass || s instanceof import_node_stream.default || isReadable(s) || isWritable(s));
+var isReadable = (s) => !!s && typeof s === "object" && s instanceof import_node_events.EventEmitter && typeof s.pipe === "function" && // node core Writable streams have a pipe() method, but it throws
+s.pipe !== import_node_stream.default.Writable.prototype.pipe;
+var isWritable = (s) => !!s && typeof s === "object" && s instanceof import_node_events.EventEmitter && typeof s.write === "function" && typeof s.end === "function";
 var EOF = Symbol("EOF");
 var MAYBE_EMIT_END = Symbol("maybeEmitEnd");
 var EMITTED_END = Symbol("emittedEnd");
@@ -29677,7 +29677,7 @@ var PipeProxyErrors = class extends Pipe {
 };
 var isObjectModeOptions = (o) => !!o.objectMode;
 var isEncodingOptions = (o) => !o.objectMode && !!o.encoding && o.encoding !== "buffer";
-var Minipass = class extends import_events.EventEmitter {
+var Minipass = class extends import_node_events.EventEmitter {
   [FLOWING] = false;
   [PAUSED] = false;
   [PIPES] = [];
@@ -29728,7 +29728,7 @@ var Minipass = class extends import_events.EventEmitter {
       this[ENCODING] = null;
     }
     this[ASYNC] = !!options2.async;
-    this[DECODER] = this[ENCODING] ? new import_string_decoder.StringDecoder(this[ENCODING]) : null;
+    this[DECODER] = this[ENCODING] ? new import_node_string_decoder.StringDecoder(this[ENCODING]) : null;
     if (options2 && options2.debugExposeBuffer === true) {
       Object.defineProperty(this, "buffer", { get: () => this[BUFFER] });
     }
@@ -30468,7 +30468,7 @@ var Minipass = class extends import_events.EventEmitter {
   }
 };
 
-// ../../node_modules/.pnpm/path-scurry@1.10.2/node_modules/path-scurry/dist/esm/index.js
+// ../../node_modules/.pnpm/path-scurry@1.11.0/node_modules/path-scurry/dist/esm/index.js
 var realpathSync = import_fs.realpathSync.native;
 var defaultFS = {
   lstatSync: import_fs.lstatSync,
@@ -30580,6 +30580,11 @@ var PathBase = class {
    * @internal
    */
   nocase;
+  /**
+   * boolean indicating that this path is the current working directory
+   * of the PathScurry collection that contains it.
+   */
+  isCWD = false;
   // potential default fs override
   #fs;
   // Stats fields
@@ -30667,13 +30672,19 @@ var PathBase = class {
   #realpath;
   /**
    * This property is for compatibility with the Dirent class as of
-   * Node v20, where Dirent['path'] refers to the path of the directory
-   * that was passed to readdir.  So, somewhat counterintuitively, this
-   * property refers to the *parent* path, not the path object itself.
-   * For root entries, it's the path to the entry itself.
+   * Node v20, where Dirent['parentPath'] refers to the path of the
+   * directory that was passed to readdir. For root entries, it's the path
+   * to the entry itself.
+   */
+  get parentPath() {
+    return (this.parent || this).fullpath();
+  }
+  /**
+   * Deprecated alias for Dirent['parentPath'] Somewhat counterintuitively,
+   * this property refers to the *parent* path, not the path object itself.
    */
   get path() {
-    return (this.parent || this).fullpath();
+    return this.parentPath;
   }
   /**
    * Do not create new Path objects directly.  They should always be accessed
@@ -30800,6 +30811,8 @@ var PathBase = class {
    * the cwd, then this ends up being equivalent to the fullpath()
    */
   relative() {
+    if (this.isCWD)
+      return "";
     if (this.#relative !== void 0) {
       return this.#relative;
     }
@@ -30820,6 +30833,8 @@ var PathBase = class {
   relativePosix() {
     if (this.sep === "/")
       return this.relative();
+    if (this.isCWD)
+      return "";
     if (this.#relativePosix !== void 0)
       return this.#relativePosix;
     const name = this.name;
@@ -31426,6 +31441,8 @@ var PathBase = class {
   [setAsCwd](oldCwd) {
     if (oldCwd === this)
       return;
+    oldCwd.isCWD = false;
+    this.isCWD = true;
     const changed = /* @__PURE__ */ new Set([]);
     let rp = [];
     let p = this;
@@ -31472,7 +31489,7 @@ var PathWin32 = class _PathWin32 extends PathBase {
    * @internal
    */
   getRootString(path5) {
-    return import_path.win32.parse(path5).root;
+    return import_node_path.win32.parse(path5).root;
   }
   /**
    * @internal
@@ -31571,7 +31588,7 @@ var PathScurryBase = class {
   constructor(cwd = process.cwd(), pathImpl, sep2, { nocase, childrenCacheSize = 16 * 1024, fs: fs3 = defaultFS } = {}) {
     this.#fs = fsFromOption(fs3);
     if (cwd instanceof URL || cwd.startsWith("file://")) {
-      cwd = (0, import_url.fileURLToPath)(cwd);
+      cwd = (0, import_node_url.fileURLToPath)(cwd);
     }
     const cwdPath = pathImpl.resolve(cwd);
     this.roots = /* @__PURE__ */ Object.create(null);
@@ -32112,7 +32129,7 @@ var PathScurryWin32 = class extends PathScurryBase {
   sep = "\\";
   constructor(cwd = process.cwd(), opts = {}) {
     const { nocase = true } = opts;
-    super(cwd, import_path.win32, "\\", { ...opts, nocase });
+    super(cwd, import_node_path.win32, "\\", { ...opts, nocase });
     this.nocase = nocase;
     for (let p = this.cwd; p; p = p.parent) {
       p.nocase = this.nocase;
@@ -32122,7 +32139,7 @@ var PathScurryWin32 = class extends PathScurryBase {
    * @internal
    */
   parseRootPath(dir) {
-    return import_path.win32.parse(dir).root.toUpperCase();
+    return import_node_path.win32.parse(dir).root.toUpperCase();
   }
   /**
    * @internal
@@ -32144,7 +32161,7 @@ var PathScurryPosix = class extends PathScurryBase {
   sep = "/";
   constructor(cwd = process.cwd(), opts = {}) {
     const { nocase = false } = opts;
-    super(cwd, import_path.posix, "/", { ...opts, nocase });
+    super(cwd, import_node_path.posix, "/", { ...opts, nocase });
     this.nocase = nocase;
   }
   /**
@@ -32175,10 +32192,10 @@ var PathScurryDarwin = class extends PathScurryPosix {
 var Path = process.platform === "win32" ? PathWin32 : PathPosix;
 var PathScurry = process.platform === "win32" ? PathScurryWin32 : process.platform === "darwin" ? PathScurryDarwin : PathScurryPosix;
 
-// ../../node_modules/.pnpm/glob@10.3.12/node_modules/glob/dist/esm/glob.js
-var import_url2 = require("url");
+// ../../node_modules/.pnpm/glob@10.3.14/node_modules/glob/dist/esm/glob.js
+var import_node_url2 = require("node:url");
 
-// ../../node_modules/.pnpm/glob@10.3.12/node_modules/glob/dist/esm/pattern.js
+// ../../node_modules/.pnpm/glob@10.3.14/node_modules/glob/dist/esm/pattern.js
 var isPatternList = (pl) => pl.length >= 1;
 var isGlobList = (gl) => gl.length >= 1;
 var Pattern = class _Pattern {
@@ -32343,7 +32360,7 @@ var Pattern = class _Pattern {
   }
 };
 
-// ../../node_modules/.pnpm/glob@10.3.12/node_modules/glob/dist/esm/ignore.js
+// ../../node_modules/.pnpm/glob@10.3.14/node_modules/glob/dist/esm/ignore.js
 var defaultPlatform2 = typeof process === "object" && process && typeof process.platform === "string" ? process.platform : "linux";
 var Ignore = class {
   relative;
@@ -32425,7 +32442,7 @@ var Ignore = class {
   }
 };
 
-// ../../node_modules/.pnpm/glob@10.3.12/node_modules/glob/dist/esm/processor.js
+// ../../node_modules/.pnpm/glob@10.3.14/node_modules/glob/dist/esm/processor.js
 var HasWalkedCache = class _HasWalkedCache {
   store;
   constructor(store = /* @__PURE__ */ new Map()) {
@@ -32646,7 +32663,7 @@ var Processor = class _Processor {
   }
 };
 
-// ../../node_modules/.pnpm/glob@10.3.12/node_modules/glob/dist/esm/walker.js
+// ../../node_modules/.pnpm/glob@10.3.14/node_modules/glob/dist/esm/walker.js
 var makeIgnore = (ignore, opts) => typeof ignore === "string" ? new Ignore([ignore], opts) : Array.isArray(ignore) ? new Ignore(ignore, opts) : ignore;
 var GlobUtil = class {
   path;
@@ -32964,7 +32981,7 @@ var GlobStream = class extends GlobUtil {
   }
 };
 
-// ../../node_modules/.pnpm/glob@10.3.12/node_modules/glob/dist/esm/glob.js
+// ../../node_modules/.pnpm/glob@10.3.14/node_modules/glob/dist/esm/glob.js
 var defaultPlatform3 = typeof process === "object" && process && typeof process.platform === "string" ? process.platform : "linux";
 var Glob = class {
   absolute;
@@ -33024,7 +33041,7 @@ var Glob = class {
     if (!opts.cwd) {
       this.cwd = "";
     } else if (opts.cwd instanceof URL || opts.cwd.startsWith("file://")) {
-      opts.cwd = (0, import_url2.fileURLToPath)(opts.cwd);
+      opts.cwd = (0, import_node_url2.fileURLToPath)(opts.cwd);
     }
     this.cwd = opts.cwd || "";
     this.root = opts.root;
@@ -33158,7 +33175,7 @@ var Glob = class {
   }
 };
 
-// ../../node_modules/.pnpm/glob@10.3.12/node_modules/glob/dist/esm/has-magic.js
+// ../../node_modules/.pnpm/glob@10.3.14/node_modules/glob/dist/esm/has-magic.js
 var hasMagic = (pattern, options2 = {}) => {
   if (!Array.isArray(pattern)) {
     pattern = [pattern];
@@ -33170,7 +33187,7 @@ var hasMagic = (pattern, options2 = {}) => {
   return false;
 };
 
-// ../../node_modules/.pnpm/glob@10.3.12/node_modules/glob/dist/esm/index.js
+// ../../node_modules/.pnpm/glob@10.3.14/node_modules/glob/dist/esm/index.js
 function globStreamSync(pattern, options2 = {}) {
   return new Glob(pattern, options2).streamSync();
 }
@@ -33221,7 +33238,7 @@ glob.glob = glob;
 // src/updateDependabot.mjs
 var import_node_fs2 = require("node:fs");
 var path3 = __toESM(require("node:path"), 1);
-var import_node_url = require("node:url");
+var import_node_url3 = require("node:url");
 var import_yaml = __toESM(require_dist(), 1);
 
 // src/findActions.mjs
@@ -33433,7 +33450,7 @@ async function readDepFile(path5) {
   return (0, import_yaml.parseDocument)(content);
 }
 function asPath(pathOrUrl) {
-  return pathOrUrl instanceof URL ? (0, import_node_url.fileURLToPath)(pathOrUrl) : pathOrUrl;
+  return pathOrUrl instanceof URL ? (0, import_node_url3.fileURLToPath)(pathOrUrl) : pathOrUrl;
 }
 function normalizeActionsToFolders(actions, cwd) {
   const rel = actions.map((p) => path3.relative(cwd, p)).map((p) => path3.dirname(p)).map((p) => normalizeDirectoryEntry(p));
