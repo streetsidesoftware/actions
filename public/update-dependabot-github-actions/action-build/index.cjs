@@ -69,14 +69,12 @@ var require_command = __commonJS({
   "../../node_modules/.pnpm/@actions+core@1.10.1/node_modules/@actions/core/lib/command.js"(exports2) {
     "use strict";
     var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
+      if (k2 === void 0) k2 = k;
       Object.defineProperty(o, k2, { enumerable: true, get: function() {
         return m[k];
       } });
     } : function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
+      if (k2 === void 0) k2 = k;
       o[k2] = m[k];
     });
     var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
@@ -85,13 +83,10 @@ var require_command = __commonJS({
       o["default"] = v;
     });
     var __importStar = exports2 && exports2.__importStar || function(mod) {
-      if (mod && mod.__esModule)
-        return mod;
+      if (mod && mod.__esModule) return mod;
       var result = {};
       if (mod != null) {
-        for (var k in mod)
-          if (k !== "default" && Object.hasOwnProperty.call(mod, k))
-            __createBinding(result, mod, k);
+        for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
       }
       __setModuleDefault(result, mod);
       return result;
@@ -489,14 +484,12 @@ var require_file_command = __commonJS({
   "../../node_modules/.pnpm/@actions+core@1.10.1/node_modules/@actions/core/lib/file-command.js"(exports2) {
     "use strict";
     var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
+      if (k2 === void 0) k2 = k;
       Object.defineProperty(o, k2, { enumerable: true, get: function() {
         return m[k];
       } });
     } : function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
+      if (k2 === void 0) k2 = k;
       o[k2] = m[k];
     });
     var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
@@ -505,13 +498,10 @@ var require_file_command = __commonJS({
       o["default"] = v;
     });
     var __importStar = exports2 && exports2.__importStar || function(mod) {
-      if (mod && mod.__esModule)
-        return mod;
+      if (mod && mod.__esModule) return mod;
       var result = {};
       if (mod != null) {
-        for (var k in mod)
-          if (k !== "default" && Object.hasOwnProperty.call(mod, k))
-            __createBinding(result, mod, k);
+        for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
       }
       __setModuleDefault(result, mod);
       return result;
@@ -1345,8 +1335,7 @@ var require_util = __commonJS({
         return host.substring(1, idx2);
       }
       const idx = host.indexOf(":");
-      if (idx === -1)
-        return host;
+      if (idx === -1) return host;
       return host.substring(0, idx);
     }
     function getServerName(host) {
@@ -1416,8 +1405,7 @@ var require_util = __commonJS({
       return headerNameLowerCasedRecord[value] || value.toLowerCase();
     }
     function parseHeaders(headers, obj = {}) {
-      if (!Array.isArray(headers))
-        return headers;
+      if (!Array.isArray(headers)) return headers;
       for (let i = 0; i < headers.length; i += 2) {
         const key = headers[i].toString().toLowerCase();
         let val = obj[key];
@@ -1591,8 +1579,7 @@ var require_util = __commonJS({
       return `${val}`;
     }
     function parseRangeHeader(range) {
-      if (range == null || range === "")
-        return { start: 0, end: null, size: null };
+      if (range == null || range === "") return { start: 0, end: null, size: null };
       const m = range ? range.match(/^bytes (\d+)-(\d+)\/(\d+)?$/) : null;
       return m ? {
         start: parseInt(m[1]),
@@ -4210,14 +4197,11 @@ var require_util2 = __commonJS({
       if (url.href === "about:blank" || url.href === "about:srcdoc") {
         return true;
       }
-      if (url.protocol === "data:")
-        return true;
-      if (url.protocol === "file:")
-        return true;
+      if (url.protocol === "data:") return true;
+      if (url.protocol === "file:") return true;
       return isOriginPotentiallyTrustworthy(url.origin);
       function isOriginPotentiallyTrustworthy(origin) {
-        if (origin == null || origin === "null")
-          return false;
+        if (origin == null || origin === "null") return false;
         const originAsURL = new URL(origin);
         if (originAsURL.protocol === "https:" || originAsURL.protocol === "wss:") {
           return true;
@@ -5187,12 +5171,10 @@ var require_dataURL = __commonJS({
       let lead = 0;
       let trail = str.length - 1;
       if (leading) {
-        for (; lead < str.length && isHTTPWhiteSpace(str[lead]); lead++)
-          ;
+        for (; lead < str.length && isHTTPWhiteSpace(str[lead]); lead++) ;
       }
       if (trailing) {
-        for (; trail > 0 && isHTTPWhiteSpace(str[trail]); trail--)
-          ;
+        for (; trail > 0 && isHTTPWhiteSpace(str[trail]); trail--) ;
       }
       return str.slice(lead, trail + 1);
     }
@@ -5203,12 +5185,10 @@ var require_dataURL = __commonJS({
       let lead = 0;
       let trail = str.length - 1;
       if (leading) {
-        for (; lead < str.length && isASCIIWhitespace(str[lead]); lead++)
-          ;
+        for (; lead < str.length && isASCIIWhitespace(str[lead]); lead++) ;
       }
       if (trailing) {
-        for (; trail > 0 && isASCIIWhitespace(str[trail]); trail--)
-          ;
+        for (; trail > 0 && isASCIIWhitespace(str[trail]); trail--) ;
       }
       return str.slice(lead, trail + 1);
     }
@@ -5802,8 +5782,7 @@ Content-Type: ${value.type || "application/octet-stream"}\r
           const contentType = this.headers.get("Content-Type");
           if (/multipart\/form-data/.test(contentType)) {
             const headers = {};
-            for (const [key, value] of this.headers)
-              headers[key.toLowerCase()] = value;
+            for (const [key, value] of this.headers) headers[key.toLowerCase()] = value;
             const responseFormData = new FormData();
             let busboy;
             try {
@@ -5844,9 +5823,7 @@ Content-Type: ${value.type || "application/octet-stream"}\r
               busboy.on("finish", resolve3);
               busboy.on("error", (err) => reject(new TypeError(err)));
             });
-            if (this.body !== null)
-              for await (const chunk of consumeBody(this[kState].body))
-                busboy.write(chunk);
+            if (this.body !== null) for await (const chunk of consumeBody(this[kState].body)) busboy.write(chunk);
             busboy.end();
             await busboyResolve;
             return responseFormData;
@@ -6236,12 +6213,9 @@ var require_request = __commonJS({
         const headers = {};
         for (const header of rawHeaders) {
           const [key, value] = header.split(": ");
-          if (value == null || value.length === 0)
-            continue;
-          if (headers[key])
-            headers[key] += `,${value}`;
-          else
-            headers[key] = value;
+          if (value == null || value.length === 0) continue;
+          if (headers[key]) headers[key] += `,${value}`;
+          else headers[key] = value;
         }
         return headers;
       }
@@ -6275,10 +6249,8 @@ var require_request = __commonJS({
         }
       } else if (request.contentType === null && key.length === 12 && key.toLowerCase() === "content-type") {
         request.contentType = val;
-        if (skipAppend)
-          request.headers[key] = processHeaderValue(key, val, skipAppend);
-        else
-          request.headers += processHeaderValue(key, val);
+        if (skipAppend) request.headers[key] = processHeaderValue(key, val, skipAppend);
+        else request.headers += processHeaderValue(key, val);
       } else if (key.length === 17 && key.toLowerCase() === "transfer-encoding") {
         throw new InvalidArgumentError("invalid transfer-encoding header");
       } else if (key.length === 10 && key.toLowerCase() === "connection") {
@@ -6300,19 +6272,15 @@ var require_request = __commonJS({
         if (Array.isArray(val)) {
           for (let i = 0; i < val.length; i++) {
             if (skipAppend) {
-              if (request.headers[key])
-                request.headers[key] += `,${processHeaderValue(key, val[i], skipAppend)}`;
-              else
-                request.headers[key] = processHeaderValue(key, val[i], skipAppend);
+              if (request.headers[key]) request.headers[key] += `,${processHeaderValue(key, val[i], skipAppend)}`;
+              else request.headers[key] = processHeaderValue(key, val[i], skipAppend);
             } else {
               request.headers += processHeaderValue(key, val[i]);
             }
           }
         } else {
-          if (skipAppend)
-            request.headers[key] = processHeaderValue(key, val, skipAppend);
-          else
-            request.headers += processHeaderValue(key, val);
+          if (skipAppend) request.headers[key] = processHeaderValue(key, val, skipAppend);
+          else request.headers += processHeaderValue(key, val);
         }
       }
     }
@@ -8429,10 +8397,8 @@ upgrade: ${upgrade}\r
     function writeH2(client, session, request) {
       const { body, method, path: path5, host, upgrade, expectContinue, signal, headers: reqHeaders } = request;
       let headers;
-      if (typeof reqHeaders === "string")
-        headers = Request[kHTTP2CopyHeaders](reqHeaders.trim());
-      else
-        headers = reqHeaders;
+      if (typeof reqHeaders === "string") headers = Request[kHTTP2CopyHeaders](reqHeaders.trim());
+      else headers = reqHeaders;
       if (upgrade) {
         errorRequest(client, request, new Error("Upgrade not supported for H2"));
         return false;
@@ -8468,8 +8434,7 @@ upgrade: ${upgrade}\r
         }
         stream2.once("close", () => {
           h2State.openStreams -= 1;
-          if (h2State.openStreams === 0)
-            session.unref();
+          if (h2State.openStreams === 0) session.unref();
         });
         return true;
       }
@@ -9250,8 +9215,7 @@ var require_balanced_pool = __commonJS({
     var kMaxWeightPerServer = Symbol("kMaxWeightPerServer");
     var kErrorPenalty = Symbol("kErrorPenalty");
     function getGreatestCommonDivisor(a, b) {
-      if (b === 0)
-        return a;
+      if (b === 0) return a;
       return getGreatestCommonDivisor(b, a % b);
     }
     function defaultFactory(origin, opts) {
@@ -11623,8 +11587,7 @@ var require_RetryHandler = __commonJS({
         }
       }
       onBodySent(chunk) {
-        if (this.handler.onBodySent)
-          return this.handler.onBodySent(chunk);
+        if (this.handler.onBodySent) return this.handler.onBodySent(chunk);
       }
       static [kRetryHandlerDefaultRetry](err, { state, opts }, cb) {
         const { statusCode, code, headers } = err;
@@ -11887,10 +11850,8 @@ var require_headers = __commonJS({
     function headerValueNormalize(potentialValue) {
       let i = 0;
       let j = potentialValue.length;
-      while (j > i && isHTTPWhiteSpaceCharCode(potentialValue.charCodeAt(j - 1)))
-        --j;
-      while (j > i && isHTTPWhiteSpaceCharCode(potentialValue.charCodeAt(i)))
-        ++i;
+      while (j > i && isHTTPWhiteSpaceCharCode(potentialValue.charCodeAt(j - 1))) --j;
+      while (j > i && isHTTPWhiteSpaceCharCode(potentialValue.charCodeAt(i))) ++i;
       return i === 0 && j === potentialValue.length ? potentialValue : potentialValue.substring(i, j);
     }
     function fill(headers, object) {
@@ -15205,8 +15166,7 @@ var require_cache = __commonJS({
       }
       async matchAll(request = void 0, options2 = {}) {
         webidl.brandCheck(this, _Cache);
-        if (request !== void 0)
-          request = webidl.converters.RequestInfo(request);
+        if (request !== void 0) request = webidl.converters.RequestInfo(request);
         options2 = webidl.converters.CacheQueryOptions(options2);
         let r = null;
         if (request !== void 0) {
@@ -15475,8 +15435,7 @@ var require_cache = __commonJS({
        */
       async keys(request = void 0, options2 = {}) {
         webidl.brandCheck(this, _Cache);
-        if (request !== void 0)
-          request = webidl.converters.RequestInfo(request);
+        if (request !== void 0) request = webidl.converters.RequestInfo(request);
         options2 = webidl.converters.CacheQueryOptions(options2);
         let r = null;
         if (request !== void 0) {
@@ -17628,8 +17587,7 @@ var require_lib = __commonJS({
   "../../node_modules/.pnpm/@actions+http-client@2.2.1/node_modules/@actions/http-client/lib/index.js"(exports2) {
     "use strict";
     var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
+      if (k2 === void 0) k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
       if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
         desc = { enumerable: true, get: function() {
@@ -17638,8 +17596,7 @@ var require_lib = __commonJS({
       }
       Object.defineProperty(o, k2, desc);
     } : function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
+      if (k2 === void 0) k2 = k;
       o[k2] = m[k];
     });
     var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
@@ -17648,13 +17605,10 @@ var require_lib = __commonJS({
       o["default"] = v;
     });
     var __importStar = exports2 && exports2.__importStar || function(mod) {
-      if (mod && mod.__esModule)
-        return mod;
+      if (mod && mod.__esModule) return mod;
       var result = {};
       if (mod != null) {
-        for (var k in mod)
-          if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k))
-            __createBinding(result, mod, k);
+        for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
       }
       __setModuleDefault(result, mod);
       return result;
@@ -18748,14 +18702,12 @@ var require_path_utils = __commonJS({
   "../../node_modules/.pnpm/@actions+core@1.10.1/node_modules/@actions/core/lib/path-utils.js"(exports2) {
     "use strict";
     var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
+      if (k2 === void 0) k2 = k;
       Object.defineProperty(o, k2, { enumerable: true, get: function() {
         return m[k];
       } });
     } : function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
+      if (k2 === void 0) k2 = k;
       o[k2] = m[k];
     });
     var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
@@ -18764,13 +18716,10 @@ var require_path_utils = __commonJS({
       o["default"] = v;
     });
     var __importStar = exports2 && exports2.__importStar || function(mod) {
-      if (mod && mod.__esModule)
-        return mod;
+      if (mod && mod.__esModule) return mod;
       var result = {};
       if (mod != null) {
-        for (var k in mod)
-          if (k !== "default" && Object.hasOwnProperty.call(mod, k))
-            __createBinding(result, mod, k);
+        for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
       }
       __setModuleDefault(result, mod);
       return result;
@@ -18798,14 +18747,12 @@ var require_core = __commonJS({
   "../../node_modules/.pnpm/@actions+core@1.10.1/node_modules/@actions/core/lib/core.js"(exports2) {
     "use strict";
     var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
+      if (k2 === void 0) k2 = k;
       Object.defineProperty(o, k2, { enumerable: true, get: function() {
         return m[k];
       } });
     } : function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
+      if (k2 === void 0) k2 = k;
       o[k2] = m[k];
     });
     var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
@@ -18814,13 +18761,10 @@ var require_core = __commonJS({
       o["default"] = v;
     });
     var __importStar = exports2 && exports2.__importStar || function(mod) {
-      if (mod && mod.__esModule)
-        return mod;
+      if (mod && mod.__esModule) return mod;
       var result = {};
       if (mod != null) {
-        for (var k in mod)
-          if (k !== "default" && Object.hasOwnProperty.call(mod, k))
-            __createBinding(result, mod, k);
+        for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
       }
       __setModuleDefault(result, mod);
       return result;
@@ -19563,10 +19507,8 @@ var require_balanced_match = __commonJS({
     "use strict";
     module2.exports = balanced;
     function balanced(a, b, str) {
-      if (a instanceof RegExp)
-        a = maybeMatch(a, str);
-      if (b instanceof RegExp)
-        b = maybeMatch(b, str);
+      if (a instanceof RegExp) a = maybeMatch(a, str);
+      if (b instanceof RegExp) b = maybeMatch(b, str);
       var r = range(a, b, str);
       return r && {
         start: r[0],
@@ -19679,8 +19621,7 @@ var require_brace_expansion = __commonJS({
     function expand2(str, isTop) {
       var expansions = [];
       var m = balanced("{", "}", str);
-      if (!m)
-        return [str];
+      if (!m) return [str];
       var pre = m.pre;
       var post = m.post.length ? expand2(m.post, false) : [""];
       if (/\$$/.test(m.pre)) {
@@ -23882,19 +23823,18 @@ var require_resolve_flow_collection = __commonJS({
             onError(props.start, "MISSING_CHAR", `Missing , between ${fcName} items`);
           if (props.comment) {
             let prevItemComment = "";
-            loop:
-              for (const st of start) {
-                switch (st.type) {
-                  case "comma":
-                  case "space":
-                    break;
-                  case "comment":
-                    prevItemComment = st.source.substring(1);
-                    break loop;
-                  default:
-                    break loop;
-                }
+            loop: for (const st of start) {
+              switch (st.type) {
+                case "comma":
+                case "space":
+                  break;
+                case "comment":
+                  prevItemComment = st.source.substring(1);
+                  break loop;
+                default:
+                  break loop;
               }
+            }
             if (prevItemComment) {
               let prev = coll.items[coll.items.length - 1];
               if (identity.isPair(prev))
@@ -25676,27 +25616,26 @@ var require_lexer = __commonJS({
         let nl = this.pos - 1;
         let indent = 0;
         let ch;
-        loop:
-          for (let i = this.pos; ch = this.buffer[i]; ++i) {
-            switch (ch) {
-              case " ":
-                indent += 1;
+        loop: for (let i = this.pos; ch = this.buffer[i]; ++i) {
+          switch (ch) {
+            case " ":
+              indent += 1;
+              break;
+            case "\n":
+              nl = i;
+              indent = 0;
+              break;
+            case "\r": {
+              const next = this.buffer[i + 1];
+              if (!next && !this.atEnd)
+                return this.setNext("block-scalar");
+              if (next === "\n")
                 break;
-              case "\n":
-                nl = i;
-                indent = 0;
-                break;
-              case "\r": {
-                const next = this.buffer[i + 1];
-                if (!next && !this.atEnd)
-                  return this.setNext("block-scalar");
-                if (next === "\n")
-                  break;
-              }
-              default:
-                break loop;
             }
+            default:
+              break loop;
           }
+        }
         if (!ch && !this.atEnd)
           return this.setNext("block-scalar");
         if (indent >= this.indentNext) {
@@ -25957,17 +25896,16 @@ var require_parser = __commonJS({
       if (prev.length === 0)
         return [];
       let i = prev.length;
-      loop:
-        while (--i >= 0) {
-          switch (prev[i].type) {
-            case "doc-start":
-            case "explicit-key-ind":
-            case "map-value-ind":
-            case "seq-item-ind":
-            case "newline":
-              break loop;
-          }
+      loop: while (--i >= 0) {
+        switch (prev[i].type) {
+          case "doc-start":
+          case "explicit-key-ind":
+          case "map-value-ind":
+          case "seq-item-ind":
+          case "newline":
+            break loop;
         }
+      }
       while (prev[++i]?.type === "space") {
       }
       return prev.splice(i, prev.length);
@@ -26911,12 +26849,10 @@ async function prepDebug() {
   const env = process.env;
   for (const fileEnvKey of createFilesFor) {
     const file = env[fileEnvKey];
-    if (!file)
-      continue;
+    if (!file) continue;
     await import_node_fs.promises.mkdir(path.dirname(file), { recursive: true });
     const s = await import_node_fs.promises.stat(file).catch((e) => void 0);
-    if (s)
-      continue;
+    if (s) continue;
     await import_node_fs.promises.writeFile(file, "");
   }
 }
@@ -26926,8 +26862,7 @@ var envPrefix = /^GITHUB_|^INPUt_/;
 var replaceDirective = /\$\{([^}]+)\}/g;
 function adjustEnvValues(env, keyValues) {
   for (const [key, value] of Object.entries(env)) {
-    if (!envPrefix.test(key))
-      continue;
+    if (!envPrefix.test(key)) continue;
     const newValue = value.replace(replaceDirective, (match2, p1) => {
       return p1 in keyValues ? keyValues[p1] : match2;
     });
@@ -27025,66 +26960,65 @@ var parseClass = (glob2, position) => {
   let negate = false;
   let endPos = pos;
   let rangeStart = "";
-  WHILE:
-    while (i < glob2.length) {
-      const c = glob2.charAt(i);
-      if ((c === "!" || c === "^") && i === pos + 1) {
-        negate = true;
-        i++;
-        continue;
-      }
-      if (c === "]" && sawStart && !escaping) {
-        endPos = i + 1;
-        break;
-      }
-      sawStart = true;
-      if (c === "\\") {
-        if (!escaping) {
-          escaping = true;
-          i++;
-          continue;
-        }
-      }
-      if (c === "[" && !escaping) {
-        for (const [cls, [unip, u, neg]] of Object.entries(posixClasses)) {
-          if (glob2.startsWith(cls, i)) {
-            if (rangeStart) {
-              return ["$.", false, glob2.length - pos, true];
-            }
-            i += cls.length;
-            if (neg)
-              negs.push(unip);
-            else
-              ranges.push(unip);
-            uflag = uflag || u;
-            continue WHILE;
-          }
-        }
-      }
-      escaping = false;
-      if (rangeStart) {
-        if (c > rangeStart) {
-          ranges.push(braceEscape(rangeStart) + "-" + braceEscape(c));
-        } else if (c === rangeStart) {
-          ranges.push(braceEscape(c));
-        }
-        rangeStart = "";
-        i++;
-        continue;
-      }
-      if (glob2.startsWith("-]", i + 1)) {
-        ranges.push(braceEscape(c + "-"));
-        i += 2;
-        continue;
-      }
-      if (glob2.startsWith("-", i + 1)) {
-        rangeStart = c;
-        i += 2;
-        continue;
-      }
-      ranges.push(braceEscape(c));
+  WHILE: while (i < glob2.length) {
+    const c = glob2.charAt(i);
+    if ((c === "!" || c === "^") && i === pos + 1) {
+      negate = true;
       i++;
+      continue;
     }
+    if (c === "]" && sawStart && !escaping) {
+      endPos = i + 1;
+      break;
+    }
+    sawStart = true;
+    if (c === "\\") {
+      if (!escaping) {
+        escaping = true;
+        i++;
+        continue;
+      }
+    }
+    if (c === "[" && !escaping) {
+      for (const [cls, [unip, u, neg]] of Object.entries(posixClasses)) {
+        if (glob2.startsWith(cls, i)) {
+          if (rangeStart) {
+            return ["$.", false, glob2.length - pos, true];
+          }
+          i += cls.length;
+          if (neg)
+            negs.push(unip);
+          else
+            ranges.push(unip);
+          uflag = uflag || u;
+          continue WHILE;
+        }
+      }
+    }
+    escaping = false;
+    if (rangeStart) {
+      if (c > rangeStart) {
+        ranges.push(braceEscape(rangeStart) + "-" + braceEscape(c));
+      } else if (c === rangeStart) {
+        ranges.push(braceEscape(c));
+      }
+      rangeStart = "";
+      i++;
+      continue;
+    }
+    if (glob2.startsWith("-]", i + 1)) {
+      ranges.push(braceEscape(c + "-"));
+      i += 2;
+      continue;
+    }
+    if (glob2.startsWith("-", i + 1)) {
+      rangeStart = c;
+      i += 2;
+      continue;
+    }
+    ranges.push(braceEscape(c));
+    i++;
+  }
   if (endPos < i) {
     return ["", false, 0, false];
   }
@@ -29583,7 +29517,7 @@ var LRUCache = class _LRUCache {
   }
 };
 
-// ../../node_modules/.pnpm/path-scurry@1.11.0/node_modules/path-scurry/dist/esm/index.js
+// ../../node_modules/.pnpm/path-scurry@1.11.1/node_modules/path-scurry/dist/esm/index.js
 var import_node_path = require("node:path");
 var import_node_url = require("node:url");
 var import_fs = require("fs");
@@ -30468,7 +30402,7 @@ var Minipass = class extends import_node_events.EventEmitter {
   }
 };
 
-// ../../node_modules/.pnpm/path-scurry@1.11.0/node_modules/path-scurry/dist/esm/index.js
+// ../../node_modules/.pnpm/path-scurry@1.11.1/node_modules/path-scurry/dist/esm/index.js
 var realpathSync = import_fs.realpathSync.native;
 var defaultFS = {
   lstatSync: import_fs.lstatSync,
@@ -32192,10 +32126,10 @@ var PathScurryDarwin = class extends PathScurryPosix {
 var Path = process.platform === "win32" ? PathWin32 : PathPosix;
 var PathScurry = process.platform === "win32" ? PathScurryWin32 : process.platform === "darwin" ? PathScurryDarwin : PathScurryPosix;
 
-// ../../node_modules/.pnpm/glob@10.3.14/node_modules/glob/dist/esm/glob.js
+// ../../node_modules/.pnpm/glob@10.3.15/node_modules/glob/dist/esm/glob.js
 var import_node_url2 = require("node:url");
 
-// ../../node_modules/.pnpm/glob@10.3.14/node_modules/glob/dist/esm/pattern.js
+// ../../node_modules/.pnpm/glob@10.3.15/node_modules/glob/dist/esm/pattern.js
 var isPatternList = (pl) => pl.length >= 1;
 var isGlobList = (gl) => gl.length >= 1;
 var Pattern = class _Pattern {
@@ -32360,7 +32294,7 @@ var Pattern = class _Pattern {
   }
 };
 
-// ../../node_modules/.pnpm/glob@10.3.14/node_modules/glob/dist/esm/ignore.js
+// ../../node_modules/.pnpm/glob@10.3.15/node_modules/glob/dist/esm/ignore.js
 var defaultPlatform2 = typeof process === "object" && process && typeof process.platform === "string" ? process.platform : "linux";
 var Ignore = class {
   relative;
@@ -32442,7 +32376,7 @@ var Ignore = class {
   }
 };
 
-// ../../node_modules/.pnpm/glob@10.3.14/node_modules/glob/dist/esm/processor.js
+// ../../node_modules/.pnpm/glob@10.3.15/node_modules/glob/dist/esm/processor.js
 var HasWalkedCache = class _HasWalkedCache {
   store;
   constructor(store = /* @__PURE__ */ new Map()) {
@@ -32663,7 +32597,7 @@ var Processor = class _Processor {
   }
 };
 
-// ../../node_modules/.pnpm/glob@10.3.14/node_modules/glob/dist/esm/walker.js
+// ../../node_modules/.pnpm/glob@10.3.15/node_modules/glob/dist/esm/walker.js
 var makeIgnore = (ignore, opts) => typeof ignore === "string" ? new Ignore([ignore], opts) : Array.isArray(ignore) ? new Ignore(ignore, opts) : ignore;
 var GlobUtil = class {
   path;
@@ -32981,7 +32915,7 @@ var GlobStream = class extends GlobUtil {
   }
 };
 
-// ../../node_modules/.pnpm/glob@10.3.14/node_modules/glob/dist/esm/glob.js
+// ../../node_modules/.pnpm/glob@10.3.15/node_modules/glob/dist/esm/glob.js
 var defaultPlatform3 = typeof process === "object" && process && typeof process.platform === "string" ? process.platform : "linux";
 var Glob = class {
   absolute;
@@ -33175,7 +33109,7 @@ var Glob = class {
   }
 };
 
-// ../../node_modules/.pnpm/glob@10.3.14/node_modules/glob/dist/esm/has-magic.js
+// ../../node_modules/.pnpm/glob@10.3.15/node_modules/glob/dist/esm/has-magic.js
 var hasMagic = (pattern, options2 = {}) => {
   if (!Array.isArray(pattern)) {
     pattern = [pattern];
@@ -33187,7 +33121,7 @@ var hasMagic = (pattern, options2 = {}) => {
   return false;
 };
 
-// ../../node_modules/.pnpm/glob@10.3.14/node_modules/glob/dist/esm/index.js
+// ../../node_modules/.pnpm/glob@10.3.15/node_modules/glob/dist/esm/index.js
 function globStreamSync(pattern, options2 = {}) {
   return new Glob(pattern, options2).streamSync();
 }
@@ -33250,11 +33184,9 @@ async function findActions(pattern, cwd) {
 }
 var isActionFile = /\baction\.ya?ml$/i;
 async function findActionsInFolder(folder) {
-  if (isActionFile.test(folder))
-    return [folder];
+  if (isActionFile.test(folder)) return [folder];
   const foundInFolder = await glob("{action.yaml,action.yml}", { cwd: folder, nodir: true, absolute: true });
-  if (foundInFolder.length)
-    return foundInFolder;
+  if (foundInFolder.length) return foundInFolder;
   const found = await glob("*/{action.yaml,action.yml}", { cwd: folder, nodir: true, absolute: true });
   return found;
 }
@@ -33314,11 +33246,9 @@ async function updateDoc(doc, actionFolders, actionsGlob, cwd, options2) {
   return result;
   async function processExistingNode(node, index) {
     const ecoSystem = node.get("package-ecosystem");
-    if (ecoSystem !== "github-actions")
-      return;
+    if (ecoSystem !== "github-actions") return;
     const directory = node.get("directory");
-    if (!directory)
-      return;
+    if (!directory) return;
     const dir = normalizeDirectoryEntry(directory);
     if (foldersToProcess.has(dir)) {
       updateEntry(node, directory, index);
@@ -33326,8 +33256,7 @@ async function updateDoc(doc, actionFolders, actionsGlob, cwd, options2) {
       return;
     }
     const matches = doesMatchGlobs(dir);
-    if (!matches)
-      return;
+    if (!matches) return;
     const exists = await isDir(path3.join(cwd, dir));
     if (!exists) {
       removals.push({ path: ["updates", index] });
@@ -33416,8 +33345,7 @@ async function updateDoc(doc, actionFolders, actionsGlob, cwd, options2) {
   }
 }
 async function findDependabotFile(dependabotFile, cwd) {
-  if (dependabotFile)
-    return path3.resolve(cwd, dependabotFile);
+  if (dependabotFile) return path3.resolve(cwd, dependabotFile);
   const found = await glob(".github/dependabot.{yml,yaml}", { cwd, nodir: true, absolute: true });
   return found[0];
 }
@@ -33438,8 +33366,7 @@ async function isDir(path5) {
   }
 }
 function setValue(node, path5, value) {
-  if (!path5.length)
-    return value;
+  if (!path5.length) return value;
   const head = path5[0];
   const tail = path5.slice(1);
   node[head] = setValue(node[head] || {}, tail, value);
@@ -33539,17 +33466,13 @@ async function run(args) {
 }
 function getOption(name) {
   const value = toBoolean((0, import_core.getInput)(name));
-  if (value === "")
-    return void 0;
+  if (value === "") return void 0;
   return { [name]: value };
 }
 function toBoolean(value) {
-  if (typeof value !== "string")
-    return value;
-  if (value === "true")
-    return true;
-  if (value === "false")
-    return false;
+  if (typeof value !== "string") return value;
+  if (value === "true") return true;
+  if (value === "false") return false;
   return value;
 }
 function processArgs() {
