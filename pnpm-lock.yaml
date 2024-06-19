@@ -685,7 +685,7 @@ packages:
       remark-mdx: 3.0.1
       remark-parse: 11.0.0
       remark-stringify: 11.0.0
-      unified: 11.0.4
+      unified: 11.0.5
       unist-util-is: 6.0.0
       unist-util-remove: 4.0.0
       unist-util-visit: 5.0.0
@@ -1389,7 +1389,7 @@ packages:
       micromark-extension-gfm: 3.0.0
       remark-parse: 11.0.0
       remark-stringify: 11.0.0
-      unified: 11.0.4
+      unified: 11.0.5
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1409,7 +1409,7 @@ packages:
       '@types/mdast': 4.0.4
       mdast-util-from-markdown: 2.0.1
       micromark-util-types: 2.0.0
-      unified: 11.0.4
+      unified: 11.0.5
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1419,7 +1419,7 @@ packages:
     dependencies:
       '@types/mdast': 4.0.4
       mdast-util-to-markdown: 2.1.0
-      unified: 11.0.4
+      unified: 11.0.5
     dev: true
 
   /remark@15.0.1:
@@ -1428,7 +1428,7 @@ packages:
       '@types/mdast': 4.0.4
       remark-parse: 11.0.0
       remark-stringify: 11.0.0
-      unified: 11.0.4
+      unified: 11.0.5
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1544,8 +1544,8 @@ packages:
     engines: {node: '>=18'}
     dev: true
 
-  /unified@11.0.4:
-    resolution: {integrity: sha512-apMPnyLjAX+ty4OrNap7yumyVAMlKx5IWU2wlzzUdYJO9A8f1p9m/gywF/GM2ZDFcjQPrx59Mc90KwmxsoklxQ==}
+  /unified@11.0.5:
+    resolution: {integrity: sha512-xKvGhPWw3k84Qjh8bI3ZeJjqnyadK+GEFtazSfZv/rKeTkTjOJho6mFqh2SM96iIcZokxiOpg78GazTSg8+KHA==}
     dependencies:
       '@types/unist': 3.0.2
       bail: 2.0.2
