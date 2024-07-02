@@ -6,7 +6,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "esbuild src/index.mjs --bundle --platform=node --outfile=action-build/index.cjs",
+    "build": "esbuild src/index.mjs --bundle --packages=bundle --platform=node --outfile=action-build/index.cjs",
     "smoke-test": "env-cmd -f ./fixtures/env-request.json node ./action-build/index.cjs --cwd=../.. --debug",
     "smoke-test-dbg": "env-cmd -f ./fixtures/env-request.json node ./src/index.mjs --cwd=../.. --debug",
     "test": "echo OK"
@@ -16,7 +16,7 @@
   "license": "MIT",
   "devDependencies": {
     "env-cmd": "^10.1.0",
-    "esbuild": "^0.21.5"
+    "esbuild": "^0.22.0"
   },
   "dependencies": {
     "@actions/core": "^1.10.1",

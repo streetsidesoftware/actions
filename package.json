@@ -3,7 +3,7 @@
   "version": "1.6.9",
   "description": "Collection of actions for GitHub Workflows",
   "private": true,
-  "packageManager": "pnpm@8.15.7",
+  "packageManager": "pnpm@9.4.0",
   "scripts": {
     "build": "pnpm -r run build && pnpm build:readme",
     "build:readme": "inject-markdown README.md \".github/**/README.md\" \"public/**/README.md\"",
