@@ -6,7 +6,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "esbuild src/index.mjs --bundle --packages=bundle --platform=node --outfile=action-build/index.cjs",
+    "build": "esbuild src/index.mjs --bundle --packages=bundle --minify  --platform=node --outfile=action-build/index.cjs",
     "smoke-test": "env-cmd -f ./fixtures/env-request.json node ./action-build/index.cjs --cwd=../.. --debug",
     "smoke-test-dbg": "env-cmd -f ./fixtures/env-request.json node ./src/index.mjs --cwd=../.. --debug",
     "test": "echo OK"
