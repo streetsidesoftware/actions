@@ -1,6 +1,6 @@
 {
   "name": "actions",
-  "version": "1.6.9",
+  "version": "1.6.10",
   "description": "Collection of actions for GitHub Workflows",
   "private": true,
   "packageManager": "pnpm@9.4.0",
