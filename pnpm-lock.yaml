@@ -329,8 +329,8 @@ packages:
     resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
     engines: {node: '>= 6'}
 
-  cross-spawn@7.0.3:
-    resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
+  cross-spawn@7.0.4:
+    resolution: {integrity: sha512-9KdyVPPtLHjPAD7tcuzSFs64UfHlLJt7U6qP4/bFVLyjLceyizj6s6jO6YBaV5d0G7g/9KnY/dOpLR4Rcg8YDg==}
     engines: {node: '>= 8'}
 
   data-uri-to-buffer@4.0.1:
@@ -1043,7 +1043,7 @@ snapshots:
 
   commander@4.1.1: {}
 
-  cross-spawn@7.0.3:
+  cross-spawn@7.0.4:
     dependencies:
       path-key: 3.1.1
       shebang-command: 2.0.0
@@ -1076,7 +1076,7 @@ snapshots:
   env-cmd@10.1.0:
     dependencies:
       commander: 4.1.1
-      cross-spawn: 7.0.3
+      cross-spawn: 7.0.4
 
   esbuild@0.24.0:
     optionalDependencies:
@@ -1139,7 +1139,7 @@ snapshots:
 
   foreground-child@3.3.0:
     dependencies:
-      cross-spawn: 7.0.3
+      cross-spawn: 7.0.4
       signal-exit: 4.1.0
 
   formdata-polyfill@4.0.10:
