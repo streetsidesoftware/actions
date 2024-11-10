@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       inject-markdown:
-        specifier: ^3.1.0
-        version: 3.1.0
+        specifier: ^3.1.4
+        version: 3.1.4
       prettier:
         specifier: ^3.3.3
         version: 3.3.3
@@ -329,8 +329,8 @@ packages:
     resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
     engines: {node: '>= 6'}
 
-  cross-spawn@7.0.4:
-    resolution: {integrity: sha512-9KdyVPPtLHjPAD7tcuzSFs64UfHlLJt7U6qP4/bFVLyjLceyizj6s6jO6YBaV5d0G7g/9KnY/dOpLR4Rcg8YDg==}
+  cross-spawn@7.0.5:
+    resolution: {integrity: sha512-ZVJrKKYunU38/76t0RMOulHOnUcbU9GbpWKAOZ0mhjr7CX6FVrH+4FrAapSOekrgFQ3f/8gwMEuIft0aKq6Hug==}
     engines: {node: '>= 8'}
 
   data-uri-to-buffer@4.0.1:
@@ -431,8 +431,8 @@ packages:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
     engines: {node: '>= 4'}
 
-  inject-markdown@3.1.0:
-    resolution: {integrity: sha512-ZtCOzS36vPy6UfyIJ1Gd9Hump8Psu6U5ooDlLNoNauXmdIwtGh7MZrvibubgUW8HIJU+EuCBZQUNltaoUhKFXg==}
+  inject-markdown@3.1.4:
+    resolution: {integrity: sha512-PKn0pdzF283r5HQI0czE51dozVw3dui5v9Et5cSBFezgMnbsq+J74y1hlAPcgNvws9yt+QIUspY39LT2FHDqlg==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -1043,7 +1043,7 @@ snapshots:
 
   commander@4.1.1: {}
 
-  cross-spawn@7.0.4:
+  cross-spawn@7.0.5:
     dependencies:
       path-key: 3.1.1
       shebang-command: 2.0.0
@@ -1076,7 +1076,7 @@ snapshots:
   env-cmd@10.1.0:
     dependencies:
       commander: 4.1.1
-      cross-spawn: 7.0.4
+      cross-spawn: 7.0.5
 
   esbuild@0.24.0:
     optionalDependencies:
@@ -1139,7 +1139,7 @@ snapshots:
 
   foreground-child@3.3.0:
     dependencies:
-      cross-spawn: 7.0.4
+      cross-spawn: 7.0.5
       signal-exit: 4.1.0
 
   formdata-polyfill@4.0.10:
@@ -1170,7 +1170,7 @@ snapshots:
 
   ignore@5.3.2: {}
 
-  inject-markdown@3.1.0:
+  inject-markdown@3.1.4:
     dependencies:
       chalk: 5.3.0
       commander: 12.1.0
