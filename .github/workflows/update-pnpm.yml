@@ -1,9 +1,6 @@
 name: ' 🔗 Update PNPM'
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
       base:
@@ -48,10 +45,10 @@ jobs:
       - name: PR
         uses: ./.github/actions/pr
         with:
-          commit-message: '${{ env.PR_TYPE }}: Workflow Bot -- Update ALL Dependencies'
+          commit-message: '${{ env.PR_TYPE }}: Workflow Bot -- Update PNPM'
           branch: ${{ env.NEW_BRANCH }}
           base: ${{ env.REF_BRANCH }}
-          title: '${{ env.PR_TYPE }}: Workflow Bot -- Update ALL Dependencies (${{ env.REF_BRANCH }})'
+          title: '${{ env.PR_TYPE }}: Workflow Bot -- Update PNPM (${{ env.REF_BRANCH }})'
           body: ${{ steps.git-body.outputs.body }}
           app_id: ${{ secrets.AUTOMATION_APP_ID }}
           app_private_key: ${{ secrets.AUTOMATION_PRIVATE_KEY }}
