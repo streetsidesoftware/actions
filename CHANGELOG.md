@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.15](https://github.com/streetsidesoftware/actions/compare/v1.6.14...v1.6.15) (2025-01-15)
+
+
+### Updates and Bug Fixes
+
+* bump peter-evans/create-pull-request from 7.0.5 to 7.0.6 in /.github/actions/pr ([#214](https://github.com/streetsidesoftware/actions/issues/214)) ([0900d6b](https://github.com/streetsidesoftware/actions/commit/0900d6bf971056fa86471d66e9c6b406def4c519))
+
 ## [1.6.14](https://github.com/streetsidesoftware/actions/compare/v1.6.13...v1.6.14) (2024-10-29)
 
 
