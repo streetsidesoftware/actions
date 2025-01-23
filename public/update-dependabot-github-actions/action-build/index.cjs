@@ -19809,9 +19809,9 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
   }
 });
 
-// ../../node_modules/.pnpm/abbrev@2.0.0/node_modules/abbrev/lib/index.js
+// ../../node_modules/.pnpm/abbrev@3.0.0/node_modules/abbrev/lib/index.js
 var require_lib2 = __commonJS({
-  "../../node_modules/.pnpm/abbrev@2.0.0/node_modules/abbrev/lib/index.js"(exports2, module2) {
+  "../../node_modules/.pnpm/abbrev@3.0.0/node_modules/abbrev/lib/index.js"(exports2, module2) {
     module2.exports = abbrev;
     function abbrev(...args) {
       let list = args.length === 1 || Array.isArray(args[0]) ? args[0] : args;
@@ -19858,17 +19858,17 @@ var require_lib2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/nopt@8.0.0/node_modules/nopt/lib/debug.js
+// ../../node_modules/.pnpm/nopt@8.1.0/node_modules/nopt/lib/debug.js
 var require_debug = __commonJS({
-  "../../node_modules/.pnpm/nopt@8.0.0/node_modules/nopt/lib/debug.js"(exports2, module2) {
+  "../../node_modules/.pnpm/nopt@8.1.0/node_modules/nopt/lib/debug.js"(exports2, module2) {
     module2.exports = process.env.DEBUG_NOPT || process.env.NOPT_DEBUG ? (...a) => console.error(...a) : () => {
     };
   }
 });
 
-// ../../node_modules/.pnpm/nopt@8.0.0/node_modules/nopt/lib/type-defs.js
+// ../../node_modules/.pnpm/nopt@8.1.0/node_modules/nopt/lib/type-defs.js
 var require_type_defs = __commonJS({
-  "../../node_modules/.pnpm/nopt@8.0.0/node_modules/nopt/lib/type-defs.js"(exports2, module2) {
+  "../../node_modules/.pnpm/nopt@8.1.0/node_modules/nopt/lib/type-defs.js"(exports2, module2) {
     var url = require("url");
     var path6 = require("path");
     var Stream2 = require("stream").Stream;
@@ -19950,9 +19950,9 @@ var require_type_defs = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/nopt@8.0.0/node_modules/nopt/lib/nopt-lib.js
+// ../../node_modules/.pnpm/nopt@8.1.0/node_modules/nopt/lib/nopt-lib.js
 var require_nopt_lib = __commonJS({
-  "../../node_modules/.pnpm/nopt@8.0.0/node_modules/nopt/lib/nopt-lib.js"(exports2, module2) {
+  "../../node_modules/.pnpm/nopt@8.1.0/node_modules/nopt/lib/nopt-lib.js"(exports2, module2) {
     var abbrev = require_lib2();
     var debug = require_debug();
     var defaultTypeDefs = require_type_defs();
@@ -19977,6 +19977,11 @@ var require_nopt_lib = __commonJS({
       shorthands,
       typeDefs,
       invalidHandler,
+      // opt is configured but its value does not validate against given type
+      unknownHandler,
+      // opt is not configured
+      abbrevHandler,
+      // opt is being expanded via abbrev
       typeDefault,
       dynamicTypes
     } = {}) {
@@ -19987,7 +19992,14 @@ var require_nopt_lib = __commonJS({
         cooked: args,
         original: args.slice(0)
       };
-      parse(args, data, argv.remain, { typeDefs, types: types3, dynamicTypes, shorthands });
+      parse(args, data, argv.remain, {
+        typeDefs,
+        types: types3,
+        dynamicTypes,
+        shorthands,
+        unknownHandler,
+        abbrevHandler
+      });
       clean(data, { types: types3, dynamicTypes, typeDefs, invalidHandler, typeDefault });
       data.argv = argv;
       Object.defineProperty(data.argv, "toString", {
@@ -20146,7 +20158,9 @@ var require_nopt_lib = __commonJS({
       types: types3 = {},
       typeDefs = {},
       shorthands = {},
-      dynamicTypes
+      dynamicTypes,
+      unknownHandler,
+      abbrevHandler
     } = {}) {
       const StringType = typeDefs.String?.type;
       const NumberType = typeDefs.Number?.type;
@@ -20173,7 +20187,7 @@ var require_nopt_lib = __commonJS({
             arg = arg.slice(0, at);
             args.splice(i, 1, arg, v);
           }
-          const shRes = resolveShort(arg, shortAbbr, abbrevs, { shorthands });
+          const shRes = resolveShort(arg, shortAbbr, abbrevs, { shorthands, abbrevHandler });
           debug("arg=%j shRes=%j", arg, shRes);
           if (shRes) {
             args.splice.apply(args, [i, 1].concat(shRes));
@@ -20188,7 +20202,12 @@ var require_nopt_lib = __commonJS({
             no = !no;
             arg = arg.slice(3);
           }
-          if (abbrevs[arg]) {
+          if (abbrevs[arg] && abbrevs[arg] !== arg) {
+            if (abbrevHandler) {
+              abbrevHandler(arg, abbrevs[arg]);
+            } else if (abbrevHandler !== false) {
+              debug(`abbrev: ${arg} -> ${abbrevs[arg]}`);
+            }
             arg = abbrevs[arg];
           }
           let [hasType, argType] = getType(arg, { types: types3, dynamicTypes });
@@ -20207,6 +20226,21 @@ var require_nopt_lib = __commonJS({
           let val;
           let la = args[i + 1];
           const isBool = typeof no === "boolean" || isTypeDef(argType, BooleanType) || isTypeArray && hasTypeDef(argType, BooleanType) || typeof argType === "undefined" && !hadEq || la === "false" && (argType === null || isTypeArray && ~argType.indexOf(null));
+          if (typeof argType === "undefined") {
+            const hangingLa = !hadEq && la && !la?.startsWith("-") && !["true", "false"].includes(la);
+            if (unknownHandler) {
+              if (hangingLa) {
+                unknownHandler(arg, la);
+              } else {
+                unknownHandler(arg);
+              }
+            } else if (unknownHandler !== false) {
+              debug(`unknown: ${arg}`);
+              if (hangingLa) {
+                debug(`unknown: ${la} parsed as normal opt`);
+              }
+            }
+          }
           if (isBool) {
             val = !no;
             if (la === "true" || la === "false") {
@@ -20278,7 +20312,7 @@ var require_nopt_lib = __commonJS({
       return chrs.join("") === arg ? chrs : null;
     };
     function resolveShort(arg, ...rest) {
-      const { types: types3 = {}, shorthands = {} } = rest.length ? rest.pop() : {};
+      const { abbrevHandler, types: types3 = {}, shorthands = {} } = rest.length ? rest.pop() : {};
       const shortAbbr = rest[0] ?? abbrev(Object.keys(shorthands));
       const abbrevs = rest[1] ?? abbrev(Object.keys(types3));
       arg = arg.replace(/^-+/, "");
@@ -20299,6 +20333,11 @@ var require_nopt_lib = __commonJS({
         return null;
       }
       if (shortAbbr[arg]) {
+        if (abbrevHandler) {
+          abbrevHandler(arg, shortAbbr[arg]);
+        } else if (abbrevHandler !== false) {
+          debug(`abbrev: ${arg} -> ${shortAbbr[arg]}`);
+        }
         arg = shortAbbr[arg];
       }
       if (shorthands[arg] && !Array.isArray(shorthands[arg])) {
@@ -20317,9 +20356,9 @@ var require_nopt_lib = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/nopt@8.0.0/node_modules/nopt/lib/nopt.js
+// ../../node_modules/.pnpm/nopt@8.1.0/node_modules/nopt/lib/nopt.js
 var require_nopt = __commonJS({
-  "../../node_modules/.pnpm/nopt@8.0.0/node_modules/nopt/lib/nopt.js"(exports2, module2) {
+  "../../node_modules/.pnpm/nopt@8.1.0/node_modules/nopt/lib/nopt.js"(exports2, module2) {
     var lib = require_nopt_lib();
     var defaultTypeDefs = require_type_defs();
     module2.exports = exports2 = nopt2;
@@ -20331,14 +20370,18 @@ var require_nopt = __commonJS({
         types: types3 || {},
         shorthands: shorthands || {},
         typeDefs: exports2.typeDefs,
-        invalidHandler: exports2.invalidHandler
+        invalidHandler: exports2.invalidHandler,
+        unknownHandler: exports2.unknownHandler,
+        abbrevHandler: exports2.abbrevHandler
       });
     }
     function clean(data, types3, typeDefs = exports2.typeDefs) {
       return lib.clean(data, {
         types: types3 || {},
         typeDefs,
-        invalidHandler: exports2.invalidHandler
+        invalidHandler: exports2.invalidHandler,
+        unknownHandler: exports2.unknownHandler,
+        abbrevHandler: exports2.abbrevHandler
       });
     }
   }
