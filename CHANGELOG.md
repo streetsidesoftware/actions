@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.17](https://github.com/streetsidesoftware/actions/compare/v1.6.16...v1.6.17) (2025-03-01)
+
+
+### Updates and Bug Fixes
+
+* Add enable corepack for pnpm ([#236](https://github.com/streetsidesoftware/actions/issues/236)) ([b376edb](https://github.com/streetsidesoftware/actions/commit/b376edba8fe4622fd4bfdd65a2ae3b5162712e3c))
+* publish ([25c0b0e](https://github.com/streetsidesoftware/actions/commit/25c0b0e0f5d61441f352035731b649f0320c3c7e))
+
 ## [1.6.16](https://github.com/streetsidesoftware/actions/compare/v1.6.15...v1.6.16) (2025-03-01)
 
 
