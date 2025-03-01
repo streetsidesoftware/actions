@@ -22,7 +22,7 @@ Example:
 <!--- @@inject: ../../.github/workflows/example-setup-node-pnpm-corepack.yaml --->
 
 ```yaml
-name: '📗 Example Setup Node and PNPM'
+name: '📗 Example Setup Node, PNPM, and Corepack'
 
 on:
   workflow_dispatch:
@@ -37,8 +37,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node and PNPM
-        uses: streetsidesoftware/actions/public/setup-node-pnpm@v1
+      - name: Setup Node, PNPM, and Corepack
+        uses: streetsidesoftware/actions/public/setup-node-pnpm-corepack@v1
 
       - name: Install
         run: pnpm install
