@@ -1,6 +1,6 @@
-## `setup-node-pnpm` Action
+## `setup-node-pnpm-corepack` Action
 
-This action will setup NodeJS and install the correct version of PNPM that matches [`package.json#packageManager`](https://nodejs.org/api/packages.html#packagemanager).
+This action will setup NodeJS and install the correct version of PNPM that matches [`package.json#packageManager`](https://nodejs.org/api/packages.html#packagemanager) and enable corepack.
 
 `package.json` packageManager:
 
