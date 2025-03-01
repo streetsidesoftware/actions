@@ -1,0 +1,20 @@
+name: '📗 Example Setup Node, PNPM, and Corepack'
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-example:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node, PNPM, and Corepack
+        uses: ./public/setup-node-pnpm-corepack
+
+      - name: Install
+        run: pnpm install
