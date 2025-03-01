@@ -9,7 +9,7 @@ runs:
   using: 'composite'
   steps:
     - name: Setup pnpm
-      uses: ./public/setup-node-pnpm
+      uses: streetsidesoftware/actions/public/setup-node-pnpm@v1
 
     - name: Enable Corepack
       run: |

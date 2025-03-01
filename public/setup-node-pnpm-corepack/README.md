@@ -19,7 +19,7 @@ node-version:
 
 Example:
 
-<!--- @@inject: ../../.github/workflows/example-setup-node-pnpm.yaml --->
+<!--- @@inject: ../../.github/workflows/example-setup-node-pnpm-corepack.yaml --->
 
 ```yaml
 name: '📗 Example Setup Node and PNPM'
@@ -44,4 +44,4 @@ jobs:
         run: pnpm install
 ```
 
-<!--- @@inject-end: ../../.github/workflows/example-setup-node-pnpm.yaml --->
+<!--- @@inject-end: ../../.github/workflows/example-setup-node-pnpm-corepack.yaml --->
