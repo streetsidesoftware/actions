@@ -4,7 +4,7 @@ inputs:
   node-version:
     required: false
     description: The version of Node to use.
-    default: '20.x'
+    default: '22.x'
 runs:
   using: 'composite'
   steps:
@@ -17,3 +17,15 @@ runs:
         registry-url: 'https://registry.npmjs.org'
         node-version: ${{ inputs.node-version }}
         cache: 'pnpm'
+
+    - name: Clear hosted tool-cache for corepack
+      # See: [actions/setup-node/issues/1222](https://github.com/actions/setup-node/issues/1222#issuecomment-2673608477)
+      if: runner.os == 'Windows'
+      run: Remove-Item -Recurse -Force (Get-Command corepack.cmd).Path
+      shell: pwsh
+
+    - name: Install Corepack
+      # See: [actions/setup-node/issues/1222](https://github.com/actions/setup-node/issues/1222)
+      run: |
+        npm i -g --force corepack
+      shell: bash
