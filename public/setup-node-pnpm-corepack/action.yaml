@@ -9,7 +9,7 @@ runs:
   using: 'composite'
   steps:
     - name: Setup pnpm
-      uses: ./public/setup-node-pnpm/action.yaml
+      uses: ./public/setup-node-pnpm
 
     - name: Enable Corepack
       run: |
