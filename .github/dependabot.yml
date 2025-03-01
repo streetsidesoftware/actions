@@ -100,3 +100,11 @@ updates:
       interval: daily
     commit-message:
       prefix: fix
+
+  # Automatically added by streetsidesoftware/public/update-dependabot-github-actions
+  - package-ecosystem: github-actions
+    directory: /public/setup-node-pnpm-corepack
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: fix
