@@ -10,6 +10,8 @@ runs:
   steps:
     - name: Setup pnpm
       uses: streetsidesoftware/actions/public/setup-node-pnpm@v1
+      with:
+        node-version: ${{ inputs.node-version }}
 
     - name: Enable Corepack
       run: |
