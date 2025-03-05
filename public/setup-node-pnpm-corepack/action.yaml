@@ -4,7 +4,6 @@ inputs:
   node-version:
     required: false
     description: The version of Node to use.
-    default: '22.x'
 runs:
   using: 'composite'
   steps:
