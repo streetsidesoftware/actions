@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.6.18](https://github.com/streetsidesoftware/actions/compare/v1.6.17...v1.6.18) (2025-03-05)
+
+
+### Updates and Bug Fixes
+
+* bump peter-evans/create-pull-request from 7.0.7 to 7.0.8 in /.github/actions/pr ([#245](https://github.com/streetsidesoftware/actions/issues/245)) ([484623d](https://github.com/streetsidesoftware/actions/commit/484623d779d690baab813509d7aea6c96373c972))
+* Pass the node version to setup-node-pnpm ([f65c97a](https://github.com/streetsidesoftware/actions/commit/f65c97ad9885e5bb401bf2a57be5687b3c22b3f9))
+* Use the default node version from setup-node-pnpm ([904fc8f](https://github.com/streetsidesoftware/actions/commit/904fc8f0c73c1fe2ac2e3521d2ae5640ed21e31a))
+
 ## [1.6.17](https://github.com/streetsidesoftware/actions/compare/v1.6.16...v1.6.17) (2025-03-01)
 
 
