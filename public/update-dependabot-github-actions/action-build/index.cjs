@@ -29274,7 +29274,7 @@ minimatch.unescape = unescape;
 // ../../node_modules/.pnpm/glob@11.0.1/node_modules/glob/dist/esm/glob.js
 var import_node_url2 = require("node:url");
 
-// ../../node_modules/.pnpm/lru-cache@11.0.2/node_modules/lru-cache/dist/esm/index.js
+// ../../node_modules/.pnpm/lru-cache@11.1.0/node_modules/lru-cache/dist/esm/index.js
 var perf = typeof performance === "object" && performance && typeof performance.now === "function" ? performance : Date;
 var warned = /* @__PURE__ */ new Set();
 var PROCESS = typeof process === "object" && !!process ? process : {};
@@ -29360,6 +29360,7 @@ var LRUCache = class _LRUCache {
   #max;
   #maxSize;
   #dispose;
+  #onInsert;
   #disposeAfter;
   #fetchMethod;
   #memoMethod;
@@ -29441,6 +29442,7 @@ var LRUCache = class _LRUCache {
   #hasDispose;
   #hasFetchMethod;
   #hasDisposeAfter;
+  #hasOnInsert;
   /**
    * Do not call this method unless you need to inspect the
    * inner workings of the cache.  If anything returned by this
@@ -29518,13 +29520,19 @@ var LRUCache = class _LRUCache {
     return this.#dispose;
   }
   /**
+   * {@link LRUCache.OptionsBase.onInsert} (read-only)
+   */
+  get onInsert() {
+    return this.#onInsert;
+  }
+  /**
    * {@link LRUCache.OptionsBase.disposeAfter} (read-only)
    */
   get disposeAfter() {
     return this.#disposeAfter;
   }
   constructor(options2) {
-    const { max = 0, ttl, ttlResolution = 1, ttlAutopurge, updateAgeOnGet, updateAgeOnHas, allowStale, dispose, disposeAfter, noDisposeOnSet, noUpdateTTL, maxSize = 0, maxEntrySize = 0, sizeCalculation, fetchMethod, memoMethod, noDeleteOnFetchRejection, noDeleteOnStaleGet, allowStaleOnFetchRejection, allowStaleOnFetchAbort, ignoreFetchAbort } = options2;
+    const { max = 0, ttl, ttlResolution = 1, ttlAutopurge, updateAgeOnGet, updateAgeOnHas, allowStale, dispose, onInsert, disposeAfter, noDisposeOnSet, noUpdateTTL, maxSize = 0, maxEntrySize = 0, sizeCalculation, fetchMethod, memoMethod, noDeleteOnFetchRejection, noDeleteOnStaleGet, allowStaleOnFetchRejection, allowStaleOnFetchAbort, ignoreFetchAbort } = options2;
     if (max !== 0 && !isPosInt(max)) {
       throw new TypeError("max option must be a nonnegative integer");
     }
@@ -29566,6 +29574,9 @@ var LRUCache = class _LRUCache {
     if (typeof dispose === "function") {
       this.#dispose = dispose;
     }
+    if (typeof onInsert === "function") {
+      this.#onInsert = onInsert;
+    }
     if (typeof disposeAfter === "function") {
       this.#disposeAfter = disposeAfter;
       this.#disposed = [];
@@ -29574,6 +29585,7 @@ var LRUCache = class _LRUCache {
       this.#disposed = void 0;
     }
     this.#hasDispose = !!this.#dispose;
+    this.#hasOnInsert = !!this.#onInsert;
     this.#hasDisposeAfter = !!this.#disposeAfter;
     this.noDisposeOnSet = !!noDisposeOnSet;
     this.noUpdateTTL = !!noUpdateTTL;
@@ -30087,6 +30099,9 @@ var LRUCache = class _LRUCache {
       if (status)
         status.set = "add";
       noUpdateTTL = false;
+      if (this.#hasOnInsert) {
+        this.#onInsert?.(v, k, "add");
+      }
     } else {
       this.#moveToTail(index);
       const oldVal = this.#valList[index];
@@ -30121,6 +30136,9 @@ var LRUCache = class _LRUCache {
         }
       } else if (status) {
         status.set = "update";
+      }
+      if (this.#hasOnInsert) {
+        this.onInsert?.(v, k, v === oldVal ? "update" : "replace");
       }
     }
     if (ttl !== 0 && !this.#ttls) {
