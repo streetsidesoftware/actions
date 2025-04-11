@@ -19807,12 +19807,15 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
   }
 });
 
-// ../../node_modules/.pnpm/abbrev@3.0.0/node_modules/abbrev/lib/index.js
+// ../../node_modules/.pnpm/abbrev@3.0.1/node_modules/abbrev/lib/index.js
 var require_lib2 = __commonJS({
-  "../../node_modules/.pnpm/abbrev@3.0.0/node_modules/abbrev/lib/index.js"(exports2, module2) {
+  "../../node_modules/.pnpm/abbrev@3.0.1/node_modules/abbrev/lib/index.js"(exports2, module2) {
     module2.exports = abbrev;
     function abbrev(...args) {
-      let list = args.length === 1 || Array.isArray(args[0]) ? args[0] : args;
+      let list = args;
+      if (args.length === 1 && (Array.isArray(args[0]) || typeof args[0] === "string")) {
+        list = [].concat(args[0]);
+      }
       for (let i = 0, l = list.length; i < l; i++) {
         list[i] = typeof list[i] === "string" ? list[i] : String(list[i]);
       }
