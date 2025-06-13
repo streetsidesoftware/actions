@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@actions/core": "^1.11.1",
-    "glob": "^11.0.2",
+    "glob": "^11.0.3",
     "minimatch": "^9.0.5",
     "nopt": "^8.1.0",
     "yaml": "^2.8.0"
