@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node, PNPM, and Corepack
         uses: streetsidesoftware/actions/public/setup-node-pnpm-corepack@v1
