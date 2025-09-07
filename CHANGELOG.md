@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.20](https://github.com/streetsidesoftware/actions/compare/v1.6.19...v1.6.20) (2025-09-07)
+
+
+### Updates and Bug Fixes
+
+* bump actions/github-script from 7 to 8 in /public/read-file ([#296](https://github.com/streetsidesoftware/actions/issues/296)) ([2bc40b1](https://github.com/streetsidesoftware/actions/commit/2bc40b1475a3d512a964c3c90362ada70596b4d3))
+* bump actions/setup-node from 4.4.0 to 5.0.0 in /public/setup-node-pnpm ([#295](https://github.com/streetsidesoftware/actions/issues/295)) ([8147c27](https://github.com/streetsidesoftware/actions/commit/8147c275ead7b1ec2e137b3d3dd515148764247c))
+
 ## [1.6.19](https://github.com/streetsidesoftware/actions/compare/v1.6.18...v1.6.19) (2025-04-20)
 
 
