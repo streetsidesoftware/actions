@@ -29502,7 +29502,7 @@ minimatch.unescape = unescape;
 // ../../node_modules/.pnpm/glob@11.0.3/node_modules/glob/dist/esm/glob.js
 var import_node_url2 = require("node:url");
 
-// ../../node_modules/.pnpm/lru-cache@11.2.1/node_modules/lru-cache/dist/esm/index.js
+// ../../node_modules/.pnpm/lru-cache@11.2.2/node_modules/lru-cache/dist/esm/index.js
 var defaultPerf = typeof performance === "object" && performance && typeof performance.now === "function" ? performance : Date;
 var warned = /* @__PURE__ */ new Set();
 var PROCESS = typeof process === "object" && !!process ? process : {};
@@ -30548,7 +30548,8 @@ var LRUCache = class _LRUCache {
         return fetchFail(ac.signal.reason);
       }
       const bf2 = p;
-      if (this.#valList[index] === p) {
+      const vl = this.#valList[index];
+      if (vl === p || ignoreAbort && updateCache && vl === void 0) {
         if (v2 === void 0) {
           if (bf2.__staleWhileFetching !== void 0) {
             this.#valList[index] = bf2.__staleWhileFetching;
