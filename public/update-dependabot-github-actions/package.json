@@ -16,7 +16,7 @@
   "license": "MIT",
   "devDependencies": {
     "env-cmd": "^11.0.0",
-    "esbuild": "^0.25.10"
+    "esbuild": "^0.25.11"
   },
   "dependencies": {
     "@actions/core": "^1.11.1",
