@@ -19807,9 +19807,9 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
   }
 });
 
-// ../../node_modules/.pnpm/abbrev@3.0.1/node_modules/abbrev/lib/index.js
+// ../../node_modules/.pnpm/abbrev@4.0.0/node_modules/abbrev/lib/index.js
 var require_lib2 = __commonJS({
-  "../../node_modules/.pnpm/abbrev@3.0.1/node_modules/abbrev/lib/index.js"(exports2, module2) {
+  "../../node_modules/.pnpm/abbrev@4.0.0/node_modules/abbrev/lib/index.js"(exports2, module2) {
     module2.exports = abbrev;
     function abbrev(...args) {
       let list = args;
@@ -19859,17 +19859,17 @@ var require_lib2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/nopt@8.1.0/node_modules/nopt/lib/debug.js
+// ../../node_modules/.pnpm/nopt@9.0.0/node_modules/nopt/lib/debug.js
 var require_debug = __commonJS({
-  "../../node_modules/.pnpm/nopt@8.1.0/node_modules/nopt/lib/debug.js"(exports2, module2) {
+  "../../node_modules/.pnpm/nopt@9.0.0/node_modules/nopt/lib/debug.js"(exports2, module2) {
     module2.exports = process.env.DEBUG_NOPT || process.env.NOPT_DEBUG ? (...a) => console.error(...a) : () => {
     };
   }
 });
 
-// ../../node_modules/.pnpm/nopt@8.1.0/node_modules/nopt/lib/type-defs.js
+// ../../node_modules/.pnpm/nopt@9.0.0/node_modules/nopt/lib/type-defs.js
 var require_type_defs = __commonJS({
-  "../../node_modules/.pnpm/nopt@8.1.0/node_modules/nopt/lib/type-defs.js"(exports2, module2) {
+  "../../node_modules/.pnpm/nopt@9.0.0/node_modules/nopt/lib/type-defs.js"(exports2, module2) {
     var url = require("url");
     var path6 = require("path");
     var Stream2 = require("stream").Stream;
@@ -19951,9 +19951,9 @@ var require_type_defs = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/nopt@8.1.0/node_modules/nopt/lib/nopt-lib.js
+// ../../node_modules/.pnpm/nopt@9.0.0/node_modules/nopt/lib/nopt-lib.js
 var require_nopt_lib = __commonJS({
-  "../../node_modules/.pnpm/nopt@8.1.0/node_modules/nopt/lib/nopt-lib.js"(exports2, module2) {
+  "../../node_modules/.pnpm/nopt@9.0.0/node_modules/nopt/lib/nopt-lib.js"(exports2, module2) {
     var abbrev = require_lib2();
     var debug = require_debug();
     var defaultTypeDefs = require_type_defs();
@@ -20357,9 +20357,9 @@ var require_nopt_lib = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/nopt@8.1.0/node_modules/nopt/lib/nopt.js
+// ../../node_modules/.pnpm/nopt@9.0.0/node_modules/nopt/lib/nopt.js
 var require_nopt = __commonJS({
-  "../../node_modules/.pnpm/nopt@8.1.0/node_modules/nopt/lib/nopt.js"(exports2, module2) {
+  "../../node_modules/.pnpm/nopt@9.0.0/node_modules/nopt/lib/nopt.js"(exports2, module2) {
     var lib = require_nopt_lib();
     var defaultTypeDefs = require_type_defs();
     module2.exports = exports2 = nopt2;
@@ -28172,7 +28172,7 @@ function expand_(str, isTop) {
   return expansions;
 }
 
-// ../../node_modules/.pnpm/minimatch@10.0.3/node_modules/minimatch/dist/esm/assert-valid-pattern.js
+// ../../node_modules/.pnpm/minimatch@10.1.1/node_modules/minimatch/dist/esm/assert-valid-pattern.js
 var MAX_PATTERN_LENGTH = 1024 * 64;
 var assertValidPattern = (pattern) => {
   if (typeof pattern !== "string") {
@@ -28183,7 +28183,7 @@ var assertValidPattern = (pattern) => {
   }
 };
 
-// ../../node_modules/.pnpm/minimatch@10.0.3/node_modules/minimatch/dist/esm/brace-expressions.js
+// ../../node_modules/.pnpm/minimatch@10.1.1/node_modules/minimatch/dist/esm/brace-expressions.js
 var posixClasses = {
   "[:alnum:]": ["\\p{L}\\p{Nl}\\p{Nd}", true],
   "[:alpha:]": ["\\p{L}\\p{Nl}", true],
@@ -28292,12 +28292,15 @@ var parseClass = (glob2, position) => {
   return [comb, uflag, endPos - pos, true];
 };
 
-// ../../node_modules/.pnpm/minimatch@10.0.3/node_modules/minimatch/dist/esm/unescape.js
-var unescape = (s, { windowsPathsNoEscape = false } = {}) => {
-  return windowsPathsNoEscape ? s.replace(/\[([^\/\\])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^\/\\])\]/g, "$1$2").replace(/\\([^\/])/g, "$1");
+// ../../node_modules/.pnpm/minimatch@10.1.1/node_modules/minimatch/dist/esm/unescape.js
+var unescape = (s, { windowsPathsNoEscape = false, magicalBraces = true } = {}) => {
+  if (magicalBraces) {
+    return windowsPathsNoEscape ? s.replace(/\[([^\/\\])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^\/\\])\]/g, "$1$2").replace(/\\([^\/])/g, "$1");
+  }
+  return windowsPathsNoEscape ? s.replace(/\[([^\/\\{}])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^\/\\{}])\]/g, "$1$2").replace(/\\([^\/{}])/g, "$1");
 };
 
-// ../../node_modules/.pnpm/minimatch@10.0.3/node_modules/minimatch/dist/esm/ast.js
+// ../../node_modules/.pnpm/minimatch@10.1.1/node_modules/minimatch/dist/esm/ast.js
 var types = /* @__PURE__ */ new Set(["!", "?", "+", "*", "@"]);
 var isExtglobType = (c) => types.has(c);
 var startNoTraversal = "(?!(?:^|/)\\.\\.?(?:$|/))";
@@ -28648,7 +28651,7 @@ var AST = class _AST {
     if (this.#root === this)
       this.#fillNegs();
     if (!this.type) {
-      const noEmpty = this.isStart() && this.isEnd();
+      const noEmpty = this.isStart() && this.isEnd() && !this.#parts.some((s) => typeof s !== "string");
       const src = this.#parts.map((p) => {
         const [re, _, hasMagic2, uflag] = typeof p === "string" ? _AST.#parseGlob(p, this.#hasMagic, noEmpty) : p.toRegExpSource(allowDot);
         this.#hasMagic = this.#hasMagic || hasMagic2;
@@ -28758,10 +28761,7 @@ var AST = class _AST {
         }
       }
       if (c === "*") {
-        if (noEmpty && glob2 === "*")
-          re += starNoEmpty;
-        else
-          re += star;
+        re += noEmpty && glob2 === "*" ? starNoEmpty : star;
         hasMagic2 = true;
         continue;
       }
@@ -28776,12 +28776,15 @@ var AST = class _AST {
   }
 };
 
-// ../../node_modules/.pnpm/minimatch@10.0.3/node_modules/minimatch/dist/esm/escape.js
-var escape = (s, { windowsPathsNoEscape = false } = {}) => {
+// ../../node_modules/.pnpm/minimatch@10.1.1/node_modules/minimatch/dist/esm/escape.js
+var escape = (s, { windowsPathsNoEscape = false, magicalBraces = false } = {}) => {
+  if (magicalBraces) {
+    return windowsPathsNoEscape ? s.replace(/[?*()[\]{}]/g, "[$&]") : s.replace(/[?*()[\]\\{}]/g, "\\$&");
+  }
   return windowsPathsNoEscape ? s.replace(/[?*()[\]]/g, "[$&]") : s.replace(/[?*()[\]\\]/g, "\\$&");
 };
 
-// ../../node_modules/.pnpm/minimatch@10.0.3/node_modules/minimatch/dist/esm/index.js
+// ../../node_modules/.pnpm/minimatch@10.1.1/node_modules/minimatch/dist/esm/index.js
 var minimatch = (p, pattern, options2 = {}) => {
   assertValidPattern(pattern);
   if (!options2.nocomment && pattern.charAt(0) === "#") {
@@ -29418,16 +29421,27 @@ var Minimatch = class {
             pp[i] = twoStar;
           }
         } else if (next === void 0) {
-          pp[i - 1] = prev + "(?:\\/|" + twoStar + ")?";
+          pp[i - 1] = prev + "(?:\\/|\\/" + twoStar + ")?";
         } else if (next !== GLOBSTAR) {
           pp[i - 1] = prev + "(?:\\/|\\/" + twoStar + "\\/)" + next;
           pp[i + 1] = GLOBSTAR;
         }
       });
-      return pp.filter((p) => p !== GLOBSTAR).join("/");
+      const filtered = pp.filter((p) => p !== GLOBSTAR);
+      if (this.partial && filtered.length >= 1) {
+        const prefixes = [];
+        for (let i = 1; i <= filtered.length; i++) {
+          prefixes.push(filtered.slice(0, i).join("/"));
+        }
+        return "(?:" + prefixes.join("|") + ")";
+      }
+      return filtered.join("/");
     }).join("|");
     const [open, close] = set.length > 1 ? ["(?:", ")"] : ["", ""];
     re = "^" + open + re + close + "$";
+    if (this.partial) {
+      re = "^(?:\\/|" + open + re.slice(1, -1) + close + ")$";
+    }
     if (this.negate)
       re = "^(?!" + re + ").+$";
     try {
