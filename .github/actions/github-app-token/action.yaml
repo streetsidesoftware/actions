@@ -1,7 +1,7 @@
 name: github_app_token
 description: Create a token for making Pull Requests
 
-# Note: this just calls tibdex/github-app-token, but it allows us to keep it in one place.
+# Note: this just calls actions/create-github-app-token, but it allows us to keep it in one place.
 
 inputs:
   app_id:
