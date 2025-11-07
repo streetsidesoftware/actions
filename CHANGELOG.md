@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.6.21](https://github.com/streetsidesoftware/actions/compare/v1.6.20...v1.6.21) (2025-11-07)
+
+
+### Updates and Bug Fixes
+
+* bump actions/setup-node from 5.0.0 to 6.0.0 in /public/setup-node-pnpm ([#308](https://github.com/streetsidesoftware/actions/issues/308)) ([87db60e](https://github.com/streetsidesoftware/actions/commit/87db60edfdf2618a5a870ee8e8eb9dd97791e356))
+* bump pnpm/action-setup from 4.1.0 to 4.2.0 in /public/setup-node-pnpm ([#306](https://github.com/streetsidesoftware/actions/issues/306)) ([a95b7db](https://github.com/streetsidesoftware/actions/commit/a95b7dbfd4f7f9491df443684aafe29439f1b631))
+* move to actions/create-github-app-token ([0508454](https://github.com/streetsidesoftware/actions/commit/0508454650e009d54f4a47600e0c4b9fcb5d2836))
+
 ## [1.6.20](https://github.com/streetsidesoftware/actions/compare/v1.6.19...v1.6.20) (2025-09-07)
 
 
