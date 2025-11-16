@@ -30917,7 +30917,7 @@ var LRUCache = class _LRUCache {
   }
 };
 
-// ../../node_modules/.pnpm/path-scurry@2.0.0/node_modules/path-scurry/dist/esm/index.js
+// ../../node_modules/.pnpm/path-scurry@2.0.1/node_modules/path-scurry/dist/esm/index.js
 var import_node_path = require("node:path");
 var import_node_url = require("node:url");
 var import_fs = require("fs");
@@ -31802,7 +31802,7 @@ var Minipass = class extends import_node_events.EventEmitter {
   }
 };
 
-// ../../node_modules/.pnpm/path-scurry@2.0.0/node_modules/path-scurry/dist/esm/index.js
+// ../../node_modules/.pnpm/path-scurry@2.0.1/node_modules/path-scurry/dist/esm/index.js
 var realpathSync = import_fs.realpathSync.native;
 var defaultFS = {
   lstatSync: import_fs.lstatSync,
@@ -31847,7 +31847,7 @@ var ENOREALPATH = 512;
 var ENOCHILD = ENOTDIR | ENOENT | ENOREALPATH;
 var TYPEMASK = 1023;
 var entToType = (s) => s.isFile() ? IFREG : s.isDirectory() ? IFDIR : s.isSymbolicLink() ? IFLNK : s.isCharacterDevice() ? IFCHR : s.isBlockDevice() ? IFBLK : s.isSocket() ? IFSOCK : s.isFIFO() ? IFIFO : UNKNOWN;
-var normalizeCache = /* @__PURE__ */ new Map();
+var normalizeCache = new LRUCache({ max: 2 ** 12 });
 var normalize = (s) => {
   const c = normalizeCache.get(s);
   if (c)
@@ -31856,7 +31856,7 @@ var normalize = (s) => {
   normalizeCache.set(s, n);
   return n;
 };
-var normalizeNocaseCache = /* @__PURE__ */ new Map();
+var normalizeNocaseCache = new LRUCache({ max: 2 ** 12 });
 var normalizeNocase = (s) => {
   const c = normalizeNocaseCache.get(s);
   if (c)
@@ -32013,6 +32013,7 @@ var PathBase = class {
   get parentPath() {
     return (this.parent || this).fullpath();
   }
+  /* c8 ignore start */
   /**
    * Deprecated alias for Dirent['parentPath'] Somewhat counterintuitively,
    * this property refers to the *parent* path, not the path object itself.
@@ -32022,6 +32023,7 @@ var PathBase = class {
   get path() {
     return this.parentPath;
   }
+  /* c8 ignore stop */
   /**
    * Do not create new Path objects directly.  They should always be accessed
    * via the PathScurry class or other methods on the Path class.
