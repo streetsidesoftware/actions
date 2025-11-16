@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.22](https://github.com/streetsidesoftware/actions/compare/v1.6.21...v1.6.22) (2025-11-16)
+
+
+### Updates and Bug Fixes
+
+* Make sure PRs are signed ([#320](https://github.com/streetsidesoftware/actions/issues/320)) ([4d07444](https://github.com/streetsidesoftware/actions/commit/4d07444c105b0024f6091e3b7904572531058c52))
+
 ## [1.6.21](https://github.com/streetsidesoftware/actions/compare/v1.6.20...v1.6.21) (2025-11-07)
 
 
