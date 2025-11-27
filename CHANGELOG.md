@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.23](https://github.com/streetsidesoftware/actions/compare/v1.6.22...v1.6.23) (2025-11-27)
+
+
+### Updates and Bug Fixes
+
+* bump actions/create-github-app-token from 2.1.4 to 2.2.0 in /.github/actions/github-app-token ([#329](https://github.com/streetsidesoftware/actions/issues/329)) ([73840d2](https://github.com/streetsidesoftware/actions/commit/73840d2af8faa56bca2a0d6b53f7c77c031c6472))
+* bump peter-evans/create-pull-request from 7.0.8 to 7.0.9 in /.github/actions/pr ([#328](https://github.com/streetsidesoftware/actions/issues/328)) ([852704f](https://github.com/streetsidesoftware/actions/commit/852704fd314cc6db1ec071400a2c2f7b2eccd65b))
+
 ## [1.6.22](https://github.com/streetsidesoftware/actions/compare/v1.6.21...v1.6.22) (2025-11-16)
 
 
