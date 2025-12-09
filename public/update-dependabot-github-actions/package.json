@@ -19,7 +19,7 @@
     "esbuild": "^0.27.1"
   },
   "dependencies": {
-    "@actions/core": "^1.11.1",
+    "@actions/core": "^2.0.0",
     "glob": "^13.0.0",
     "minimatch": "^9.0.5",
     "nopt": "^9.0.0",
