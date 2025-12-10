@@ -10,9 +10,12 @@ on:
         description: The Base Ref to apply the diff
         required: false
         default: 'main'
-
   schedule:
     - cron: '0 12 * * *'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
