@@ -65,7 +65,7 @@ inputs:
     required: false
   summary:
     description: Show a summary
-    default: true
+    default: 'true'
     required: false
 
 outputs:
