@@ -19,7 +19,7 @@ updates:
       interval: 'daily'
 
   - package-ecosystem: 'github-actions'
-    # Action files stored in the public folder
+    # Action files stored in the public folder and .github/actions folder
     directories:
       - '/public/*'
       - '/.github/actions/*'
