@@ -44,6 +44,8 @@ jobs:
         uses: dsanders11/json-schema-validate-action@v1.4.0
         with:
           schema: https://json.schemastore.org/github-workflow.json
-          files: |
-            .github/actions/*/action.{yml,yaml}
-            public/*/action.{yml,yaml}
+          files: |-
+            .github/actions/*/action.yml
+            .github/actions/*/action.yaml
+            public/*/action.yml
+            public/*/action.yaml
