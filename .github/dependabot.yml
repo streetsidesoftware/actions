@@ -15,7 +15,6 @@ updates:
     # default location of `.github/workflows`
     directories:
       - '/'
-      - '/.github/actions/*'
     schedule:
       interval: 'daily'
 
@@ -23,6 +22,7 @@ updates:
     # Action files stored in the public folder
     directories:
       - '/public/*'
+      - '/.github/actions/*'
     schedule:
       interval: 'daily'
     commit-message:
