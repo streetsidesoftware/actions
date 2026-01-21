@@ -16,6 +16,6 @@
   "license": "MIT",
   "devDependencies": {
     "inject-markdown": "^4.0.0",
-    "prettier": "^3.7.4"
+    "prettier": "^3.8.1"
   }
 }
