@@ -16,11 +16,11 @@
   "license": "MIT",
   "devDependencies": {
     "env-cmd": "^11.0.0",
-    "esbuild": "^0.27.2"
+    "esbuild": "^0.27.3"
   },
   "dependencies": {
     "@actions/core": "^3.0.0",
-    "glob": "^13.0.0",
+    "glob": "^13.0.1",
     "minimatch": "^9.0.5",
     "nopt": "^9.0.0",
     "yaml": "^2.8.2"
