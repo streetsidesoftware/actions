@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.25](https://github.com/streetsidesoftware/actions/compare/v1.6.24...v1.6.25) (2026-02-08)
+
+
+### Updates and Bug Fixes
+
+* bump the action-dependencies-version group across 2 directories with 2 updates ([#371](https://github.com/streetsidesoftware/actions/issues/371)) ([448d262](https://github.com/streetsidesoftware/actions/commit/448d2628d05894bedc50b64097cd6d561158420e))
+
 ## [1.6.24](https://github.com/streetsidesoftware/actions/compare/v1.6.23...v1.6.24) (2025-12-10)
 
 
