@@ -20,8 +20,8 @@
   },
   "dependencies": {
     "@actions/core": "^3.0.0",
-    "glob": "^13.0.2",
-    "minimatch": "^9.0.5",
+    "glob": "^13.0.6",
+    "minimatch": "^9.0.9",
     "nopt": "^9.0.0",
     "yaml": "^2.8.2"
   },
