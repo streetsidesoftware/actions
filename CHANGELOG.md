@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.26](https://github.com/streetsidesoftware/actions/compare/v1.6.25...v1.6.26) (2026-03-12)
+
+
+### Updates and Bug Fixes
+
+* bump actions/setup-node from 6.2.0 to 6.3.0 in /public/setup-node-pnpm in the action-dependencies-version group across 1 directory ([#386](https://github.com/streetsidesoftware/actions/issues/386)) ([bb8007c](https://github.com/streetsidesoftware/actions/commit/bb8007c5d7f329cf8499850b16b210b26aa480e4))
+* bump pnpm/action-setup from 4.2.0 to 4.3.0 in /public/setup-node-pnpm in the action-dependencies-version group across 1 directory ([#388](https://github.com/streetsidesoftware/actions/issues/388)) ([41f5011](https://github.com/streetsidesoftware/actions/commit/41f501192f7ee927e7ed65ebac9daf65921c8105))
+
 ## [1.6.25](https://github.com/streetsidesoftware/actions/compare/v1.6.24...v1.6.25) (2026-02-08)
 
 
