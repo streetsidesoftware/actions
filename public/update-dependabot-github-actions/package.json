@@ -16,14 +16,14 @@
   "license": "MIT",
   "devDependencies": {
     "env-cmd": "^11.0.0",
-    "esbuild": "^0.27.4"
+    "esbuild": "^0.27.7"
   },
   "dependencies": {
     "@actions/core": "^3.0.0",
     "glob": "^13.0.6",
     "minimatch": "^9.0.9",
     "nopt": "^9.0.0",
-    "yaml": "^2.8.2"
+    "yaml": "^2.8.3"
   },
   "engines": {
     "node": ">=20"
