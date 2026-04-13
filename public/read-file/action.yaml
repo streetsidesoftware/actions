@@ -14,7 +14,7 @@ runs:
   steps:
     - name: Read File
       id: read-file
-      uses: actions/github-script@v8
+      uses: actions/github-script@v9
       env:
         INPUT_PATH: ${{ inputs.path }}
       with:
