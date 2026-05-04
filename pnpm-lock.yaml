@@ -30,8 +30,8 @@ importers:
         specifier: ^9.0.0
         version: 9.0.0
       yaml:
-        specifier: ^2.8.3
-        version: 2.8.3
+        specifier: ^2.8.4
+        version: 2.8.4
     devDependencies:
       env-cmd:
         specifier: ^11.0.0
@@ -788,8 +788,8 @@ packages:
     engines: {node: '>= 8'}
     hasBin: true
 
-  yaml@2.8.3:
-    resolution: {integrity: sha512-AvbaCLOO2Otw/lW5bmh9d/WEdcDFdQp2Z2ZUH3pX9U2ihyUY0nvLv7J6TrWowklRGPYbB/IuIMfYgxaCPg5Bpg==}
+  yaml@2.8.4:
+    resolution: {integrity: sha512-ml/JPOj9fOQK8RNnWojA67GbZ0ApXAUlN2UQclwv2eVgTgn7O9gg9o7paZWKMp4g0H3nTLtS9LVzhkpOFIKzog==}
     engines: {node: '>= 14.6'}
     hasBin: true
 
@@ -1779,6 +1779,6 @@ snapshots:
     dependencies:
       isexe: 2.0.0
 
-  yaml@2.8.3: {}
+  yaml@2.8.4: {}
 
   zwitch@2.0.4: {}
