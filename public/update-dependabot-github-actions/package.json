@@ -19,11 +19,11 @@
     "esbuild": "^0.28.0"
   },
   "dependencies": {
-    "@actions/core": "^3.0.0",
+    "@actions/core": "^3.0.1",
     "glob": "^13.0.6",
     "minimatch": "^9.0.9",
     "nopt": "^9.0.0",
-    "yaml": "^2.8.3"
+    "yaml": "^2.9.0"
   },
   "engines": {
     "node": ">=20"
