@@ -4,10 +4,11 @@ ignorePaths:
   - .git/*/**
   - .gitignore
   - .prettierignore
+  - '**/action-build/**'
+  - '**/out/**'
+  - CHANGELOG.md
   - node_modules
   - pnpm-lock.yaml
-  - '**/out/**'
-  - '**/action-build/**'
   - temp
 words:
   - outfile
