@@ -1,3 +1,15 @@
 ---
 packages:
   - 'public/*'
+
+minimumReleaseAge: 2880 # two days
+blockExoticSubdeps: true
+trustPolicy: no-downgrade
+# trustPolicyExclude:
+#   - semver@6.3.1
+
+allowBuilds:
+  core-js: false
+  esbuild: true
+
+# cspell:dictionaries npm
