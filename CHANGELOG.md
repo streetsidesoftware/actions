@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.6.26](https://github.com/streetsidesoftware/actions/compare/v1.6.25...v1.6.26) (2026-08-26)
+
+
+### Updates and Bug Fixes
+
+* bump actions/checkout from 6.0.2 to 7.0.1 ([#432](https://github.com/streetsidesoftware/actions/issues/432)) ([f3a42c9](https://github.com/streetsidesoftware/actions/commit/f3a42c92917f906b020d4fef211944a24b0d4183))
+* bump actions/create-github-app-token from 2.2.1 to 3.0.0 in /.github/actions/github-app-token in the action-dependencies-version group across 1 directory ([#393](https://github.com/streetsidesoftware/actions/issues/393)) ([0b3f93f](https://github.com/streetsidesoftware/actions/commit/0b3f93fcb839bcc3e5b6e3ab935f0bbe2f1d2919))
+* bump actions/setup-node from 6.2.0 to 6.3.0 in /public/setup-node-pnpm in the action-dependencies-version group across 1 directory ([#386](https://github.com/streetsidesoftware/actions/issues/386)) ([bb8007c](https://github.com/streetsidesoftware/actions/commit/bb8007c5d7f329cf8499850b16b210b26aa480e4))
+* bump dsanders11/json-schema-validate-action from 2.0.0 to 2.1.0 ([#434](https://github.com/streetsidesoftware/actions/issues/434)) ([53cdaa2](https://github.com/streetsidesoftware/actions/commit/53cdaa22ea1448a726f34c77179f963dd69b9a81))
+* bump inject-markdown from 4.0.0 to 5.0.2 ([#439](https://github.com/streetsidesoftware/actions/issues/439)) ([56d2675](https://github.com/streetsidesoftware/actions/commit/56d26756233bd151c7faf72c48edf179222108a0))
+* bump nopt from 9.0.0 to 10.0.1 ([#421](https://github.com/streetsidesoftware/actions/issues/421)) ([e23c40d](https://github.com/streetsidesoftware/actions/commit/e23c40d892ffbaf6f79279161388c6902c1c4b29))
+* bump pnpm/action-setup from 4.2.0 to 4.3.0 in /public/setup-node-pnpm in the action-dependencies-version group across 1 directory ([#388](https://github.com/streetsidesoftware/actions/issues/388)) ([41f5011](https://github.com/streetsidesoftware/actions/commit/41f501192f7ee927e7ed65ebac9daf65921c8105))
+* bump pnpm/action-setup from 4.3.0 to 4.4.0 in /public/setup-node-pnpm in the action-dependencies-version group across 1 directory ([#392](https://github.com/streetsidesoftware/actions/issues/392)) ([8094594](https://github.com/streetsidesoftware/actions/commit/8094594c773cbd03111454e13e07284accd744ee))
+* bump pnpm/action-setup from 6.0.9 to 6.0.10 in /public/setup-node-pnpm in the action-dependencies-version group across 1 directory ([#436](https://github.com/streetsidesoftware/actions/issues/436)) ([0218882](https://github.com/streetsidesoftware/actions/commit/0218882fd2e58672ecd9c55d5f8ee9fbec61daf5))
+* bump streetsidesoftware/cspell-action from 8 to 9 ([#438](https://github.com/streetsidesoftware/actions/issues/438)) ([ac9b16a](https://github.com/streetsidesoftware/actions/commit/ac9b16a61192fc97e94aa46e109d8fbc4c7adccc))
+* bump the action-dependencies-version group across 1 directory with 2 updates ([#431](https://github.com/streetsidesoftware/actions/issues/431)) ([6249bef](https://github.com/streetsidesoftware/actions/commit/6249befc9317f0d15d2e5bd6284039f13026e838))
+* bump the action-dependencies-version group across 2 directories with 3 updates ([#415](https://github.com/streetsidesoftware/actions/issues/415)) ([3a08b2e](https://github.com/streetsidesoftware/actions/commit/3a08b2e8023acc80785b23bdd807bdb787d34ac4))
+* bump the action-dependencies-version group across 4 directories with 4 updates ([#401](https://github.com/streetsidesoftware/actions/issues/401)) ([0b567b2](https://github.com/streetsidesoftware/actions/commit/0b567b22de54211c426073a10ddacde2d364e23a))
+
 ## [1.6.25](https://github.com/streetsidesoftware/actions/compare/v1.6.24...v1.6.25) (2026-02-08)
 
 
