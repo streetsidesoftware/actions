@@ -18826,9 +18826,9 @@ var require_undici = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/abbrev@4.0.0/node_modules/abbrev/lib/index.js
+// ../../node_modules/.pnpm/abbrev@5.0.0/node_modules/abbrev/lib/index.js
 var require_lib = __commonJS({
-  "../../node_modules/.pnpm/abbrev@4.0.0/node_modules/abbrev/lib/index.js"(exports2, module2) {
+  "../../node_modules/.pnpm/abbrev@5.0.0/node_modules/abbrev/lib/index.js"(exports2, module2) {
     module2.exports = abbrev;
     function abbrev(...args) {
       let list = args;
@@ -18878,22 +18878,13 @@ var require_lib = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/nopt@9.0.0/node_modules/nopt/lib/debug.js
-var require_debug = __commonJS({
-  "../../node_modules/.pnpm/nopt@9.0.0/node_modules/nopt/lib/debug.js"(exports2, module2) {
-    module2.exports = process.env.DEBUG_NOPT || process.env.NOPT_DEBUG ? (...a) => console.error(...a) : () => {
-    };
-  }
-});
-
-// ../../node_modules/.pnpm/nopt@9.0.0/node_modules/nopt/lib/type-defs.js
+// ../../node_modules/.pnpm/nopt@10.0.1/node_modules/nopt/lib/type-defs.js
 var require_type_defs = __commonJS({
-  "../../node_modules/.pnpm/nopt@9.0.0/node_modules/nopt/lib/type-defs.js"(exports2, module2) {
-    var url = require("url");
-    var path5 = require("path");
-    var Stream = require("stream").Stream;
-    var os6 = require("os");
-    var debug2 = require_debug();
+  "../../node_modules/.pnpm/nopt@10.0.1/node_modules/nopt/lib/type-defs.js"(exports2, module2) {
+    var os6 = require("node:os");
+    var path5 = require("node:path");
+    var { Stream } = require("node:stream");
+    var { URL: URL2 } = require("node:url");
     function validateString(data, k2, val) {
       data[k2] = String(val);
     }
@@ -18916,7 +18907,6 @@ var require_type_defs = __commonJS({
       return true;
     }
     function validateNumber(data, k2, val) {
-      debug2("validate Number %j %j %j", k2, val, isNaN(val));
       if (isNaN(val)) {
         return false;
       }
@@ -18924,7 +18914,6 @@ var require_type_defs = __commonJS({
     }
     function validateDate(data, k2, val) {
       const s = Date.parse(val);
-      debug2("validate Date %j %j %j", k2, val, s);
       if (isNaN(s)) {
         return false;
       }
@@ -18945,11 +18934,11 @@ var require_type_defs = __commonJS({
       data[k2] = val;
     }
     function validateUrl(data, k2, val) {
-      val = url.parse(String(val));
-      if (!val.host) {
+      const parsed = URL2.parse(String(val));
+      if (!parsed) {
         return false;
       }
-      data[k2] = val.href;
+      data[k2] = parsed.href;
     }
     function validateStream(data, k2, val) {
       if (!(val instanceof Stream)) {
@@ -18960,7 +18949,7 @@ var require_type_defs = __commonJS({
     module2.exports = {
       String: { type: String, validate: validateString },
       Boolean: { type: Boolean, validate: validateBoolean },
-      url: { type: url, validate: validateUrl },
+      url: { type: URL2, validate: validateUrl },
       Number: { type: Number, validate: validateNumber },
       path: { type: path5, validate: validatePath },
       Stream: { type: Stream, validate: validateStream },
@@ -18970,11 +18959,10 @@ var require_type_defs = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/nopt@9.0.0/node_modules/nopt/lib/nopt-lib.js
+// ../../node_modules/.pnpm/nopt@10.0.1/node_modules/nopt/lib/nopt-lib.js
 var require_nopt_lib = __commonJS({
-  "../../node_modules/.pnpm/nopt@9.0.0/node_modules/nopt/lib/nopt-lib.js"(exports2, module2) {
+  "../../node_modules/.pnpm/nopt@10.0.1/node_modules/nopt/lib/nopt-lib.js"(exports2, module2) {
     var abbrev = require_lib();
-    var debug2 = require_debug();
     var defaultTypeDefs = require_type_defs();
     var hasOwn = (o, k2) => Object.prototype.hasOwnProperty.call(o, k2);
     var getType = (k2, { types: types2, dynamicTypes }) => {
@@ -19005,7 +18993,6 @@ var require_nopt_lib = __commonJS({
       typeDefault,
       dynamicTypes
     } = {}) {
-      debug2(types2, shorthands, args, typeDefs);
       const data = {};
       const argv = {
         remain: [],
@@ -19058,7 +19045,6 @@ var require_nopt_lib = __commonJS({
           return;
         }
         let val = data[k2];
-        debug2("val=%j", val);
         const isArray = Array.isArray(val);
         let [hasType, rawType] = getType(k2, { types: types2, dynamicTypes });
         let type = rawType;
@@ -19074,20 +19060,14 @@ var require_nopt_lib = __commonJS({
         if (!Array.isArray(type)) {
           type = [type];
         }
-        debug2("val=%j", val);
-        debug2("types=", type);
         val = val.map((v2) => {
           if (typeof v2 === "string") {
-            debug2("string %j", v2);
             v2 = v2.trim();
             if (v2 === "null" && ~type.indexOf(null) || v2 === "true" && (~type.indexOf(true) || hasTypeDef(type, BooleanType)) || v2 === "false" && (~type.indexOf(false) || hasTypeDef(type, BooleanType))) {
               v2 = JSON.parse(v2);
-              debug2("jsonable %j", v2);
             } else if (hasTypeDef(type, NumberType) && !isNaN(v2)) {
-              debug2("convert to number", v2);
               v2 = +v2;
             } else if (hasTypeDef(type, DateType) && !isNaN(Date.parse(v2))) {
-              debug2("convert to date", v2);
               v2 = new Date(v2);
             }
           }
@@ -19102,28 +19082,21 @@ var require_nopt_lib = __commonJS({
           }
           const d = {};
           d[k2] = v2;
-          debug2("prevalidated val", d, v2, rawType);
           if (!validate(d, k2, v2, rawType, { typeDefs })) {
             if (invalidHandler) {
               invalidHandler(k2, v2, rawType, data);
-            } else if (invalidHandler !== false) {
-              debug2("invalid: " + k2 + "=" + v2, rawType);
             }
             return remove;
           }
-          debug2("validated v", d, v2, rawType);
           return d[k2];
         }).filter((v2) => v2 !== remove);
         if (!val.length && doesNotHaveTypeDef(type, ArrayType)) {
-          debug2("VAL HAS NO LENGTH, DELETE IT", val, k2, type.indexOf(ArrayType));
           delete data[k2];
         } else if (isArray) {
-          debug2(isArray, data[k2], val);
           data[k2] = val;
         } else {
           data[k2] = val[0];
         }
-        debug2("k=%s val=%j", k2, val, data[k2]);
       });
     }
     function validate(data, k2, val, type, { typeDefs } = {}) {
@@ -19144,19 +19117,16 @@ var require_nopt_lib = __commonJS({
         return true;
       }
       if (type !== type) {
-        debug2("Poison NaN", k2, val, type);
         delete data[k2];
         return false;
       }
       if (val === type) {
-        debug2("Explicitly allowed %j", val);
         data[k2] = val;
         return true;
       }
       let ok = false;
       const types2 = Object.keys(typeDefs);
       for (let i = 0, l = types2.length; i < l; i++) {
-        debug2("test type %j %j %j", k2, val, types2[i]);
         const t = typeDefs[types2[i]];
         if (t && (type && type.name && t.type && t.type.name ? type.name === t.type.name : type === t.type)) {
           const d = {};
@@ -19168,7 +19138,6 @@ var require_nopt_lib = __commonJS({
           }
         }
       }
-      debug2("OK? %j (%j %j %j)", ok, k2, val, types2[types2.length - 1]);
       if (!ok) {
         delete data[k2];
       }
@@ -19186,13 +19155,10 @@ var require_nopt_lib = __commonJS({
       const NumberType = typeDefs.Number?.type;
       const ArrayType = typeDefs.Array?.type;
       const BooleanType = typeDefs.Boolean?.type;
-      debug2("parse", args, data, remain);
       const abbrevs = abbrev(Object.keys(types2));
-      debug2("abbrevs=%j", abbrevs);
       const shortAbbr = abbrev(Object.keys(shorthands));
       for (let i = 0; i < args.length; i++) {
         let arg = args[i];
-        debug2("arg", arg);
         if (arg.match(/^-{2,}$/)) {
           remain.push.apply(remain, args.slice(i + 1));
           args[i] = "--";
@@ -19208,7 +19174,6 @@ var require_nopt_lib = __commonJS({
             args.splice(i, 1, arg, v2);
           }
           const shRes = resolveShort(arg, shortAbbr, abbrevs, { shorthands, abbrevHandler });
-          debug2("arg=%j shRes=%j", arg, shRes);
           if (shRes) {
             args.splice.apply(args, [i, 1].concat(shRes));
             if (arg !== shRes[0]) {
@@ -19225,8 +19190,6 @@ var require_nopt_lib = __commonJS({
           if (abbrevs[arg] && abbrevs[arg] !== arg) {
             if (abbrevHandler) {
               abbrevHandler(arg, abbrevs[arg]);
-            } else if (abbrevHandler !== false) {
-              debug2(`abbrev: ${arg} -> ${abbrevs[arg]}`);
             }
             arg = abbrevs[arg];
           }
@@ -19253,11 +19216,6 @@ var require_nopt_lib = __commonJS({
                 unknownHandler(arg, la);
               } else {
                 unknownHandler(arg);
-              }
-            } else if (unknownHandler !== false) {
-              debug2(`unknown: ${arg}`);
-              if (hangingLa) {
-                debug2(`unknown: ${la} parsed as normal opt`);
               }
             }
           }
@@ -19326,7 +19284,6 @@ var require_nopt_lib = __commonJS({
           return l;
         }, {});
         shorthands[SINGLES] = singles;
-        debug2("shorthand singles", singles);
       }
       const chrs = arg.split("").filter((c) => singles[c]);
       return chrs.join("") === arg ? chrs : null;
@@ -19355,8 +19312,6 @@ var require_nopt_lib = __commonJS({
       if (shortAbbr[arg]) {
         if (abbrevHandler) {
           abbrevHandler(arg, shortAbbr[arg]);
-        } else if (abbrevHandler !== false) {
-          debug2(`abbrev: ${arg} -> ${shortAbbr[arg]}`);
         }
         arg = shortAbbr[arg];
       }
@@ -19376,9 +19331,9 @@ var require_nopt_lib = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/nopt@9.0.0/node_modules/nopt/lib/nopt.js
+// ../../node_modules/.pnpm/nopt@10.0.1/node_modules/nopt/lib/nopt.js
 var require_nopt = __commonJS({
-  "../../node_modules/.pnpm/nopt@9.0.0/node_modules/nopt/lib/nopt.js"(exports2, module2) {
+  "../../node_modules/.pnpm/nopt@10.0.1/node_modules/nopt/lib/nopt.js"(exports2, module2) {
     var lib = require_nopt_lib();
     var defaultTypeDefs = require_type_defs();
     module2.exports = exports2 = nopt2;
@@ -19465,9 +19420,9 @@ var require_balanced_match = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/brace-expansion@2.1.3/node_modules/brace-expansion/index.js
+// ../../node_modules/.pnpm/brace-expansion@2.1.4/node_modules/brace-expansion/index.js
 var require_brace_expansion = __commonJS({
-  "../../node_modules/.pnpm/brace-expansion@2.1.3/node_modules/brace-expansion/index.js"(exports2, module2) {
+  "../../node_modules/.pnpm/brace-expansion@2.1.4/node_modules/brace-expansion/index.js"(exports2, module2) {
     var balanced = require_balanced_match();
     module2.exports = expandTop;
     var escSlash = "\0SLASH" + Math.random() + "\0";
@@ -19544,7 +19499,7 @@ var require_brace_expansion = __commonJS({
       }
       return out;
     }
-    function expandSequence(body, isAlphaSequence, max) {
+    function expandSequence(body, isAlphaSequence, max, maxLength) {
       var n7 = body.split(/\.\./);
       var N2 = [];
       if (n7[0] === void 0 || n7[1] === void 0) {
@@ -19561,6 +19516,7 @@ var require_brace_expansion = __commonJS({
         test = gte;
       }
       var pad = n7.some(isPadded);
+      var length = 0;
       for (var i = x2; test(i, y) && N2.length < max; i += incr) {
         var c;
         if (isAlphaSequence) {
@@ -19582,7 +19538,9 @@ var require_brace_expansion = __commonJS({
             }
           }
         }
+        if (length + c.length > maxLength) break;
         N2.push(c);
+        length += c.length;
       }
       return N2;
     }
@@ -19635,7 +19593,7 @@ var require_brace_expansion = __commonJS({
         }
         var values;
         if (isSequence) {
-          values = expandSequence(m.body, isAlphaSequence, max);
+          values = expandSequence(m.body, isAlphaSequence, max, maxLength);
         } else {
           var n7 = parseCommaParts(m.body);
           if (n7.length === 1 && n7[0] !== void 0) {
@@ -19654,9 +19612,25 @@ var require_brace_expansion = __commonJS({
               continue;
             }
           }
+          var dropsEmpties = dropEmpties && !m.post.length && !pre;
+          for (var d = 0; dropsEmpties && d < acc.length; d++) {
+            if (acc[d]) {
+              dropsEmpties = false;
+            }
+          }
           values = [];
-          for (var j2 = 0; j2 < n7.length; j2++) {
-            values.push.apply(values, expand2(n7[j2], max, maxLength, false));
+          var valuesLength = 0;
+          outer: for (var j2 = 0; j2 < n7.length; j2++) {
+            var expanded = expand2(n7[j2], max, maxLength, false);
+            for (var k2 = 0; k2 < expanded.length; k2++) {
+              var v2 = expanded[k2];
+              if (dropsEmpties && !v2) continue;
+              if (values.length >= max || valuesLength + v2.length > maxLength) {
+                break outer;
+              }
+              values.push(v2);
+              valuesLength += v2.length;
+            }
           }
         }
         acc = combine(acc, pre, values, max, maxLength, dropEmpties && !m.post.length);
