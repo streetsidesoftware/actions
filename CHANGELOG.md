@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.27](https://github.com/streetsidesoftware/actions/compare/v1.6.26...v1.6.27) (2026-09-08)
+
+
+### Updates and Bug Fixes
+
+* bump inject-markdown from 5.0.2 to 5.0.3 ([#445](https://github.com/streetsidesoftware/actions/issues/445)) ([e185fde](https://github.com/streetsidesoftware/actions/commit/e185fdea537a32e5fea716645c77deb6d2e2e777))
+
 ## [1.6.26](https://github.com/streetsidesoftware/actions/compare/v1.6.25...v1.6.26) (2026-08-26)
 
 
