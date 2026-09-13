@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.27](https://github.com/streetsidesoftware/actions/compare/v1.6.26...v1.6.27) (2026-09-13)
+
+
+### Updates and Bug Fixes
+
+* bump inject-markdown from 5.0.2 to 5.0.3 ([#445](https://github.com/streetsidesoftware/actions/issues/445)) ([e185fde](https://github.com/streetsidesoftware/actions/commit/e185fdea537a32e5fea716645c77deb6d2e2e777))
+* bump pnpm/action-setup from 6.0.10 to 6.1.0 in /public/setup-node-pnpm in the action-dependencies-version group across 1 directory ([#448](https://github.com/streetsidesoftware/actions/issues/448)) ([e7a1a54](https://github.com/streetsidesoftware/actions/commit/e7a1a54452d88ab2b16099b9938c0e70b0c570bb))
+
 ## [1.6.26](https://github.com/streetsidesoftware/actions/compare/v1.6.25...v1.6.26) (2026-08-26)
 
 
