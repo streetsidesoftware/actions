@@ -110,8 +110,8 @@ importers:
   .:
     devDependencies:
       inject-markdown:
-        specifier: ^5.0.3
-        version: 5.0.3(supports-color@9.4.0)
+        specifier: ^6.1.0
+        version: 6.1.0(supports-color@9.4.0)
       prettier:
         specifier: ^3.9.6
         version: 3.9.6
@@ -486,8 +486,8 @@ packages:
     resolution: {integrity: sha512-brTTsvFRt5C1gGHtPst/281UjPD5t9fBqbgoMPlVWy11ZLTPfu7HxK4ZYqO9H7o/yC9rSTCI85EaQ4OoY12qYw==}
     engines: {node: '>= 4'}
 
-  inject-markdown@5.0.3:
-    resolution: {integrity: sha512-vuNDXl2xD2PsZZ1QgdnAB0DOAEKgZZTrS5LlNraZpYJrQU48/3LUQBoBksHvLOARwp40BlTgEec5ZFPdKkVOpA==}
+  inject-markdown@6.1.0:
+    resolution: {integrity: sha512-2tDHvcLT9j9f5M3ZhddPared2O2DDtLD8cdryoJn9H0tz4mvVOQo33iDaLrUe5VC+oSiX5ah+2DgfGNhQxKgtw==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -1099,7 +1099,7 @@ snapshots:
 
   ignore@7.0.9: {}
 
-  inject-markdown@5.0.3(supports-color@9.4.0):
+  inject-markdown@6.1.0(supports-color@9.4.0):
     dependencies:
       chalk: 6.0.0
       commander: 15.0.0
