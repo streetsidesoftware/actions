@@ -1,14 +1,14 @@
-import { glob } from 'glob';
+import { globFiles, globPaths } from './glob.mjs';
 
 /**
  *
  * @param {string} pattern
- * @param {string|URL} cwd
- * @returns {string[]}
+ * @param {string} cwd
+ * @returns {Promise<string[]>}
  */
 export async function findActions(pattern, cwd) {
     cwd = cwd || process.cwd();
-    const foundDirs = await glob(pattern, { dot: true, cwd, absolute: true });
+    const foundDirs = await globPaths(pattern, cwd);
 
     const found = (await Promise.all(foundDirs.map(findActionsInFolder))).flatMap((a) => a);
 
@@ -19,9 +19,8 @@ const isActionFile = /\baction\.ya?ml$/i;
 
 async function findActionsInFolder(folder) {
     if (isActionFile.test(folder)) return [folder];
-    // cspell:ignore nodir
-    const foundInFolder = await glob('{action.yaml,action.yml}', { cwd: folder, nodir: true, absolute: true });
+    const foundInFolder = await globFiles('{action.yaml,action.yml}', folder);
     if (foundInFolder.length) return foundInFolder;
-    const found = await glob('*/{action.yaml,action.yml}', { cwd: folder, nodir: true, absolute: true });
+    const found = await globFiles('*/{action.yaml,action.yml}', folder);
     return found;
 }

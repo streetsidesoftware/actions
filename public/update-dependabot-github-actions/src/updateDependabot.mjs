@@ -1,10 +1,10 @@
-import { glob } from 'glob';
 import { minimatch } from 'minimatch';
 import { promises as fs } from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { Document, parseDocument, visitAsync, stringify as yamlStringify } from 'yaml';
 import { findActions } from './findActions.mjs';
+import { globFiles } from './glob.mjs';
 
 const nodeComment = ' Automatically added by streetsidesoftware/public/update-dependabot-github-actions';
 
@@ -237,8 +237,7 @@ async function updateDoc(doc, actionFolders, actionsGlob, cwd, options) {
 async function findDependabotFile(dependabotFile, cwd) {
     if (dependabotFile) return path.resolve(cwd, dependabotFile);
 
-    // cspell:ignore nodir
-    const found = await glob('.github/dependabot.{yml,yaml}', { cwd, nodir: true, absolute: true });
+    const found = await globFiles('.github/dependabot.{yml,yaml}', cwd);
     return found[0];
 }
 

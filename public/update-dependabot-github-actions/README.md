@@ -82,7 +82,7 @@ outputs:
   summary:
     description: Markdown summary of changes, can be used in a PR.
 runs:
-  using: 'node20'
+  using: 'node24'
   main: 'action-build/index.cjs'
 ```
 
