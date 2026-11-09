@@ -1,6 +1,6 @@
 {
   "INPUT_GITHUB_TOKEN": "$GITHUB_TOKEN",
-  "INPUT_DRY_RUN": "true",
+  "INPUT_DRY-RUN": "true",
   "INPUT_DIRECTORY": "{.github/actions,public}",
   "INPUT_PREFIX": "ci",
   "GITHUB_ENV": "${cwd}/temp/GITHUB_ENV.txt",

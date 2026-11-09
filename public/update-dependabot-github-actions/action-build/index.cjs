@@ -19694,7 +19694,7 @@ var require_identity = __commonJS({
     var isMap2 = (node) => !!node && typeof node === "object" && node[NODE_TYPE] === MAP;
     var isPair = (node) => !!node && typeof node === "object" && node[NODE_TYPE] === PAIR;
     var isScalar = (node) => !!node && typeof node === "object" && node[NODE_TYPE] === SCALAR;
-    var isSeq = (node) => !!node && typeof node === "object" && node[NODE_TYPE] === SEQ;
+    var isSeq2 = (node) => !!node && typeof node === "object" && node[NODE_TYPE] === SEQ;
     function isCollection(node) {
       if (node && typeof node === "object")
         switch (node[NODE_TYPE]) {
@@ -19731,7 +19731,7 @@ var require_identity = __commonJS({
     exports2.isNode = isNode;
     exports2.isPair = isPair;
     exports2.isScalar = isScalar;
-    exports2.isSeq = isSeq;
+    exports2.isSeq = isSeq2;
   }
 });
 
@@ -27608,7 +27608,7 @@ async function findActionsInFolder(folder) {
 }
 
 // src/updateDependabot.mjs
-var nodeComment = " Automatically added by streetsidesoftware/public/update-dependabot-github-actions";
+var marker = "Automatically added by streetsidesoftware/public/update-dependabot-github-actions";
 async function updateDependabot(actionsGlob, dependabotFile, cwd, options2) {
   cwd = path3.resolve(asPath(cwd || process.cwd()));
   options2 = normalizeOptions(options2);
@@ -27621,7 +27621,7 @@ async function updateDependabot(actionsGlob, dependabotFile, cwd, options2) {
   const actionFolders = normalizeActionsToFolders(actionsAbs, cwd);
   const result = updateDoc(yamlDoc, actionFolders, options2);
   if (result.changes && !options2.dryRun) {
-    await import_node_fs2.promises.writeFile(depFile, yamlDoc.toString());
+    await import_node_fs2.promises.writeFile(depFile, yamlDoc.toString({ lineWidth: 0, flowCollectionPadding: false }));
   }
   return {
     ...result,
@@ -27633,6 +27633,9 @@ async function updateDependabot(actionsGlob, dependabotFile, cwd, options2) {
 }
 function updateDoc(doc, actionFolders, options2) {
   const updates = doc.get("updates");
+  if (!(0, import_yaml.isSeq)(updates)) {
+    throw new Error('The dependabot file has no "updates" list.');
+  }
   moveListCommentToFirstEntry(updates);
   const entries = updates.items.filter((item) => (0, import_yaml.isMap)(item) && item.get("package-ecosystem") === "github-actions");
   const oldStyleEntries = entries.filter((entry) => isMarked(entry) && entry.has("directory"));
@@ -27642,13 +27645,10 @@ function updateDoc(doc, actionFolders, options2) {
   const addedDirectories = [...new Set(uncovered.map(folderToGlob))].sort();
   const removedEntries = oldStyleEntries.map((entry) => entry.toJSON());
   const changes = removedEntries.length + addedDirectories.length;
-  if (changes) {
-    const insertAt = oldStyleEntries.length ? updates.items.indexOf(oldStyleEntries[0]) : updates.items.length;
-    updates.items = updates.items.filter((item) => !oldStyle.has(item));
-    if (addedDirectories.length) {
-      addDirectories(doc, updates, insertAt, addedDirectories, options2);
-    }
-  }
+  const insertAt = oldStyleEntries.length ? updates.items.indexOf(oldStyleEntries[0]) + 1 : updates.items.length;
+  const created = addedDirectories.length ? addDirectories(doc, updates, insertAt, addedDirectories, options2) : void 0;
+  removeEntries(updates, oldStyle);
+  if (created) created.spaceBefore = updates.items.indexOf(created) > 0;
   return { changes, addedDirectories, removedEntries };
 }
 function addDirectories(doc, updates, insertAt, globs, options2) {
@@ -27659,7 +27659,7 @@ function addDirectories(doc, updates, insertAt, globs, options2) {
     for (const glob2 of globs) {
       existing.get("directories").add(doc.createNode(glob2));
     }
-    return;
+    return void 0;
   }
   const value = {
     "package-ecosystem": "github-actions",
@@ -27670,25 +27670,50 @@ function addDirectories(doc, updates, insertAt, globs, options2) {
     value["commit-message"] = { prefix: options2.prefix };
   }
   const node = doc.createNode(value);
-  node.spaceBefore = true;
-  node.commentBefore = nodeComment;
+  node.commentBefore = " " + marker;
+  updates.flow = updates.flow && updates.items.length > 0;
   updates.items.splice(insertAt, 0, node);
+  return node;
+}
+function removeEntries(updates, toRemove) {
+  if (!toRemove.size) return;
+  const kept = [];
+  let comments = [];
+  for (const item of updates.items) {
+    if (toRemove.has(item)) {
+      comments.push(withoutMarker(item.commentBefore));
+      continue;
+    }
+    if ((0, import_yaml.isMap)(item)) {
+      item.commentBefore = joinComments([...comments, item.commentBefore]);
+      comments = [];
+    }
+    kept.push(item);
+  }
+  updates.comment = joinComments([updates.comment, ...comments]);
+  updates.items = kept;
+}
+function withoutMarker(comment) {
+  return (comment ?? "").split("\n").filter((line) => line.trim() !== marker).join("\n");
+}
+function joinComments(comments) {
+  return comments.filter((comment) => comment?.trim()).join("\n") || void 0;
 }
 function moveListCommentToFirstEntry(updates) {
   const first = updates.items[0];
   if (!updates.commentBefore || !(0, import_yaml.isMap)(first)) return;
-  first.commentBefore = [updates.commentBefore, first.commentBefore].filter(Boolean).join("\n");
+  first.commentBefore = joinComments([updates.commentBefore, first.commentBefore]);
   updates.commentBefore = void 0;
 }
 function isMarked(entry) {
-  return !!entry.commentBefore?.includes(nodeComment.trim());
+  return !!entry.commentBefore?.includes(marker);
 }
 function directoryPatterns(entry) {
   const directories = entry.get("directories")?.toJSON() ?? [entry.get("directory")];
   return directories.filter((dir) => typeof dir === "string").map(normalizeDirectoryEntry);
 }
 function folderToGlob(dir) {
-  return dir === "/" ? dir : path3.posix.join(path3.posix.dirname(dir), "*");
+  return path3.posix.join(path3.posix.dirname(dir), "*");
 }
 async function findDependabotFile(dependabotFile, cwd) {
   if (dependabotFile) return path3.resolve(cwd, dependabotFile);
@@ -27770,7 +27795,7 @@ async function run(args) {
       ...getOption("directory"),
       ...getOption("dependabot"),
       ...getOption("interval"),
-      ...getOption("dry_run"),
+      ...getOption("dry-run", "dry_run"),
       ...getOption("summary"),
       ...getOption("prefix")
     };
@@ -27806,10 +27831,10 @@ async function run(args) {
     setFailed(error2.message);
   }
 }
-function getOption(name) {
-  const value = toBoolean(getInput(name));
+function getOption(inputName, key = inputName) {
+  const value = toBoolean(getInput(inputName));
   if (value === "") return void 0;
-  return { [name]: value };
+  return { [key]: value };
 }
 function toBoolean(value) {
   if (typeof value !== "string") return value;

@@ -15,7 +15,7 @@ updates:
 This action finds the local actions and makes sure the `github-actions` entries cover them.
 
 - When every action is already covered, the file is not changed.
-- An action that is not covered adds a `/<parent>/*` glob to the entry this action manages, creating the entry if needed.
+- For each local action that is not covered, this action adds a `/<parent>/*` glob to the entry it manages, creating the entry if needed.
 - Older versions of this action added one entry per action folder. Those entries are replaced by the `directories` entry.
 
 Entries this action manages are marked with:

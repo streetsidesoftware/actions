@@ -15,7 +15,7 @@ async function run(args) {
             ...getOption('directory'),
             ...getOption('dependabot'),
             ...getOption('interval'),
-            ...getOption('dry_run'),
+            ...getOption('dry-run', 'dry_run'),
             ...getOption('summary'),
             ...getOption('prefix'),
         };
@@ -57,14 +57,14 @@ async function run(args) {
 }
 
 /**
- *
- * @param {string} name
- * @returns {{ [name:string]: any } | undefined}
+ * @param {string} inputName - the input name in `action.yaml`.
+ * @param {string} key - the option name, when it differs from the input name.
+ * @returns {{ [key:string]: any } | undefined}
  */
-function getOption(name) {
-    const value = toBoolean(getInput(name));
+function getOption(inputName, key = inputName) {
+    const value = toBoolean(getInput(inputName));
     if (value === '') return undefined;
-    return { [name]: value };
+    return { [key]: value };
 }
 
 function toBoolean(value) {

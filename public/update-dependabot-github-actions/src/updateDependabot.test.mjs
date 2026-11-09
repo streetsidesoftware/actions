@@ -125,10 +125,11 @@ ${workflowsEntry}
         });
     });
 
-    test('converts a marked entry that is first in the list', async () => {
+    test('converts a marked entry that is first in the list, keeping its other comments', async () => {
         const config = `\
 version: 2
 updates:
+  # Keep this list sorted
   ${marker}
   - package-ecosystem: github-actions
     directory: /.github/actions/setup
@@ -140,14 +141,155 @@ ${workflowsEntry}`;
 
         const result = await updateDependabot('.github/actions/*', '', cwd, {});
 
-        assert.deepEqual(result.addedDirectories, ['/.github/actions/*']);
         assert.deepEqual(
             result.removedEntries.map((entry) => entry.directory),
             ['/.github/actions/setup'],
         );
-        const content = await readConfig(cwd);
-        assert.equal(parse(content).updates[0].directories[0], '/.github/actions/*');
-        assert.equal(content.split(marker).length, 2, 'only the new entry is marked');
+        assert.equal(
+            await readConfig(cwd),
+            `\
+version: 2
+updates:
+  # Keep this list sorted
+  ${marker}
+  - package-ecosystem: github-actions
+    directories:
+      - /.github/actions/*
+    schedule:
+      interval: daily
+
+${workflowsEntry}`,
+        );
+    });
+
+    test('keeps the comments of a removed entry in the middle of the list', async () => {
+        const config = `\
+version: 2
+updates:
+${workflowsEntry}
+  # generated, do not edit
+  ${marker}
+  - package-ecosystem: github-actions
+    directory: /.github/actions/setup
+
+  - package-ecosystem: npm
+    directory: /
+`;
+        const cwd = await makeRepo({ ...actions, '.github/dependabot.yml': config });
+
+        await updateDependabot('.github/actions/*', '', cwd, {});
+
+        assert.equal(
+            await readConfig(cwd),
+            `\
+version: 2
+updates:
+${workflowsEntry}
+  # generated, do not edit
+  ${marker}
+  - package-ecosystem: github-actions
+    directories:
+      - /.github/actions/*
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /
+`,
+        );
+    });
+
+    test('removes old style entries that an unmarked entry already covers', async () => {
+        const config = `\
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directories: ['/.github/actions/*']
+
+  ${marker}
+  - package-ecosystem: github-actions
+    directory: /.github/actions/setup
+`;
+        const cwd = await makeRepo({ ...actions, '.github/dependabot.yml': config });
+
+        const result = await updateDependabot('.github/actions/*', '', cwd, {});
+
+        assert.equal(result.changes, 1);
+        assert.deepEqual(result.addedDirectories, []);
+        assert.equal(
+            await readConfig(cwd),
+            `\
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directories: ['/.github/actions/*']
+`,
+        );
+    });
+
+    test('leaves the text of unmarked entries as it was', async () => {
+        const unmarked = `\
+  - package-ecosystem: npm
+    directory: /
+    ignore:
+      - dependency-name: "a-very-long-package-name-that-is-well-past-the-default-line-width/of-eighty"
+  - package-ecosystem: github-actions
+    directories: ['/public/*']
+`;
+        const cwd = await makeRepo({ ...actions, '.github/dependabot.yml': `version: 2\nupdates:\n${unmarked}` });
+
+        await updateDependabot('.github/actions/*', '', cwd, {});
+
+        assert.ok((await readConfig(cwd)).startsWith(`version: 2\nupdates:\n${unmarked}\n  ${marker}\n`));
+    });
+
+    test('finishes a conversion that left an old style entry behind', async () => {
+        const config = `\
+version: 2
+updates:
+  ${marker}
+  - package-ecosystem: github-actions
+    directories:
+      - /public/*
+
+  ${marker}
+  - package-ecosystem: github-actions
+    directory: /.github/actions/setup
+`;
+        const cwd = await makeRepo({ ...actions, '.github/dependabot.yml': config });
+
+        await updateDependabot('.github/actions/*', '', cwd, {});
+
+        const updates = parse(await readConfig(cwd)).updates;
+        assert.deepEqual(updates, [
+            { 'package-ecosystem': 'github-actions', directories: ['/public/*', '/.github/actions/*'] },
+        ]);
+    });
+
+    test('adds an entry to an empty updates list', async () => {
+        const cwd = await makeRepo({ ...actions, '.github/dependabot.yml': 'version: 2\nupdates: []\n' });
+
+        await updateDependabot('.github/actions/*', '', cwd, {});
+
+        assert.equal(
+            await readConfig(cwd),
+            `\
+version: 2
+updates:
+  ${marker}
+  - package-ecosystem: github-actions
+    directories:
+      - /.github/actions/*
+    schedule:
+      interval: daily
+`,
+        );
+    });
+
+    test('fails when the file has no updates list', async () => {
+        const cwd = await makeRepo({ ...actions, '.github/dependabot.yml': 'version: 2\n' });
+
+        await assert.rejects(updateDependabot('.github/actions/*', '', cwd, {}), /no "updates" list/);
     });
 
     test('finds the marked directories entry when it is first in the list', async () => {
