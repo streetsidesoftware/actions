@@ -20,12 +20,11 @@
   },
   "dependencies": {
     "@actions/core": "^3.0.1",
-    "glob": "^13.0.7",
     "minimatch": "^9.0.9",
     "nopt": "^10.0.1",
     "yaml": "^2.9.1"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   }
 }
