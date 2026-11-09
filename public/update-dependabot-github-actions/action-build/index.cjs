@@ -27539,9 +27539,9 @@ var defaultOptions = {
    *   - `.github/actions/*`
    *   - `{.github/actions,private/actions}`
    * @required false
-   * @default ".github/actions"
+   * @default ".github/actions/*"
    */
-  directory: ".github/action",
+  directory: ".github/actions/*",
   /**
    * Path to the dependabot yaml file.
    * @default ".github/dependabot.yml"
@@ -27612,7 +27612,6 @@ var nodeComment = " Automatically added by streetsidesoftware/public/update-depe
 async function updateDependabot(actionsGlob, dependabotFile, cwd, options2) {
   cwd = path3.resolve(asPath(cwd || process.cwd()));
   options2 = normalizeOptions(options2);
-  actionsGlob = actionsGlob || ".github/actions";
   const depFile = await findDependabotFile(dependabotFile, cwd);
   if (!depFile || !await isFile(depFile)) {
     throw new Error('Unable to find "dependabot.yml" file.');

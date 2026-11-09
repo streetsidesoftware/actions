@@ -21,7 +21,6 @@ const nodeComment = ' Automatically added by streetsidesoftware/public/update-de
 export async function updateDependabot(actionsGlob, dependabotFile, cwd, options) {
     cwd = path.resolve(asPath(cwd || process.cwd()));
     options = normalizeOptions(options);
-    actionsGlob = actionsGlob || '.github/actions';
     const depFile = await findDependabotFile(dependabotFile, cwd);
 
     if (!depFile || !(await isFile(depFile))) {
