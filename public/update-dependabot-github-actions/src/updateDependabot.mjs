@@ -55,6 +55,7 @@ export async function updateDependabot(actionsGlob, dependabotFile, cwd, options
 function updateDoc(doc, actionFolders, options) {
     /** @type {import('yaml').YAMLSeq} */
     const updates = doc.get('updates');
+    moveListCommentToFirstEntry(updates);
     const entries = updates.items.filter((item) => isMap(item) && item.get('package-ecosystem') === 'github-actions');
 
     const oldStyleEntries = entries.filter((entry) => isMarked(entry) && entry.has('directory'));
@@ -114,6 +115,18 @@ function addDirectories(doc, updates, insertAt, globs, options) {
     node.spaceBefore = true;
     node.commentBefore = nodeComment;
     updates.items.splice(insertAt, 0, node);
+}
+
+/**
+ * The parser attaches a comment above the first entry to the list itself.
+ * Moving it to the entry lets the marker check see it; the file is written back the same.
+ * @param {import('yaml').YAMLSeq} updates
+ */
+function moveListCommentToFirstEntry(updates) {
+    const first = updates.items[0];
+    if (!updates.commentBefore || !isMap(first)) return;
+    first.commentBefore = [updates.commentBefore, first.commentBefore].filter(Boolean).join('\n');
+    updates.commentBefore = undefined;
 }
 
 /**

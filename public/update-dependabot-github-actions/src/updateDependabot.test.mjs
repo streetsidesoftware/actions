@@ -125,6 +125,55 @@ ${workflowsEntry}
         });
     });
 
+    test('converts a marked entry that is first in the list', async () => {
+        const config = `\
+version: 2
+updates:
+  ${marker}
+  - package-ecosystem: github-actions
+    directory: /.github/actions/setup
+    schedule:
+      interval: daily
+
+${workflowsEntry}`;
+        const cwd = await makeRepo({ ...actions, '.github/dependabot.yml': config });
+
+        const result = await updateDependabot('.github/actions/*', '', cwd, {});
+
+        assert.deepEqual(result.addedDirectories, ['/.github/actions/*']);
+        assert.deepEqual(
+            result.removedEntries.map((entry) => entry.directory),
+            ['/.github/actions/setup'],
+        );
+        const content = await readConfig(cwd);
+        assert.equal(parse(content).updates[0].directories[0], '/.github/actions/*');
+        assert.equal(content.split(marker).length, 2, 'only the new entry is marked');
+    });
+
+    test('finds the marked directories entry when it is first in the list', async () => {
+        const config = `\
+version: 2
+updates:
+  ${marker}
+  - package-ecosystem: github-actions
+    directories:
+      - /.github/actions/*
+    schedule:
+      interval: daily
+`;
+        const cwd = await makeRepo({
+            ...actions,
+            'public/summary/action.yaml': actionYaml,
+            '.github/dependabot.yml': config,
+        });
+
+        await updateDependabot('{.github/actions,public}', '', cwd, {});
+
+        const updates = parse(await readConfig(cwd)).updates;
+        assert.equal(updates.length, 1);
+        assert.deepEqual(updates[0].directories, ['/.github/actions/*', '/public/*']);
+    });
+
     test('dry run reports changes without writing', async () => {
         const cwd = await makeRepo({ ...actions, '.github/dependabot.yml': oldStyleConfig });
 

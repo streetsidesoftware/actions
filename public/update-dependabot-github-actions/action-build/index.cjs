@@ -27633,6 +27633,7 @@ async function updateDependabot(actionsGlob, dependabotFile, cwd, options2) {
 }
 function updateDoc(doc, actionFolders, options2) {
   const updates = doc.get("updates");
+  moveListCommentToFirstEntry(updates);
   const entries = updates.items.filter((item) => (0, import_yaml.isMap)(item) && item.get("package-ecosystem") === "github-actions");
   const oldStyleEntries = entries.filter((entry) => isMarked(entry) && entry.has("directory"));
   const oldStyle = new Set(oldStyleEntries);
@@ -27672,6 +27673,12 @@ function addDirectories(doc, updates, insertAt, globs, options2) {
   node.spaceBefore = true;
   node.commentBefore = nodeComment;
   updates.items.splice(insertAt, 0, node);
+}
+function moveListCommentToFirstEntry(updates) {
+  const first = updates.items[0];
+  if (!updates.commentBefore || !(0, import_yaml.isMap)(first)) return;
+  first.commentBefore = [updates.commentBefore, first.commentBefore].filter(Boolean).join("\n");
+  updates.commentBefore = void 0;
 }
 function isMarked(entry) {
   return !!entry.commentBefore?.includes(nodeComment.trim());
