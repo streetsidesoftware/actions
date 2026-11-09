@@ -113,8 +113,8 @@ importers:
         specifier: ^6.3.0
         version: 6.3.0(supports-color@9.4.0)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.10
+        version: 3.9.10
 
   public/update-dependabot-github-actions:
     dependencies:
@@ -617,8 +617,8 @@ packages:
     resolution: {integrity: sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA==}
     engines: {node: '>=12'}
 
-  prettier@3.9.6:
-    resolution: {integrity: sha512-OpN0zzVdiaiAhxpuuj5efpIS4sY9j7bY6uR5mnj5yPzGkdkjNKSJeUThPb60Jw29QuAZgA4o+/iB49kFiaBX6g==}
+  prettier@3.9.10:
+    resolution: {integrity: sha512-skGHTH1Yb9QvaTC4hWnRTzEYtCpApF0UMBPz+t/0ZPzP8ihefo/btKd+QA7pUE0fEwA1SbS/NmhyEcstdXOIdA==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -1306,7 +1306,7 @@ snapshots:
 
   picomatch@4.0.7: {}
 
-  prettier@3.9.6: {}
+  prettier@3.9.10: {}
 
   remark-frontmatter@5.0.0(supports-color@9.4.0):
     dependencies:
