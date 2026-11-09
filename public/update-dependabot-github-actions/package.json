@@ -9,7 +9,7 @@
     "build": "esbuild src/index.mjs --bundle --packages=bundle --platform=node --outfile=action-build/index.cjs",
     "smoke-test": "env-cmd -f ./fixtures/env-request.json node ./action-build/index.cjs --cwd=../.. --debug",
     "smoke-test-dbg": "env-cmd -f ./fixtures/env-request.json node ./src/index.mjs --cwd=../.. --debug",
-    "test": "echo OK"
+    "test": "node --test 'src/**/*.test.mjs'"
   },
   "keywords": [],
   "author": "Street Side Software",
@@ -20,7 +20,6 @@
   },
   "dependencies": {
     "@actions/core": "^3.0.1",
-    "minimatch": "^11.0.5",
     "nopt": "^10.0.1",
     "yaml": "^2.9.1"
   },

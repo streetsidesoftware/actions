@@ -9,7 +9,7 @@
     "build:readme": "inject-markdown README.md \".github/**/README.md\" \"public/**/README.md\"",
     "lint": "prettier . -w",
     "reset-tags": "git fetch --prune origin \"+refs/tags/*:refs/tags/*\" ",
-    "test": "echo OK"
+    "test": "pnpm -r run test"
   },
   "keywords": [],
   "author": "Street Side Software",

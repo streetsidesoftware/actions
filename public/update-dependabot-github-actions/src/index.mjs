@@ -31,8 +31,17 @@ async function run(args) {
         console.log('Start: %o', { inputs });
         const result = await updateDependabot(directory, dependabot, cwd, opts);
         {
-            const { changes, actionFolders, actionsGlob, options, actionsTaken, dependabotFile } = result;
-            const detailedResults = { changes, actionFolders, actionsGlob, options, actionsTaken, dependabotFile };
+            const { changes, actionFolders, actionsGlob, options, addedDirectories, removedEntries, dependabotFile } =
+                result;
+            const detailedResults = {
+                changes,
+                actionFolders,
+                actionsGlob,
+                options,
+                addedDirectories,
+                removedEntries,
+                dependabotFile,
+            };
             console.log('Result: %o', detailedResults);
             setOutput('results', JSON.stringify(detailedResults));
         }
