@@ -1,6 +1,6 @@
 import { getInput, setFailed, setOutput, summary } from '@actions/core';
 import * as path from 'node:path';
-import nopt from 'nopt';
+import { parseArgs } from 'node:util';
 import { prepDebug } from './debugPrep.mjs';
 import { adjustEnvValues } from './env.mjs';
 import { defaultOptions } from './options.mjs';
@@ -75,12 +75,13 @@ function toBoolean(value) {
 }
 
 function processArgs() {
-    const knownOpts = {
-        cwd: String,
-    };
-    const shortHands = {};
-    const parsed = nopt(knownOpts, shortHands);
-    return parsed;
+    const { values } = parseArgs({
+        options: {
+            cwd: { type: 'string' },
+            debug: { type: 'boolean' },
+        },
+    });
+    return values;
 }
 
 run(processArgs());
