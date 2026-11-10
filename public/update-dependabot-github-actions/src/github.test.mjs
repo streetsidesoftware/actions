@@ -61,14 +61,14 @@ describe('github', () => {
     test('setFailed prints the error as one line and sets the exit code', (t) => {
         const log = t.mock.method(console, 'log', () => undefined);
         try {
-            setFailed('50% done\nthen it broke');
+            setFailed('50% done\n(then it broke)');
             assert.equal(process.exitCode, 1);
         } finally {
             process.exitCode = undefined;
         }
         assert.deepEqual(
             log.mock.calls.map((call) => call.arguments),
-            [['::error::50%25 done%0Athen it broke']],
+            [['::error::50%25 done%0A(then it broke)']],
         );
     });
 });
