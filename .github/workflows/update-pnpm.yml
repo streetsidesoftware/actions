@@ -36,6 +36,10 @@ jobs:
       - name: Update PNPM
         # The self-update changes only package.json.
         # The install records the new pnpm version in the lockfile.
+        env:
+          # The self-update does not read `minimumReleaseAge` from pnpm-workspace.yaml.
+          # Keep this value the same as the one there.
+          PNPM_CONFIG_MINIMUM_RELEASE_AGE: 2880 # two days
         run: |
           pnpm self-update
           pnpm install --lockfile-only
