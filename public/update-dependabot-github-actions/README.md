@@ -55,14 +55,13 @@ inputs:
     required: false
   prefix:
     description: |
-      Set the commit title prefix. Only used when the action creates the `directories` entry.
+      Set the commit title prefix.
       See: [dependabot commit message](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#commit-message)
     default: ci
     required: false
   interval:
     description: |
-      Scan frequency. Only used when the action creates the `directories` entry.
-      See dependabot schedule.interval
+      Scan frequency. See dependabot schedule.interval
     default: 'daily'
     required: false
   dry-run:
