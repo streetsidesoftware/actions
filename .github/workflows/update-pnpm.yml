@@ -6,8 +6,12 @@ name: ' 🔗 Update PNPM'
 #
 #   jobs:
 #     update-pnpm:
+#       if: github.repository_owner == 'streetsidesoftware'
 #       uses: streetsidesoftware/actions/.github/workflows/update-pnpm.yml@v1
 #       secrets: inherit
+#
+# The `if` belongs on the calling job. Without it, a fork starts a run and makes the call
+# before the same check on the job below can skip anything.
 #
 # The caller needs the secrets `AUTOMATION_APP_ID` and `AUTOMATION_PRIVATE_KEY`.
 
