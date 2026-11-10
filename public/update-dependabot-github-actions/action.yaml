@@ -1,5 +1,5 @@
 name: 'Update dependabot Github Actions'
-description: 'Update .github/dependabot.yml file to include a list of actions.'
+description: 'Make sure the github-actions entries in .github/dependabot.yml cover every local action, using directories globs.'
 
 inputs:
   directory:

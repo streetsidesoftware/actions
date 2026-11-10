@@ -33,6 +33,9 @@ jobs:
           pnpm build
           pnpm lint
 
+      - name: Test
+        run: pnpm test
+
   validate-actions:
     runs-on: ubuntu-latest
     steps:

@@ -1,25 +1,30 @@
 # Update Dependabot GitHub Actions
 
-Github Dependabot can help keep versions up to date in workflows and actions. But there is a limitation on the current implementation that prevents it from automatically finding `.github/actions/*/action.yml` files.
-
-See: [Local actions in .github/actions/ are not checked · Issue #6345 · dependabot/dependabot-core](https://github.com/dependabot/dependabot-core/issues/6345)
-
-The workaround is to add an entry into `.github/dependabot.yml` for each action.
-
-**`.github/dependabot.yml`**
+Dependabot only updates local actions, such as `.github/actions/*/action.yml`, when `.github/dependabot.yml` lists their folders.
+Its `directories` setting accepts globs, so one entry can cover every action:
 
 ```yaml
 updates:
-  # Added to find
   - package-ecosystem: 'github-actions'
-    # Workflow files stored in the
-    # default location of `.github/workflows`
-    directory: '/.github/actions/a_reusable_workflow'
+    directories:
+      - '/.github/actions/*'
     schedule:
       interval: 'daily'
 ```
 
-This action can help keep `.github/dependabot.yml` up to date based upon the action files found.
+This action finds the local actions and makes sure the `github-actions` entries cover them.
+
+- When every action is already covered, the file is not changed.
+- For each local action that is not covered, this action adds a `/<parent>/*` glob to the entry it manages, creating the entry if needed.
+- Older versions of this action added one entry per action folder. Those entries are replaced by the `directories` entry.
+
+Entries this action manages are marked with:
+
+```yaml
+# Automatically added by streetsidesoftware/public/update-dependabot-github-actions
+```
+
+Entries without the marker are never changed.
 
 ## Usage
 
@@ -31,7 +36,7 @@ This action can help keep `.github/dependabot.yml` up to date based upon the act
 
 ```yaml
 name: 'Update dependabot Github Actions'
-description: 'Update .github/dependabot.yml file to include a list of actions.'
+description: 'Make sure the github-actions entries in .github/dependabot.yml cover every local action, using directories globs.'
 
 inputs:
   directory:

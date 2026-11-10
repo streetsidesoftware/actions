@@ -5,9 +5,9 @@ export const defaultOptions = {
      *   - `.github/actions/*`
      *   - `{.github/actions,private/actions}`
      * @required false
-     * @default ".github/actions"
+     * @default ".github/actions/*"
      */
-    directory: '.github/action',
+    directory: '.github/actions/*',
     /**
      * Path to the dependabot yaml file.
      * @default ".github/dependabot.yml"
