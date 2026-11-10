@@ -28,8 +28,10 @@ jobs:
         with:
           ref: ${{ env.REF_BRANCH }}
 
-      - name: Setup
-        uses: ./public/setup-node-pnpm
+      # The shared `setup-node-pnpm` action is not used here. It installs Corepack's `pnpm` shim,
+      # and pnpm refuses to self-update when Corepack runs it.
+      - name: Setup pnpm
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
 
       - name: Update PNPM
         # The self-update changes only package.json.
