@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.7.0](https://github.com/streetsidesoftware/actions/compare/v1.6.27...v1.7.0) (2026-11-10)
+
+
+### Features
+
+* make the Update PNPM workflow callable from other repos ([#476](https://github.com/streetsidesoftware/actions/issues/476)) ([3c56812](https://github.com/streetsidesoftware/actions/commit/3c5681266a607c9d156731f9a7bf06342edc55c9))
+* update-dependabot-github-actions converts entries to directories globs ([#467](https://github.com/streetsidesoftware/actions/issues/467)) ([ef73da5](https://github.com/streetsidesoftware/actions/commit/ef73da543e13fc7a88dc435fafd07e85cb5a7927))
+
+
+### Updates and Bug Fixes
+
+* build update-dependabot-github-actions with tsdown as an ES module ([#469](https://github.com/streetsidesoftware/actions/issues/469)) ([ae38a9e](https://github.com/streetsidesoftware/actions/commit/ae38a9e456bade3b06a94dfe52bc1b8b46543928))
+* bump inject-markdown from 5.0.3 to 6.3.0 ([#460](https://github.com/streetsidesoftware/actions/issues/460)) ([58a9d50](https://github.com/streetsidesoftware/actions/commit/58a9d5057a71ce0e482e854821d2c3a03b211a19))
+* bump minimatch from 9.0.9 to 11.0.5 ([#461](https://github.com/streetsidesoftware/actions/issues/461)) ([da465ed](https://github.com/streetsidesoftware/actions/commit/da465edca9a1ffd861f4a04649580490cf37f3b9))
+* bump the action-dependencies-version group across 1 directory with 2 updates ([#463](https://github.com/streetsidesoftware/actions/issues/463)) ([4199a18](https://github.com/streetsidesoftware/actions/commit/4199a1867a72307d5958656a6999e8d23e995278))
+* bump the action-dependencies-version group across 2 directories with 2 updates ([#468](https://github.com/streetsidesoftware/actions/issues/468)) ([c00e995](https://github.com/streetsidesoftware/actions/commit/c00e99539f92b77b59818865ea7835ac4c57794c))
+* drop @actions/core from update-dependabot-github-actions ([#472](https://github.com/streetsidesoftware/actions/issues/472)) ([f1c4c1d](https://github.com/streetsidesoftware/actions/commit/f1c4c1d4939327361995bef64e454545340ef160))
+* parse arguments with node:util parseArgs instead of nopt ([#471](https://github.com/streetsidesoftware/actions/issues/471)) ([b56fc3e](https://github.com/streetsidesoftware/actions/commit/b56fc3e07592351e7398f650d9d474f039ad61af))
+* run update-dependabot-github-actions on Node 24 and use fs.glob ([#465](https://github.com/streetsidesoftware/actions/issues/465)) ([9f7bd3c](https://github.com/streetsidesoftware/actions/commit/9f7bd3cc04fd3e2e2afc9456706958fb9f3ebbe5))
+
 ## [1.6.27](https://github.com/streetsidesoftware/actions/compare/v1.6.26...v1.6.27) (2026-09-13)
 
 
