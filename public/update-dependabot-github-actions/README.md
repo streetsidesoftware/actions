@@ -88,7 +88,7 @@ outputs:
     description: Markdown summary of changes, can be used in a PR.
 runs:
   using: 'node24'
-  main: 'action-build/index.cjs'
+  main: 'action-build/index.mjs'
 ```
 
 <!--- @@inject-end: ./action.yaml --->
