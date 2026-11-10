@@ -1,8 +1,8 @@
-import { getInput, setFailed, setOutput, summary } from '@actions/core';
 import * as path from 'node:path';
 import { parseArgs } from 'node:util';
 import { prepDebug } from './debugPrep.mjs';
 import { adjustEnvValues } from './env.mjs';
+import { appendJobSummary, getInput, setFailed, setOutput } from './github.mjs';
 import { defaultOptions } from './options.mjs';
 import { generateSummary, updateDependabot } from './updateDependabot.mjs';
 
@@ -47,8 +47,7 @@ async function run(args) {
         }
         const summaryText = generateSummary(result);
         setOutput('summary', summaryText);
-        summary.addRaw(summaryText);
-        await summary.write();
+        appendJobSummary(summaryText);
         setOutput('updated', (result.changes && true) || '');
         setOutput('changes', result.changes);
     } catch (error) {
