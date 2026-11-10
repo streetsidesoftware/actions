@@ -10,6 +10,5 @@ trustPolicy: no-downgrade
 
 allowBuilds:
   core-js: false
-  esbuild: true
 
 # cspell:dictionaries npm
