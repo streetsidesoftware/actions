@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.1](https://github.com/streetsidesoftware/actions/compare/v1.7.0...v1.7.1) (2026-11-10)
+
+
+### Updates and Bug Fixes
+
+* pin create-pull-request by commit SHA in the pr action ([#477](https://github.com/streetsidesoftware/actions/issues/477)) ([bd45bb3](https://github.com/streetsidesoftware/actions/commit/bd45bb3bbfb03fb994250354dccad3fdd467ecfe))
+
 ## [1.7.0](https://github.com/streetsidesoftware/actions/compare/v1.6.27...v1.7.0) (2026-11-10)
 
 
