@@ -39,7 +39,7 @@ jobs:
         id: git-body
         uses: ./public/pr-body
         with:
-          title: Update ALL Dependencies ${{ env.REF_BRANCH }}
+          title: Update PNPM ${{ env.REF_BRANCH }}
           path: package.json
 
       - name: PR
