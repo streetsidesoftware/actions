@@ -58,14 +58,17 @@ jobs:
 
       - name: Update PNPM
         # The self-update changes only package.json.
-        # The install records the new pnpm version in the lockfile.
         env:
           # The self-update does not read `minimumReleaseAge` from pnpm-workspace.yaml, so it is set here.
           # Two days is the value the streetsidesoftware repos use in that file.
           PNPM_CONFIG_MINIMUM_RELEASE_AGE: 2880 # two days
-        run: |
-          pnpm self-update
-          pnpm install --lockfile-only
+        run: pnpm self-update
+
+      - name: Update the lockfile
+        # The install records the new pnpm version in the lockfile.
+        # It is a step of its own so that the release age above does not apply to it. The install checks
+        # every lockfile entry against that age, and fails when the repo's lockfile holds a newer dependency.
+        run: pnpm install --lockfile-only
 
       # The actions below are referenced by repository, not by local path.
       # A local path would resolve in the calling repo's checkout.
