@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.7.2](https://github.com/streetsidesoftware/actions/compare/v1.7.1...v1.7.2) (2026-11-14)
+
+
+### Updates and Bug Fixes
+
+* apply the pnpm release age only to the self-update ([#482](https://github.com/streetsidesoftware/actions/issues/482)) ([8aac5a5](https://github.com/streetsidesoftware/actions/commit/8aac5a51ef9669df695768885ef53123a12562ab))
+* bump peter-evans/create-pull-request from 8.1.2 to 8.1.3 in /.github/actions/pr in the action-dependencies-version group across 1 directory ([#485](https://github.com/streetsidesoftware/actions/issues/485)) ([5a8c258](https://github.com/streetsidesoftware/actions/commit/5a8c25871d65353ca9db8f76578d0c1016ad1579))
+
+
+### Code Refactoring
+
+* use @streetsidesoftware/github-action-toolkit in update-dependabot-github-actions ([#483](https://github.com/streetsidesoftware/actions/issues/483)) ([4b5f8b0](https://github.com/streetsidesoftware/actions/commit/4b5f8b07349c260a6e4d5e7cf15bcff9b7189199))
+
 ## [1.7.1](https://github.com/streetsidesoftware/actions/compare/v1.7.0...v1.7.1) (2026-11-10)
 
 
