@@ -2,7 +2,7 @@ import * as path from 'node:path';
 import { parseArgs } from 'node:util';
 import { prepDebug } from './debugPrep.mjs';
 import { adjustEnvValues } from './env.mjs';
-import { appendJobSummary, getInput, setFailed, setOutput } from './github.mjs';
+import { appendJobSummary, getInput, setFailed, setOutput } from '@streetsidesoftware/github-action-toolkit';
 import { defaultOptions } from './options.mjs';
 import { generateSummary, updateDependabot } from './updateDependabot.mjs';
 

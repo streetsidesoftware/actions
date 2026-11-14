@@ -3,6 +3,8 @@ packages:
   - 'public/*'
 
 minimumReleaseAge: 2880 # two days
+minimumReleaseAgeExclude:
+  - '@streetsidesoftware/*' # our own packages
 blockExoticSubdeps: true
 trustPolicy: no-downgrade
 # trustPolicyExclude:
