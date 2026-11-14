@@ -42,7 +42,7 @@ function adjustEnvValues(env, keyValues) {
 		});
 	}
 }
-// ../../node_modules/.pnpm/@streetsidesoftware+github-action-toolkit@0.0.1-alpha.0/node_modules/@streetsidesoftware/github-action-toolkit/dist/index.js
+// ../../node_modules/.pnpm/@streetsidesoftware+github-action-toolkit@1.0.0/node_modules/@streetsidesoftware/github-action-toolkit/dist/index.js
 /**
 * Read one of the action's inputs.
 *

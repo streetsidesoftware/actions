@@ -176,8 +176,8 @@ importers:
   public/update-dependabot-github-actions:
     dependencies:
       '@streetsidesoftware/github-action-toolkit':
-        specifier: ^0.0.1-alpha.0
-        version: 0.0.1-alpha.0
+        specifier: ^1.0.0
+        version: 1.0.0
       yaml:
         specifier: ^2.9.1
         version: 2.9.1
@@ -322,8 +322,8 @@ packages:
   '@rolldown/pluginutils@1.1.0':
     resolution: {integrity: sha512-K+NU2HDCEem4sClgHH4ZZXwdJeNFkJo+hRk479DIwdIviAPN2hFJH1KHHwg8CxHQXvi0M5XY4deTXINfIiSG6w==}
 
-  '@streetsidesoftware/github-action-toolkit@0.0.1-alpha.0':
-    resolution: {integrity: sha512-II4O45qbePizppRveW92RHIVayXMTotFBuovCyzfs15FVPvSEbj9ZYe/zMy9nv3Q1LYemQ4Ur1Qbtd1g6hZt7g==}
+  '@streetsidesoftware/github-action-toolkit@1.0.0':
+    resolution: {integrity: sha512-nreWv/ehb0+P6tFpLaGBwelKggT/Ro7bIQV84KMhPJz8HKlXoGwHZU+FLzfbHEtWSqkqab2FwicvnCQT9io2Sg==}
     engines: {node: '>=22.18.0'}
 
   '@tybys/wasm-util@0.10.4':
@@ -921,7 +921,7 @@ snapshots:
 
   '@rolldown/pluginutils@1.1.0': {}
 
-  '@streetsidesoftware/github-action-toolkit@0.0.1-alpha.0': {}
+  '@streetsidesoftware/github-action-toolkit@1.0.0': {}
 
   '@tybys/wasm-util@0.10.4':
     dependencies:
