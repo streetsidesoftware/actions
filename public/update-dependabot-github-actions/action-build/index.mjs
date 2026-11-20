@@ -1,7 +1,7 @@
 import { createRequire } from "node:module";
 import * as path from "node:path";
-import { parseArgs } from "node:util";
 import { appendFileSync, promises } from "node:fs";
+import { parseArgs } from "node:util";
 import { randomUUID } from "node:crypto";
 import { EOL } from "node:os";
 import { fileURLToPath } from "node:url";
